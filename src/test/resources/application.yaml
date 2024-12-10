@@ -1,0 +1,19 @@
+spring:
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: validate
+#    datasource:
+#        url: ${POSTGRES_HOST:jdbc:postgresql://localhost:5431/db}
+#        username: ${POSTGRES_USER:postgres}
+#        password: ${POSTGRES_PASSWORD:postgres}
+#        driverClassName: org.postgresql.Driver
+    liquibase:
+        enabled: true
+        drop-first: false
+        change-log: classpath:/db/changelog/${MIGRATION_LOG:changelog.xml}
+
+templates:
+  freemarker:
+      path: templates/freemarker.ftl
+
