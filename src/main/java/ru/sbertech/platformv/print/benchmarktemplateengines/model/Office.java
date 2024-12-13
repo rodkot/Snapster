@@ -2,34 +2,45 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Type;
+
+import io.hypersistence.utils.hibernate.type.json.JsonType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Entity(name = "office")
+@Getter
+@Setter
+@Builder
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 class Office {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String location;
+
+    @OneToMany
     private List<Department> departments;
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "json")
     private List<String> resources;
-
-    public Office(String name, String location, List<Department> departments, List<String> resources) {
-        this.name = name;
-        this.location = location;
-        this.departments = departments;
-        this.resources = resources;
-    }
-
-    // Геттеры и сеттеры
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
-
-    public List<Department> getDepartments() { return departments; }
-    public void setDepartments(List<Department> departments) { this.departments = departments; }
-
-    public List<String> getResources() { return resources; }
-    public void setResources(List<String> resources) { this.resources = resources; }
-
-    @Override
-    public String toString() {
-        return "Office{name='" + name + "', location='" + location + "'}";
-    }
 }

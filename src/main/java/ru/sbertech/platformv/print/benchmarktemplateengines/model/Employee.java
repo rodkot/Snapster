@@ -2,44 +2,48 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Entity(name = "employee")
+@Getter
+@Setter
+@Builder
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String position;
+
+    @ManyToOne
     private Department department;
+
+    @Column
     private double salary;
+
+    @Column
     private int experience;
+
+    @ManyToMany
     private List<Project> projects;
 
-    public Employee(String name, String position, Department department, double salary, int experience, List<Project> projects) {
-        this.name = name;
-        this.position = position;
-        this.department = department;
-        this.salary = salary;
-        this.experience = experience;
-        this.projects = projects;
-    }
-
-    // Геттеры и сеттеры
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getPosition() { return position; }
-    public void setPosition(String position) { this.position = position; }
-
-    public Department getDepartment() { return department; }
-    public void setDepartment(Department department) { this.department = department; }
-
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
-
-    public int getExperience() { return experience; }
-    public void setExperience(int experience) { this.experience = experience; }
-
-    public List<Project> getProjects() { return projects; }
-    public void setProjects(List<Project> projects) { this.projects = projects; }
-
-    @Override
-    public String toString() {
-        return "Employee{name='" + name + "', position='" + position + "', salary=" + salary + "}";
-    }
 }

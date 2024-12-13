@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.Project;
 
 @Repository
-public interface ProjectRepository extends CrudRepository<Long, Project> {
+public interface ProjectRepository extends CrudRepository<Project, Long> {
 }

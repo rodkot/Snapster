@@ -2,34 +2,37 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Entity(name = "department")
+@Getter
+@Setter
+@Builder
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
-    private int employeeCount;
+
+    @Column
     private double budget;
+
+    @OneToMany
     private List<Project> projects;
-
-    public Department(String name, int employeeCount, double budget, List<Project> projects) {
-        this.name = name;
-        this.employeeCount = employeeCount;
-        this.budget = budget;
-        this.projects = projects;
-    }
-
-    // Геттеры и сеттеры
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public int getEmployeeCount() { return employeeCount; }
-    public void setEmployeeCount(int employeeCount) { this.employeeCount = employeeCount; }
-
-    public double getBudget() { return budget; }
-    public void setBudget(double budget) { this.budget = budget; }
-
-    public List<Project> getProjects() { return projects; }
-    public void setProjects(List<Project> projects) { this.projects = projects; }
-
-    @Override
-    public String toString() {
-        return "Department{name='" + name + "', employeeCount=" + employeeCount + "}";
-    }
 }
