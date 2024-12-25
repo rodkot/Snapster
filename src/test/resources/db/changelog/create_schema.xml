@@ -4,8 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="create_table_user" author="r.kotov">
-        <createTable tableName="user_account">
+    <changeSet id="create_table_project" author="r.kotov">
+        <createTable tableName="project">
             <column name="id" type="bigserial">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -20,4 +20,91 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create_table_department" author="r.kotov">
+        <createTable tableName="department">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="budget" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_employee" author="r.kotov">
+        <createTable tableName="employee">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experience" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary" type="double precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="bigserial">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_department"
+                             references="department(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_office" author="r.kotov">
+        <createTable tableName="office">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resources" type="jsonb">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_office_departments" author="r.kotov">
+        <createTable tableName="office_departments">
+            <column name="departments_id" type="bigserial">
+                <constraints nullable="false"
+                             foreignKeyName="fk_office_department"
+                             references="department(id)"/>
+            </column>
+            <column name="office_id" type="bigserial">
+                <constraints nullable="false"
+                             foreignKeyName="fk_department_office"
+                             references="office(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_department_projects" author="r.kotov">
+        <createTable tableName="department_projects">
+            <column name="department_id" type="bigserial">
+                <constraints nullable="false"
+                             foreignKeyName="fk_project_department"
+                             references="department(id)"/>
+            </column>
+            <column name="projects_id" type="bigserial">
+                <constraints nullable="false"
+                             foreignKeyName="fk_department_project"
+                             references="project(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

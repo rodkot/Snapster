@@ -42,8 +42,4 @@ class Employee {
 
     @Column
     private int experience;
-
-    @ManyToMany
-    private List<Project> projects;
-
 }
