@@ -3,6 +3,7 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.imp
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,25 +14,28 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.Office;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.Project;
 
 
 @RequiredArgsConstructor
-public class FreemarkerEngine implements ReportEngine<Project, String> {
+public class FreemarkerEngine implements ReportEngine<Office, String> {
 
     @Value("${templates.freemarker.path}")
     private String path;
 
-    private Map<String, Object> context;
+    private Map<String, Object> context = new HashMap<>();
 
     private Template template;
 
     @Override
-    public void setup(List<Project> values) throws IOException {
+    public void setup(List<Office> values) throws IOException {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
         configuration.setTemplateLoader(new ClassTemplateLoader(getClass(), "/"));
         template = configuration.getTemplate(path);
+
+        context.put("offices",values);
         //this.context = getContext();
     }
 

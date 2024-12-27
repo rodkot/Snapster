@@ -1,72 +1,104 @@
+<#-- Шаблон офисов и их сотрудников -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Stock Prices</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" />
-    <script type="text/javascript" src="/js/util.js"></script>
-    <style type="text/css">
-        /*<![CDATA[*/
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offices and Employees</title>
+    <style>
         body {
-            color: #333333;
-            line-height: 150%;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-
-        thead {
-            font-weight: bold;
-            background-color: #CCCCCC;
+        h1, h2 {
+            color: #333;
         }
-
-        .odd {
-            background-color: #FFCCCC;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-
-        .even {
-            background-color: #CCCCFF;
+        .departament-list {
+        display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
-
-        .minus {
-            color: #FF0000;
+        .departament-list img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
         }
-
-        /*]]>*/
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .no-employees {
+            color: #999;
+            font-style: italic;
+        }
     </style>
-
 </head>
-
 <body>
+<h1>Offices and Employees</h1>
 
-<h1>Stock Prices</h1>
+<#-- Проверяем, есть ли офисы -->
+<#--<#if offices?size > 0>-->
+<#-- Перебираем офисы -->
+    <#list offices as office>
+        <section>
+            <h2>Office: ${office.name}</h2>
+            <p><strong>Location:</strong> ${office.location}</p>
+            <div class="departament-list">
 
-<table>
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>symbol</th>
-        <th>name</th>
-        <th>price</th>
-        <th>change</th>
-        <th>ratio</th>
-    </tr>
-    </thead>
-    <tbody>
-    <#list items as item>
-        <tr class="${["even", "odd"][(item_index+1) %2]}">
-            <td>${item_index + 1}</td>
-            <td><a href="/stocks/${item.symbol}">${item.symbol}</a></td>
-            <td><a href="${item.url}">${item.name}</a></td>
-            <td><strong>${item.price}</strong></td><#if (item.change < 0.0)>
-            <td class="minus">${item.change}</td>
-            <td class="minus">${item.ratio}</td><#else>
-            <td>${item.change}</td>
-            <td>${item.ratio}</td></#if>
-        </tr>
+                <#list office.departments as department>
+                    <#macro departmentImage departmentName>
+                        <img class="departament-list"
+                             src="
+                               <#switch departmentName>
+                               <#case 'IT'>/images/it.png
+                               <#case 'HR'>/images/hr.png
+                               <#case 'Finance'>/images/finance.png
+                               <#case 'Marketing'>/images/marketing.png
+                               <#default>/images/default.png
+                               </#switch>" alt="${departmentName} Department" />
+                    </#macro>
+
+                    <@departmentImage departmentName=department.name />
+
+                </#list>
+            </div>
+<#--                <table>-->
+<#--                    <thead>-->
+<#--                    <tr>-->
+<#--                        <th>Personal Table</th>-->
+<#--                        <th>Name</th>-->
+<#--                        <th>Position</th>-->
+<#--                        <th>Salary</th>-->
+<#--                        <th>Experience (years)</th>-->
+<#--                    </tr>-->
+<#--                    </thead>-->
+<#--                    <tbody>-->
+<#--                    <#list office.employees as employee>-->
+<#--                        <tr>-->
+<#--                            <td>${employee.id}</td>-->
+<#--                            <td>${employee.name}</td>-->
+<#--                            <td>${employee.position}</td>-->
+<#--                            <td>${employee.salary?string.currency}</td>-->
+<#--                            <td>${employee.experience}</td>-->
+<#--                        </tr>-->
+<#--                    </#list>-->
+<#--                    </tbody>-->
+<#--                </table>-->
+        </section>
     </#list>
-    </tbody>
-</table>
-
+<#--<#else>-->
+<#--    <p>No offices available.</p>-->
+<#--</#if>-->
 </body>
 </html>

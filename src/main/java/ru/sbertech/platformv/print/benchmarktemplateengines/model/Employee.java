@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-class Employee {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

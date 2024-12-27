@@ -25,12 +25,14 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.Office;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.Project;
+import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.ProjectRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {FreemarkerEngine.class, ProjectRepository.class})
+@SpringBootTest(classes = {FreemarkerEngine.class, ProjectRepository.class, OfficeRepository.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
 public class ExpectedOutputTest {
@@ -62,9 +64,12 @@ public class ExpectedOutputTest {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private OfficeRepository officeRepository;
+
     @Test
     public void testFreemarkerOutput() throws IOException, TemplateException {
-        List<Project> projects = (List<Project>) projectRepository.findAll();
+        List<Office> projects = officeRepository.findAll();
         freemarkerEngine.setup(projects);
         assertOutput(freemarkerEngine.process());
     }
