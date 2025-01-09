@@ -10,13 +10,13 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints unique="true" nullable="false"/>
             </column>
             <column name="description" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="varchar(255)">
-                <constraints unique="true" nullable="true"/>
+                <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>
@@ -31,31 +31,6 @@
             </column>
             <column name="budget" type="double">
                 <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create_table_employee" author="r.kotov">
-        <createTable tableName="employee">
-            <column name="id" type="bigserial">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="position" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="experience" type="integer">
-                <constraints nullable="false"/>
-            </column>
-            <column name="salary" type="double precision">
-                <constraints nullable="false"/>
-            </column>
-            <column name="department_id" type="bigserial">
-                <constraints nullable="false"
-                             foreignKeyName="fk_employee_department"
-                             references="department(id)"/>
             </column>
         </createTable>
     </changeSet>
@@ -77,17 +52,32 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create_table_office_departments" author="r.kotov">
-        <createTable tableName="office_departments">
-            <column name="departments_id" type="bigserial">
-                <constraints nullable="false"
-                             foreignKeyName="fk_office_department"
-                             references="department(id)"/>
+    <changeSet id="create_table_employee" author="r.kotov">
+        <createTable tableName="employee">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experience" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary" type="double precision">
+                <constraints nullable="false"/>
             </column>
             <column name="office_id" type="bigserial">
                 <constraints nullable="false"
-                             foreignKeyName="fk_department_office"
+                             foreignKeyName="fk_employee_office"
                              references="office(id)"/>
+            </column>
+            <column name="project_id" type="bigserial">
+                <constraints nullable="true"
+                             foreignKeyName="fk_employee_project"
+                             references="project(id)"/>
             </column>
         </createTable>
     </changeSet>

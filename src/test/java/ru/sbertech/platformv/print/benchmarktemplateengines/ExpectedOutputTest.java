@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -25,14 +24,19 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.Office;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.Project;
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.EmployeeMapperImpl;
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapperImpl;
+import ru.sbertech.platformv.print.benchmarktemplateengines.repository.EmployeeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.ProjectRepository;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {FreemarkerEngine.class, ProjectRepository.class, OfficeRepository.class})
+@SpringBootTest(classes = {FreemarkerEngine.class, OfficeMapperImpl.class, EmployeeMapperImpl.class,
+        ProjectRepository.class,
+        OfficeRepository.class,
+        EmployeeRepository.class, OfficeService.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
 public class ExpectedOutputTest {
@@ -61,16 +65,9 @@ public class ExpectedOutputTest {
     @Autowired
     private FreemarkerEngine freemarkerEngine;
 
-    @Autowired
-    private ProjectRepository projectRepository;
-
-    @Autowired
-    private OfficeRepository officeRepository;
-
     @Test
     public void testFreemarkerOutput() throws IOException, TemplateException {
-        List<Office> projects = officeRepository.findAll();
-        freemarkerEngine.setup(projects);
+        freemarkerEngine.setup();
         assertOutput(freemarkerEngine.process());
     }
 
@@ -82,7 +79,7 @@ public class ExpectedOutputTest {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new InputStreamReader(
                 Objects.requireNonNull(ExpectedOutputTest.class.getResourceAsStream("/output.html"))))) {
-            for (;;) {
+            for (; ; ) {
                 String line = in.readLine();
                 if (line == null) {
                     break;

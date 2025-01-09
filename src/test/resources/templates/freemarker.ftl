@@ -54,47 +54,48 @@
         <section>
             <h2>Office: ${office.name}</h2>
             <p><strong>Location:</strong> ${office.location}</p>
-            <div class="departament-list">
 
-                <#list office.departments as department>
-                    <#macro departmentImage departmentName>
-                        <img class="departament-list"
-                             src="
-                               <#switch departmentName>
-                               <#case 'IT'>/images/it.png
-                               <#case 'HR'>/images/hr.png
-                               <#case 'Finance'>/images/finance.png
-                               <#case 'Marketing'>/images/marketing.png
-                               <#default>/images/default.png
-                               </#switch>" alt="${departmentName} Department" />
-                    </#macro>
+            <#list office.employees as employee>
+<#--                <div class="departament-list">-->
+<#--                    <#list employee.departments as department>-->
+<#--                        <#macro departmentImage departmentName>-->
+<#--                            <img class="departament-list"-->
+<#--                                 src="-->
+<#--                               <#switch departmentName>-->
+<#--                               <#case 'IT'>/images/it.png-->
+<#--                               <#case 'HR'>/images/hr.png-->
+<#--                               <#case 'Finance'>/images/finance.png-->
+<#--                               <#case 'Marketing'>/images/marketing.png-->
+<#--                               <#default>/images/default.png-->
+<#--                               </#switch>" alt="${departmentName} Department" />-->
+<#--                        </#macro>-->
 
-                    <@departmentImage departmentName=department.name />
-
-                </#list>
-            </div>
-<#--                <table>-->
-<#--                    <thead>-->
-<#--                    <tr>-->
-<#--                        <th>Personal Table</th>-->
-<#--                        <th>Name</th>-->
-<#--                        <th>Position</th>-->
-<#--                        <th>Salary</th>-->
-<#--                        <th>Experience (years)</th>-->
-<#--                    </tr>-->
-<#--                    </thead>-->
-<#--                    <tbody>-->
-<#--                    <#list office.employees as employee>-->
-<#--                        <tr>-->
-<#--                            <td>${employee.id}</td>-->
-<#--                            <td>${employee.name}</td>-->
-<#--                            <td>${employee.position}</td>-->
-<#--                            <td>${employee.salary?string.currency}</td>-->
-<#--                            <td>${employee.experience}</td>-->
-<#--                        </tr>-->
+<#--                        <@departmentImage departmentName=department.name />-->
 <#--                    </#list>-->
-<#--                    </tbody>-->
-<#--                </table>-->
+<#--                </div>-->
+            </#list>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Personal Table</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <th>Experience (years)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#list office.employees as employee>
+                        <tr>
+                            <td>${employee.id}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.position}</td>
+                            <td>${employee.salary?string.currency}</td>
+                            <td>${employee.experience}</td>
+                        </tr>
+                    </#list>
+                    </tbody>
+                </table>
         </section>
     </#list>
 <#--<#else>-->

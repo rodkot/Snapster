@@ -1,4 +1,4 @@
-package ru.sbertech.platformv.print.benchmarktemplateengines.model;
+package ru.sbertech.platformv.print.benchmarktemplateengines.model.entity;
 
 import java.util.List;
 

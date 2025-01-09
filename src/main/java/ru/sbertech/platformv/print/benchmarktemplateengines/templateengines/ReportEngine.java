@@ -11,7 +11,7 @@ import freemarker.template.TemplateException;
 //@BenchmarkMode(Mode.Throughput)
 //@OutputTimeUnit(TimeUnit.SECONDS)
 //@State(Scope.Benchmark)
-public interface ReportEngine<T,U> {
-    void setup(List<T> values) throws IOException;
-    U process() throws TemplateException, IOException;
+public interface ReportEngine {
+    void setup() throws IOException;
+    String process() throws TemplateException, IOException;
 }

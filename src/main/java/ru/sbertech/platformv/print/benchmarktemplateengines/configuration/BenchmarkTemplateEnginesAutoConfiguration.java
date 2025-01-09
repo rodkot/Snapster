@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.mapstruct.MapperConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -17,10 +18,12 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapper;
 
 @RequiredArgsConstructor
 @Configuration
 @EnableAutoConfiguration
+@MapperConfig(componentModel = "spring", imports = {OfficeMapper.class})
 @ComponentScan("ru.sbertech.platformv.print.benchmarktemplateengines")
 public class BenchmarkTemplateEnginesAutoConfiguration {
 

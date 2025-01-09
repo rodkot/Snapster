@@ -1,14 +1,10 @@
-package ru.sbertech.platformv.print.benchmarktemplateengines.model;
-
-import java.util.List;
+package ru.sbertech.platformv.print.benchmarktemplateengines.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,14 +12,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@Entity(name = "employee")
+@Entity(name = "project")
 @Getter
 @Setter
 @Builder
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,14 +28,8 @@ public class Employee {
     private String name;
 
     @Column
-    private String position;
-
-    @ManyToOne
-    private Department department;
+    private String description;
 
     @Column
-    private double salary;
-
-    @Column
-    private int experience;
+    private String status;
 }
