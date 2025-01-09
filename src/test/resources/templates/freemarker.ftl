@@ -1,10 +1,10 @@
 <#-- Шаблон офисов и их сотрудников -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offices and Employees</title>
+    <title>Offices Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,6 +18,15 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+        }
+        .resources {
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
         }
         .departament-list {
         display: flex;
@@ -52,8 +61,20 @@
 <#-- Перебираем офисы -->
     <#list offices as office>
         <section>
-            <h2>Office: ${office.name}</h2>
+            <h2>${office.name}</h2>
             <p><strong>Location:</strong> ${office.location}</p>
+
+            <#if office.resources??>
+                <div>
+                    <strong>Resources:</strong>
+                <#list office.resources as resource>
+                    <p class="resources" style="background-color: ${['#ff5733', '#33ff57', '#3357ff'][resource?index % 3]};">
+                        ${resource}
+                    </p>
+                </#list>
+                </div>
+            </#if>
+
 
             <#list office.employees as employee>
 <#--                <div class="departament-list">-->

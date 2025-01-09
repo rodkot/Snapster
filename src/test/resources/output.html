@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offices and Employees</title>
+    <title>Offices Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,15 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+        }
+        .resources {
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
         }
         .departament-list {
             display: flex;
@@ -47,26 +56,25 @@
 <h1>Offices and Employees</h1>
 
 <section>
-    <h2>Office: Regional office in Novosibirsk</h2>
+    <h2>Regional office in Novosibirsk</h2>
     <p><strong>Location:</strong> Novosibirsk, st. Titova 12, office 2002</p>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Personal Table</th>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Salary</th>
-            <th>Experience (years)</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</section>
-<section>
-    <h2>Office: Regional office in Akademgorodok</h2>
-    <p><strong>Location:</strong> Novosibirsk, st. Nikolaeva 20, office 2002</p>
+    <div>
+        <strong>Resources:</strong>
+        <p class="resources" style="background-color: #ff5733;">
+            open-spaces
+        </p>
+        <p class="resources" style="background-color: #33ff57;">
+            food places
+        </p>
+        <p class="resources" style="background-color: #3357ff;">
+            gym
+        </p>
+        <p class="resources" style="background-color: #ff5733;">
+            pool
+        </p>
+    </div>
+
 
     <table>
         <thead>
@@ -83,8 +91,48 @@
     </table>
 </section>
 <section>
-    <h2>Office: Regional office in Omsk</h2>
+    <h2>Regional office in Akademgorodok</h2>
+    <p><strong>Location:</strong> Novosibirsk, st. Nikolaeva 20, office 2002</p>
+
+    <div>
+        <strong>Resources:</strong>
+        <p class="resources" style="background-color: #ff5733;">
+            open-spaces
+        </p>
+        <p class="resources" style="background-color: #33ff57;">
+            food places
+        </p>
+    </div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>Personal Table</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Experience (years)</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</section>
+<section>
+    <h2>Regional office in Omsk</h2>
     <p><strong>Location:</strong> Omsk, st. Ordzhonikidze 211</p>
+
+    <div>
+        <strong>Resources:</strong>
+        <p class="resources" style="background-color: #ff5733;">
+            open-spaces
+        </p>
+        <p class="resources" style="background-color: #33ff57;">
+            gym
+        </p>
+    </div>
+
 
     <table>
         <thead>
@@ -129,8 +177,10 @@
     </table>
 </section>
 <section>
-    <h2>Office: Regional office in Tomsk</h2>
+    <h2>Regional office in Tomsk</h2>
     <p><strong>Location:</strong> Tomsk, st. Bubnova 99</p>
+
+
 
     <table>
         <thead>
@@ -161,8 +211,25 @@
     </table>
 </section>
 <section>
-    <h2>Office: General office</h2>
+    <h2>General office</h2>
     <p><strong>Location:</strong> Moscow, Novodanilovskaya embankment 11</p>
+
+    <div>
+        <strong>Resources:</strong>
+        <p class="resources" style="background-color: #ff5733;">
+            open-spaces
+        </p>
+        <p class="resources" style="background-color: #33ff57;">
+            food places
+        </p>
+        <p class="resources" style="background-color: #3357ff;">
+            gym
+        </p>
+        <p class="resources" style="background-color: #ff5733;">
+            pool
+        </p>
+    </div>
+
 
     <table>
         <thead>

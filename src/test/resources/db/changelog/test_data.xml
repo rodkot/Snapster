@@ -8,14 +8,20 @@
         <insert tableName="office">
             <column name="name" value="Regional office in Novosibirsk"/>
             <column name="location" value="Novosibirsk, st. Titova 12, office 2002"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
         </insert>
         <insert tableName="office">
             <column name="name" value="Regional office in Akademgorodok"/>
             <column name="location" value="Novosibirsk, st. Nikolaeva 20, office 2002"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;]"/>
         </insert>
         <insert tableName="office">
             <column name="name" value="Regional office in Omsk"/>
             <column name="location" value="Omsk, st. Ordzhonikidze 211"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;gym&quot;]"/>
         </insert>
         <insert tableName="office">
             <column name="name" value="Regional office in Tomsk"/>
@@ -24,6 +30,8 @@
         <insert tableName="office">
             <column name="name" value="General office"/>
             <column name="location" value="Moscow, Novodanilovskaya embankment 11"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
         </insert>
     </changeSet>
 
@@ -42,7 +50,7 @@
             <column name="status" value="IN PROCESS"/>
         </insert>
         <insert tableName="department_projects">
-            <column name="department_id" valueNumeric="1" />
+            <column name="department_id" valueNumeric="1"/>
             <column name="projects_id" valueNumeric="1"/>
         </insert>
         <insert tableName="employee">
