@@ -47,14 +47,10 @@
         th {
             background-color: #f4f4f4;
         }
-        .no-employees {
-            color: #999;
-            font-style: italic;
-        }
     </style>
 </head>
 <body>
-<h1>Offices and Employees</h1>
+<h1>Offices Report</h1>
 
 <#-- Проверяем, есть ли офисы -->
 <#--<#if offices?size > 0>-->
@@ -100,6 +96,7 @@
                     <tr>
                         <th>Personal Table</th>
                         <th>Name</th>
+                        <th>Project</th>
                         <th>Position</th>
                         <th>Salary</th>
                         <th>Experience (years)</th>
@@ -110,6 +107,7 @@
                         <tr>
                             <td>${employee.id}</td>
                             <td>${employee.name}</td>
+                            <td>${employee.project.name}</td>
                             <td>${employee.position}</td>
                             <td>${employee.salary?string.currency}</td>
                             <td>${employee.experience}</td>
