@@ -1,0 +1,39 @@
+package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.fizzed.rocker.BindableRockerModel;
+import com.fizzed.rocker.Rocker;
+
+import freemarker.template.TemplateException;
+import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+
+@Service
+@RequiredArgsConstructor
+public class FizzedEngine implements ReportEngine {
+    @Value("${templates.fizzed.path}")
+    private String path;
+
+    @Autowired
+    private OfficeService officeService;
+
+    private BindableRockerModel rockerModel;
+
+    @Override
+    public void setup() throws IOException {
+        rockerModel = Rocker.template("offices.rocker.html");
+    }
+
+    @Override
+    public String process() throws TemplateException, IOException {
+        var offices = officeService.loadAll();
+
+        return rockerModel.bind("offices", offices).render().toString();
+    }
+}
