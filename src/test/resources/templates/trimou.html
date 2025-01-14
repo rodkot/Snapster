@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offices Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .resources {
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<h1>Offices Report</h1>
+{{#offices}}
+<section>
+    <h2>{{name}}</h2>
+    <p><strong>Location:</strong> {{location}}</p>
+
+    {{#resources}}
+    <div>
+        <strong>Resources:</strong>
+        {{#resources}}
+        <p class="resources" style="background-color: {{color iter.index}};">
+            {{.}}
+        </p>
+        {{/resources}}
+    </div>
+    {{/resources}}
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Experience (years)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#employees}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{project.name}}</td>
+            <td>{{position}}</td>
+            <td>{{salary}}</td>
+            <td>{{experience}}</td>
+        </tr>
+        {{/employees}}
+        </tbody>
+    </table>
+</section>
+{{/offices}}
+</body>
+</html>
