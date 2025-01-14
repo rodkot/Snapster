@@ -52,9 +52,6 @@
 <body>
 <h1>Offices Report</h1>
 
-<#-- Проверяем, есть ли офисы -->
-<#--<#if offices?size > 0>-->
-<#-- Перебираем офисы -->
     <#list offices as office>
         <section>
             <h2>${office.name}</h2>
@@ -70,27 +67,6 @@
                 </#list>
                 </div>
             </#if>
-
-
-            <#list office.employees as employee>
-<#--                <div class="departament-list">-->
-<#--                    <#list employee.departments as department>-->
-<#--                        <#macro departmentImage departmentName>-->
-<#--                            <img class="departament-list"-->
-<#--                                 src="-->
-<#--                               <#switch departmentName>-->
-<#--                               <#case 'IT'>/images/it.png-->
-<#--                               <#case 'HR'>/images/hr.png-->
-<#--                               <#case 'Finance'>/images/finance.png-->
-<#--                               <#case 'Marketing'>/images/marketing.png-->
-<#--                               <#default>/images/default.png-->
-<#--                               </#switch>" alt="${departmentName} Department" />-->
-<#--                        </#macro>-->
-
-<#--                        <@departmentImage departmentName=department.name />-->
-<#--                    </#list>-->
-<#--                </div>-->
-            </#list>
                 <table>
                     <thead>
                     <tr>
@@ -117,8 +93,5 @@
                 </table>
         </section>
     </#list>
-<#--<#else>-->
-<#--    <p>No offices available.</p>-->
-<#--</#if>-->
 </body>
 </html>
