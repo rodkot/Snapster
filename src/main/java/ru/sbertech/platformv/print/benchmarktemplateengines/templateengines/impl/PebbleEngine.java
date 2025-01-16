@@ -1,5 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -7,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.pebbletemplates.pebble.template.PebbleTemplate;
@@ -19,18 +20,22 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @RequiredArgsConstructor
 public class PebbleEngine implements ReportEngine {
 
-    @Value("${templates.thymeleaf.path}")
-    private String path;
-
     @Autowired
     private OfficeService officeService;
 
     PebbleTemplate compiledTemplate;
 
     @Override
-    public void setup(String report) {
+    public void setup(String report) throws IOException {
         var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().build();
-        engine.getTemplate(path);
+
+        File tempFile = File.createTempFile("pebble",".html");
+
+        try(FileWriter fileWriter = new FileWriter(tempFile)){
+            fileWriter.write(report);
+        }
+
+        compiledTemplate = engine.getTemplate(tempFile.getAbsolutePath());
     }
 
     @Override

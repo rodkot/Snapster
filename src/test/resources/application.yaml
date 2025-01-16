@@ -38,3 +38,6 @@ templates:
     velocity:
         report: /templates/velocity/office.pm
         output: /templates/velocity/output.html
+    pebble:
+        report: /templates/pebble/office.html
+        output: /templates/pebble/output.html
