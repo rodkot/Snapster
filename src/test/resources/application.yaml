@@ -35,3 +35,6 @@ templates:
     trimou:
         report: /templates/trimou/office.html
         output: /templates/trimou/output.html
+    velocity:
+        report: /templates/velocity/office.pm
+        output: /templates/velocity/output.html

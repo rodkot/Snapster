@@ -37,11 +37,13 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.VelocityEngine;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { OfficeMapperImpl.class, FreemarkerEngine.class, ThymeleafEngine.class, FizzedEngine.class
+@SpringBootTest(classes = {OfficeMapperImpl.class, FreemarkerEngine.class, ThymeleafEngine.class, FizzedEngine.class
         , MustacheEngine.class,
         TrimouEngine.class,
+        VelocityEngine.class,
         EmployeeMapperImpl.class,
         ResourceResolverService.class,
         ProjectRepository.class,
@@ -61,9 +63,9 @@ public abstract class ExpectedOutputTest {
     }
 
     @TestConfiguration
-    static class Configuration{
+    static class Configuration {
         @Bean
-        public ClassLoader resourceLoader(){
+        public ClassLoader resourceLoader() {
             return Configuration.class.getClassLoader();
         }
     }
