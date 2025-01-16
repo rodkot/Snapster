@@ -36,10 +36,12 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { OfficeMapperImpl.class, FreemarkerEngine.class, ThymeleafEngine.class, FizzedEngine.class
         , MustacheEngine.class,
+        TrimouEngine.class,
         EmployeeMapperImpl.class,
         ResourceResolverService.class,
         ProjectRepository.class,

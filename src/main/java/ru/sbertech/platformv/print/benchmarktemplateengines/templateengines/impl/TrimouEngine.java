@@ -20,28 +20,23 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @Service
 @RequiredArgsConstructor
 public class TrimouEngine implements ReportEngine {
-
-    @Value("${templates.trimou.path}")
-    private String path;
-
     @Autowired
     private OfficeService officeService;
 
-    @Autowired
-    private ResourceResolverService resourceResolverService;
-
-    private org.trimou.engine.MustacheEngine engine;
+    private Mustache mustache;
 
     @Override
     public void setup(String report) throws IOException {
-        engine =
+        var engine =
                 MustacheEngineBuilder.newBuilder()
                         .registerHelper("color",
                                 new SimpleHelpers.Builder().execute((o, p) -> {
                                     var colors = List.of("#ff5733", "#33ff57", "#3357ff");
-                                    o.append(colors.get((Integer) o.getParameters().get(0)));
+                                    o.append(colors.get(((Integer) o.getParameters().get(0)) % colors.size()));
                                 }).build()).
                         build();
+
+        mustache = engine.compileMustache("offices", report);
     }
 
     private Map<String, Object> setupContext() {
@@ -50,11 +45,8 @@ public class TrimouEngine implements ReportEngine {
         return Map.of("offices", offices);
     }
 
-
     @Override
     public String process() throws TemplateException, IOException {
-        Mustache mustache = engine.compileMustache("offices", resourceResolverService.readResourceFile(path));
-
         return mustache.render(setupContext());
     }
 }

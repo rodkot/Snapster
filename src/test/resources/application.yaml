@@ -32,3 +32,6 @@ templates:
     mustache:
         report: /templates/mustache/office.html
         output: /templates/mustache/output.html
+    trimou:
+        report: /templates/trimou/office.html
+        output: /templates/trimou/output.html
