@@ -37,15 +37,12 @@ public class Company {
     @Column
     private String code;
 
-    @Column
     @ManyToOne
     private Employee director;
 
-    @Column
     @ManyToOne
     private Office generalOffice;
 
-    @Column
     @OneToMany
     private List<Office> additionalOffices;
 }
