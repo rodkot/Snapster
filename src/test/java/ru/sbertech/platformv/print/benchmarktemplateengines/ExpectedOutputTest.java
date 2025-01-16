@@ -34,6 +34,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeServic
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.LiqpEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.PebbleEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
@@ -46,6 +47,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
         TrimouEngine.class,
         VelocityEngine.class,
         PebbleEngine.class,
+        LiqpEngine.class,
         EmployeeMapperImpl.class,
         ResourceResolverService.class,
         ProjectRepository.class,

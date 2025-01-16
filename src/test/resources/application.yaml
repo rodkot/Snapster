@@ -20,14 +20,17 @@ templates:
         report: /templates/fizzed/index.rocker.html
         output: /templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/office.html
+        report: /templates/mustache/office.liqp
         output: /templates/mustache/output.html
     trimou:
-        report: /templates/trimou/office.html
+        report: /templates/trimou/office.liqp
         output: /templates/trimou/output.html
     velocity:
         report: /templates/velocity/office.pm
         output: /templates/velocity/output.html
     pebble:
-        report: /templates/pebble/office.html
+        report: /templates/pebble/office.liqp
         output: /templates/pebble/output.html
+    liqp:
+        report: /templates/liqp/office.liqp
+        output: /templates/liqp/output.html
