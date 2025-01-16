@@ -1,12 +1,10 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fizzed.rocker.BindableRockerModel;
@@ -27,13 +25,13 @@ public class FizzedEngine implements ReportEngine {
 
     @Override
     public void setup(String report) throws IOException {
-        File templateFile = File.createTempFile("template",".rocker.html");
+//        File templateFile = File.createTempFile("template",".rocker.html");
+//
+//        try (FileWriter fileWriter = new FileWriter(templateFile)){
+//            fileWriter.write(report);
+//        }
 
-        try (FileWriter fileWriter = new FileWriter(templateFile)){
-            fileWriter.write(report);
-        }
-
-        rockerModel = Rocker.template("/templates/fizzed/office.rocker.html");
+        rockerModel = Rocker.template("index.rocker.html");
     }
 
     @Override

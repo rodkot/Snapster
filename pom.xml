@@ -236,6 +236,27 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>rocker-maven-plugin</artifactId>
+                <version>${fizzed.version}</version>
+                <configuration>
+                    <templateDirectory>${project.basedir}/src/test/resources/templates/fizzed</templateDirectory>
+                    <targetCharset>utf-8</targetCharset>
+                    <skipTouch>true</skipTouch>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-rocker-templates</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>
+                                generate
+                            </goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
