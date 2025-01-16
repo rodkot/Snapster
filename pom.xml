@@ -37,6 +37,7 @@
         <velocity.version>1.7</velocity.version>
         <velocity-tool.version>2.0</velocity-tool.version>
         <liqp.version>0.9.1.3</liqp.version>
+        <httl.version>1.0.11</httl.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -115,6 +116,11 @@
             <version>${liqp.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.httl</groupId>
+            <artifactId>httl</artifactId>
+            <version>${httl.version}</version>
+        </dependency>
 
         <!-- datasource dependencies -->
 
