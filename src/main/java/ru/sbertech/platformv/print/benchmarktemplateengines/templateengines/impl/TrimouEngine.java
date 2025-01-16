@@ -33,7 +33,7 @@ public class TrimouEngine implements ReportEngine {
     private org.trimou.engine.MustacheEngine engine;
 
     @Override
-    public void setup() throws IOException {
+    public void setup(String report) throws IOException {
         engine =
                 MustacheEngineBuilder.newBuilder()
                         .registerHelper("color",

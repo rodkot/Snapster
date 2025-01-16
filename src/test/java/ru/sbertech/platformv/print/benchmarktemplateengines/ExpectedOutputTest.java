@@ -14,7 +14,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,7 +24,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.EmployeeMapperImpl;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapperImpl;
@@ -30,16 +31,24 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.repository.EmployeeR
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.ProjectRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {FreemarkerEngine.class, OfficeMapperImpl.class, EmployeeMapperImpl.class,
+@SpringBootTest(classes = { OfficeMapperImpl.class, FreemarkerEngine.class, ThymeleafEngine.class, FizzedEngine.class
+        , MustacheEngine.class,
+        EmployeeMapperImpl.class,
+        ResourceResolverService.class,
         ProjectRepository.class,
         OfficeRepository.class,
-        EmployeeRepository.class, OfficeService.class})
+        EmployeeRepository.class, OfficeService.class, ExpectedOutputTest.Configuration.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
-public class ExpectedOutputTest {
+public abstract class ExpectedOutputTest {
+
 
     @Container
     @ServiceConnection
@@ -47,6 +56,14 @@ public class ExpectedOutputTest {
 
     static {
         postgres.start();
+    }
+
+    @TestConfiguration
+    static class Configuration{
+        @Bean
+        public ClassLoader resourceLoader(){
+            return Configuration.class.getClassLoader();
+        }
     }
 
     @DynamicPropertySource
@@ -62,23 +79,14 @@ public class ExpectedOutputTest {
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @Autowired
-    private FreemarkerEngine freemarkerEngine;
-
-    @Test
-    public void testFreemarkerOutput() throws IOException, TemplateException {
-        freemarkerEngine.setup();
-        assertOutput(freemarkerEngine.process());
+    void assertOutput(final String process, final String output) {
+        assertEquals(output.replaceAll("\\s", ""), process.replaceAll("\\s", ""));
     }
 
-    private void assertOutput(final String output) throws IOException {
-        assertEquals(readExpectedOutputResource(), output.replaceAll("\\s", ""));
-    }
-
-    private String readExpectedOutputResource() throws IOException {
+    String readExpectedOutputResource(String path) throws IOException {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(ExpectedOutputTest.class.getResourceAsStream("/output.html"))))) {
+                Objects.requireNonNull(ExpectedOutputTest.class.getResourceAsStream(path))))) {
             for (; ; ) {
                 String line = in.readLine();
                 if (line == null) {
@@ -88,6 +96,6 @@ public class ExpectedOutputTest {
             }
         }
 
-        return builder.toString().replaceAll("\\s", "");
+        return builder.toString();
     }
 }

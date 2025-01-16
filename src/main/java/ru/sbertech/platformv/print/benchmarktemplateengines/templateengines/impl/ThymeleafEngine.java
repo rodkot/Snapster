@@ -1,11 +1,14 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
@@ -16,8 +19,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @RequiredArgsConstructor
 public class ThymeleafEngine implements ReportEngine {
 
-    @Value("${templates.thymeleaf.path}")
-    private String path;
+    private String report;
 
     @Autowired
     private OfficeService officeService;
@@ -30,14 +32,14 @@ public class ThymeleafEngine implements ReportEngine {
     private TemplateEngine templateEngine;
 
     @Override
-    public void setup() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix(resourceResolverService.pathDirResource(path));
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+    public void setup(String report) {
+        StringTemplateResolver stringTemplateResolver = new StringTemplateResolver();
+        stringTemplateResolver.setTemplateMode("HTML");
+        stringTemplateResolver.setCacheable(false);
 
         templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
+        templateEngine.setTemplateResolver(stringTemplateResolver);
+        this.report = report;
 
         context = setupContext();
     }
@@ -54,6 +56,6 @@ public class ThymeleafEngine implements ReportEngine {
 
     @Override
     public String process() {
-        return templateEngine.process( resourceResolverService.nameResource(path), context);
+        return templateEngine.process( report, context);
     }
 }

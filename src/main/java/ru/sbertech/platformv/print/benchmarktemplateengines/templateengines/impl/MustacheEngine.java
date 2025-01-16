@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,8 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @Service
 @RequiredArgsConstructor
 public class MustacheEngine implements ReportEngine {
-    @Value("${templates.mustache.path}")
-    private String path;
+//    @Value("${templates.mustache.path}")
+//    private String path;
 
     @Autowired
     private OfficeService officeService;
@@ -32,9 +33,9 @@ public class MustacheEngine implements ReportEngine {
     private Mustache mustache;
 
     @Override
-    public void setup() {
+    public void setup(String report) {
         MustacheFactory mf = new DefaultMustacheFactory();
-        mustache = mf.compile(path);
+        mustache = mf.compile(new StringReader(report), "office");
     }
 
     @Override
@@ -47,8 +48,8 @@ public class MustacheEngine implements ReportEngine {
 
     private Map<String, Object> setupContext() {
         var color = (TemplateFunction) (input ->{
-            var colors = List.of("#123456", "#ffffff");
-            return colors.get(new Random().nextInt() % colors.size());
+            var colors = List.of("#123456", "#ffffff", "#aaaaaa");
+            return colors.get(new Random(100).nextInt(100) % colors.size());
         });
 
         var offices = officeService.loadAll();

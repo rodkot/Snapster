@@ -31,7 +31,7 @@ public class VelocityEngine implements ReportEngine {
 
 
     @Override
-    public void setup() {
+    public void setup(String report) {
         Properties properties = new Properties();
         properties.setProperty("resource.loader", "class");
         properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");

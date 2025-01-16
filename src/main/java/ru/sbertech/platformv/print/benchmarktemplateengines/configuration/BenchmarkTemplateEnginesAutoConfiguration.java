@@ -69,4 +69,9 @@ public class BenchmarkTemplateEnginesAutoConfiguration {
         return jpaVendorAdapter;
     }
 
+    @Bean
+    public ClassLoader resourceLoader(){
+        return BenchmarkTemplateEnginesAutoConfiguration.class.getClassLoader();
+    }
+
 }

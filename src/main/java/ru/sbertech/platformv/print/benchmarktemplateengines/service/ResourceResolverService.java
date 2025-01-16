@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ResourceResolverService {
+    @Autowired
+    private ClassLoader resourceLoader;
 
     public String pathDirResource(String path) {
         Path originalPath = Paths.get(path);
@@ -31,8 +34,7 @@ public class ResourceResolverService {
     }
 
     public String readResourceFile(String path) throws IOException {
-        ClassLoader classLoader = ResourceResolverService.class.getClassLoader();
-        try (InputStream inputStream = classLoader.getResourceAsStream(path)) {
+        try (InputStream inputStream = resourceLoader.getResourceAsStream(path)) {
             assert inputStream != null;
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {

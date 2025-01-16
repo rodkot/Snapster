@@ -28,7 +28,7 @@ public class PebbleEngine implements ReportEngine {
     PebbleTemplate compiledTemplate;
 
     @Override
-    public void setup() {
+    public void setup(String report) {
         var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().build();
         engine.getTemplate(path);
     }

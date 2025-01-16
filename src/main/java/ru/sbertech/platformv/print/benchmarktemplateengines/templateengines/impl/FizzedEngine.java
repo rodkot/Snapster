@@ -1,5 +1,8 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +20,20 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @Service
 @RequiredArgsConstructor
 public class FizzedEngine implements ReportEngine {
-    @Value("${templates.fizzed.path}")
-    private String path;
-
     @Autowired
     private OfficeService officeService;
 
     private BindableRockerModel rockerModel;
 
     @Override
-    public void setup() throws IOException {
-        rockerModel = Rocker.template("offices.rocker.html");
+    public void setup(String report) throws IOException {
+        File templateFile = File.createTempFile("template",".rocker.html");
+
+        try (FileWriter fileWriter = new FileWriter(templateFile)){
+            fileWriter.write(report);
+        }
+
+        rockerModel = Rocker.template("/templates/fizzed/office.rocker.html");
     }
 
     @Override

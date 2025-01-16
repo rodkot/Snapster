@@ -20,6 +20,15 @@ spring:
 #    password:
 
 templates:
-  freemarker:
-      path: templates/freemarker.ftl
-
+    thymeleaf:
+        report: /templates/thymeleaf/office.rocker.html
+        output: /templates/thymeleaf/output2.html
+    freemarker:
+        report: /templates/freemarker/office.ftl
+        output: /templates/freemarker/output.html
+    fizzed:
+        report: /templates/fizzed/office.rocker.html
+        output: /templates/fizzed/output.html
+    mustache:
+        report: /templates/mustache/office.html
+        output: /templates/mustache/output.html

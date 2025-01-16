@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 @RequiredArgsConstructor
 public class FreemarkerEngine implements ReportEngine {
 
-    @Value("${templates.freemarker.path}")
+    @Value("${templates.freemarker.report}")
     private String path;
 
     @Autowired
@@ -35,10 +36,11 @@ public class FreemarkerEngine implements ReportEngine {
 
 
     @Override
-    public void setup() throws IOException {
+    public void setup(String report) throws IOException {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
-        configuration.setTemplateLoader(new ClassTemplateLoader(getClass(), "/"));
-        template = configuration.getTemplate(path);
+        configuration.setDefaultEncoding("UTF-8");
+
+        template = new Template("offices",new StringReader(report), configuration);
 
         context = setupContext();
         //this.context = getContext();
