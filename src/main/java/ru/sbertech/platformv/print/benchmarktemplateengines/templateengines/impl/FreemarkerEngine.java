@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
-import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 

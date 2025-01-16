@@ -1,7 +1,6 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines;
 
 import java.io.IOException;
-import java.util.List;
 
 import freemarker.template.TemplateException;
 

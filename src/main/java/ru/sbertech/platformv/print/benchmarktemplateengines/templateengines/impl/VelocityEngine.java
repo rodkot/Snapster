@@ -9,7 +9,6 @@ import java.util.Properties;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import freemarker.template.TemplateException;
