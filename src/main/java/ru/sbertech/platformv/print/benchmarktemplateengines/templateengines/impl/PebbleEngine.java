@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,20 @@ import org.springframework.stereotype.Service;
 
 import io.pebbletemplates.pebble.template.PebbleTemplate;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
+
 public class PebbleEngine implements ReportEngine {
 
-    @Autowired
-    private OfficeService officeService;
-
     PebbleTemplate compiledTemplate;
+
+    private final List<OfficeDto> offices;
+
+    public PebbleEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) throws IOException {
@@ -49,7 +53,6 @@ public class PebbleEngine implements ReportEngine {
     private Map<String,Object> setupContext(){
         var context = new HashMap<String, Object>();
 
-        var offices = officeService.loadAll();
         context.put("offices", offices);
 
         return context;

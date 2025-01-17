@@ -12,16 +12,19 @@ import org.trimou.handlebars.SimpleHelpers;
 
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
 public class TrimouEngine implements ReportEngine {
-    @Autowired
-    private OfficeService officeService;
 
     private Mustache mustache;
+
+    private final List<OfficeDto> offices;
+
+    public TrimouEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) throws IOException {
@@ -38,7 +41,6 @@ public class TrimouEngine implements ReportEngine {
     }
 
     private Map<String, Object> setupContext() {
-        var offices = officeService.loadAll();
 
         return Map.of("offices", offices);
     }

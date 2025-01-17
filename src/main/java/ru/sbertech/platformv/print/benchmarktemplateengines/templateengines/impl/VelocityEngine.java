@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import freemarker.template.TemplateException;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
@@ -21,14 +22,13 @@ public class VelocityEngine implements ReportEngine {
 
     private String template;
 
-    @Autowired
-    private OfficeService officeService;
-
-    @Autowired
-    private ResourceResolverService resourceResolverService;
-
     private org.apache.velocity.app.VelocityEngine velocityEngine;
 
+    private final List<OfficeDto> offices;
+
+    public VelocityEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) {
@@ -36,7 +36,7 @@ public class VelocityEngine implements ReportEngine {
         properties.setProperty("resource.loader", "class");
         properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader" +
                 ".StringResourceLoader");
-template = report;
+        template = report;
         velocityEngine = new org.apache.velocity.app.VelocityEngine(properties);
         velocityEngine.init();
     }
@@ -44,8 +44,6 @@ template = report;
 
     private Context getContext(){
         VelocityContext context = new VelocityContext();
-
-        var offices = officeService.loadAll();
 
         context.put("offices", offices);
         context.put("colors", List.of( "#ff5733", "#33ff57" ,"#3357ff"));

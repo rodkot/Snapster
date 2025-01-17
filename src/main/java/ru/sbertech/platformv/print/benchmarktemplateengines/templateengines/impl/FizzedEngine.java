@@ -3,6 +3,7 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.imp
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,18 @@ import com.fizzed.rocker.Rocker;
 
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
 public class FizzedEngine implements ReportEngine {
-    @Autowired
-    private OfficeService officeService;
 
     private BindableRockerModel rockerModel;
+    private final List<OfficeDto> offices;
+
+    public FizzedEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) throws IOException {
@@ -36,7 +39,6 @@ public class FizzedEngine implements ReportEngine {
 
     @Override
     public String process() throws TemplateException, IOException {
-        var offices = officeService.loadAll();
 
         return rockerModel.bind("offices", offices).render().toString();
     }

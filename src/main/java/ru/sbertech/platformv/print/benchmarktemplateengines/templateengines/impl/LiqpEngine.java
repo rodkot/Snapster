@@ -4,26 +4,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import freemarker.template.TemplateException;
 import liqp.Template;
 import liqp.TemplateContext;
 import liqp.TemplateParser;
 import liqp.filters.Filter;
-import liqp.filters.Modulo;
-import lombok.RequiredArgsConstructor;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
 public class LiqpEngine implements ReportEngine {
-    @Autowired
-    private OfficeService officeService;
 
     private Template template;
+
+    private final List<OfficeDto> offices;
+
+    public LiqpEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) throws IOException {
@@ -43,7 +40,6 @@ public class LiqpEngine implements ReportEngine {
     }
 
     private Map<String, Object> setupContext() {
-        var offices = officeService.loadAll();
         return Map.of("offices", offices);
     }
 

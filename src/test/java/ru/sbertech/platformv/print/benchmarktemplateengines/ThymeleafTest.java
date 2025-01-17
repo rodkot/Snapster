@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
 
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 
 public class ThymeleafTest extends ExpectedOutputTest {
-    @Autowired
+
     private ThymeleafEngine thymeleafEngine;
 
     @Value("${templates.thymeleaf.report}")
@@ -20,6 +23,14 @@ public class ThymeleafTest extends ExpectedOutputTest {
 
     @Value("${templates.thymeleaf.output}")
     private String output;
+
+    @Autowired
+    private OfficeService officeService;
+
+    @BeforeEach
+    public void setup(){
+        thymeleafEngine = new ThymeleafEngine(officeService.loadAll());
+    }
 
     @Test
     public void testOutput() throws IOException {

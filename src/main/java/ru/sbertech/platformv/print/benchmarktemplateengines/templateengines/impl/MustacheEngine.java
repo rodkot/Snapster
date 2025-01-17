@@ -6,28 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.github.mustachejava.TemplateFunction;
 
-import lombok.RequiredArgsConstructor;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
-public class MustacheEngine implements ReportEngine {
-//    @Value("${templates.mustache.path}")
-//    private String path;
 
-    @Autowired
-    private OfficeService officeService;
+public class MustacheEngine implements ReportEngine {
 
     private Mustache mustache;
+
+    private final List<OfficeDto> offices;
+
+    public MustacheEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) {
@@ -48,8 +44,6 @@ public class MustacheEngine implements ReportEngine {
             var colors = List.of("#123456", "#ffffff", "#aaaaaa");
             return colors.get(new Random(100).nextInt(100) % colors.size());
         });
-
-        var offices = officeService.loadAll();
 
         return Map.of("offices",offices, "getColor", color);
     }

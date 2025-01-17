@@ -12,7 +12,7 @@ import com.google.common.base.Stopwatch;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.PebbleEngine;
 
 public class PebbleTest extends ExpectedOutputTest {
-    @Autowired
+
     private PebbleEngine pebbleEngine;
 
     @Value("${templates.pebble.report}")

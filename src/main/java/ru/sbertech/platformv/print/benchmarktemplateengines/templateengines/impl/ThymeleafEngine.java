@@ -1,5 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -7,22 +9,24 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
-@RequiredArgsConstructor
 public class ThymeleafEngine implements ReportEngine {
 
     private String report;
 
-    @Autowired
-    private OfficeService officeService;
-
     private Context context;
 
     private TemplateEngine templateEngine;
+
+    private final List<OfficeDto> offices;
+
+    public ThymeleafEngine(List<OfficeDto> offices){
+        this.offices = offices;
+    }
 
     @Override
     public void setup(String report) {
@@ -39,8 +43,6 @@ public class ThymeleafEngine implements ReportEngine {
 
     private Context setupContext(){
         var context = new Context();
-
-        var offices = officeService.loadAll();
 
         context.setVariable("offices", offices);
 

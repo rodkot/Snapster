@@ -30,26 +30,9 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRep
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.ProjectRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.LiqpEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.PebbleEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.VelocityEngine;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {OfficeMapperImpl.class, FreemarkerEngine.class, ThymeleafEngine.class, FizzedEngine.class
-        , MustacheEngine.class,
-        TrimouEngine.class,
-        VelocityEngine.class,
-        PebbleEngine.class,
-        LiqpEngine.class,
-        HttlEngine.class,
-        JinJavaEngine.class,
+@SpringBootTest(classes = {OfficeMapperImpl.class,
         EmployeeMapperImpl.class,
         ResourceResolverService.class,
         ProjectRepository.class,
