@@ -34,3 +34,6 @@ templates:
     liqp:
         report: /templates/liqp/office.liqp
         output: /templates/liqp/output.html
+    jinjava:
+        report: /templates/jinjava/office.html
+        output: /templates/jinjava/output.html

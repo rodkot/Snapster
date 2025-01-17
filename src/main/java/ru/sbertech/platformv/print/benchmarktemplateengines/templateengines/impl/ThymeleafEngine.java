@@ -20,9 +20,6 @@ public class ThymeleafEngine implements ReportEngine {
     @Autowired
     private OfficeService officeService;
 
-    @Autowired
-    private ResourceResolverService resourceResolverService;
-
     private Context context;
 
     private TemplateEngine templateEngine;
