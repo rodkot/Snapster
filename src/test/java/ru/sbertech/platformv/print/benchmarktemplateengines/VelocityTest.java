@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
@@ -19,27 +20,27 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 
 public class VelocityTest extends ExpectedOutputTest {
 
-
-    @Value("${templates.velocity.report}")
+    @Autowired
+    @Qualifier("reportVelocity")
     private String report;
 
-    @Value("${templates.velocity.output}")
+    @Autowired
+    @Qualifier("outputVelocity")
     private String output;
-
     @Autowired
     private OfficeService officeService;
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        var engine = new VelocityEngine(readExpectedOutputResource(report), officeService.loadAll());
-        assertOutput(readExpectedOutputResource(output),engine.process());
+        var engine = new VelocityEngine(report, officeService.loadAll());
+        assertOutput(output,engine.process());
     }
 
     @Test
     public void benchmark() throws TemplateException, IOException {
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            var engine = new VelocityEngine(readExpectedOutputResource(report), officeService.loadAll());
+            var engine = new VelocityEngine(report, officeService.loadAll());
             System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));

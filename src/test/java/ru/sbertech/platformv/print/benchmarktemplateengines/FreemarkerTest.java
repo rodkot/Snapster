@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
@@ -20,12 +21,12 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 
 public class FreemarkerTest extends ExpectedOutputTest {
 
-
-
-    @Value("${templates.freemarker.report}")
+    @Autowired
+    @Qualifier("reportFreemarker")
     private String report;
 
-    @Value("${templates.freemarker.output}")
+    @Autowired
+    @Qualifier("outputFreemarker")
     private String output;
 
     @Autowired
@@ -34,16 +35,16 @@ public class FreemarkerTest extends ExpectedOutputTest {
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        var engine = new FreemarkerEngine(readExpectedOutputResource(report), officeService.loadAll());
-        assertOutput(readExpectedOutputResource(output),engine.process());
+        var engine = new FreemarkerEngine(report, officeService.loadAll());
+        assertOutput(output,engine.process());
     }
 
     @Test
     public void benchmark() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            var engine = new FreemarkerEngine(readExpectedOutputResource(report), officeService.loadAll());
-            assertOutput(readExpectedOutputResource(output),engine.process());
+            var engine = new FreemarkerEngine(report, officeService.loadAll());
+            assertOutput(output,engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

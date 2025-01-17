@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
@@ -20,27 +21,28 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 
 public class TrimouTest extends ExpectedOutputTest {
 
-    @Value("${templates.trimou.report}")
+    @Autowired
+    @Qualifier("reportTrimou")
     private String report;
 
-    @Value("${templates.trimou.output}")
+    @Autowired
+    @Qualifier("outputTrimou")
     private String output;
-
 
     @Autowired
     private OfficeService officeService;
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        var engine = new TrimouEngine(readExpectedOutputResource(report), officeService.loadAll());
-        assertOutput(readExpectedOutputResource(output),engine.process());
+        var engine = new TrimouEngine(report, officeService.loadAll());
+        assertOutput(output,engine.process());
     }
 
     @Test
     public void benchmark() throws TemplateException, IOException {
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            var engine = new TrimouEngine(readExpectedOutputResource(report), officeService.loadAll());
+            var engine = new TrimouEngine(report, officeService.loadAll());
             System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));

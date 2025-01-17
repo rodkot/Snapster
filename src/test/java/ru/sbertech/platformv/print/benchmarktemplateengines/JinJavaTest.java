@@ -1,45 +1,41 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.google.common.base.Stopwatch;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
 
 public class JinJavaTest extends ExpectedOutputTest {
 
-    private JinJavaEngine jinJavaEngine;
-
-    @Value("${templates.jinjava.report}")
+    @Autowired
+    @Qualifier("reportJinjava")
     private String report;
 
-    @Value("${templates.jinjava.output}")
+    @Autowired
+    @Qualifier("outputJinjava")
     private String output;
 
     @Autowired
     private OfficeService officeService;
 
     @Test
-    public void testOutput() throws IOException {
-        var engine = new JinJavaEngine(readExpectedOutputResource(report), officeService.loadAll());
-        assertOutput(readExpectedOutputResource(output),engine.process());
+    public void testOutput() {
+        var engine = new JinJavaEngine(report, officeService.loadAll());
+        assertOutput(output,engine.process());
     }
 
     @Test
-    public void benchmark() throws IOException {
+    public void benchmark() {
 
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            var engine = new JinJavaEngine(readExpectedOutputResource(report), officeService.loadAll());
+            var engine = new JinJavaEngine(report, officeService.loadAll());
             System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));

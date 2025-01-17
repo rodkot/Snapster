@@ -2,11 +2,7 @@ package ru.sbertech.platformv.print.benchmarktemplateengines;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Locale;
-import java.util.Objects;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -37,11 +33,10 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceReso
         ResourceResolverService.class,
         ProjectRepository.class,
         OfficeRepository.class,
-        EmployeeRepository.class, OfficeService.class, ExpectedOutputTest.Configuration.class})
+        EmployeeRepository.class, OfficeService.class, ExpectedOutputTest.Configuration.class, ResourceConfig.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
 public abstract class ExpectedOutputTest {
-
 
     @Container
     @ServiceConnection
@@ -74,21 +69,5 @@ public abstract class ExpectedOutputTest {
 
     void assertOutput(final String process, final String output) {
         assertEquals(output.replaceAll("\\s", ""), process.replaceAll("\\s", ""));
-    }
-
-    String readExpectedOutputResource(String path) throws IOException {
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(ExpectedOutputTest.class.getResourceAsStream(path))))) {
-            for (; ; ) {
-                String line = in.readLine();
-                if (line == null) {
-                    break;
-                }
-                builder.append(line);
-            }
-        }
-
-        return builder.toString();
     }
 }

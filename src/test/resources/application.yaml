@@ -9,6 +9,10 @@ spring:
         drop-first: false
         change-log: classpath:/db/changelog/${MIGRATION_LOG:changelog.xml}
 
+logging:
+    level:
+        org.hibernate: OFF
+
 templates:
     thymeleaf:
         report: /templates/thymeleaf/office.html
