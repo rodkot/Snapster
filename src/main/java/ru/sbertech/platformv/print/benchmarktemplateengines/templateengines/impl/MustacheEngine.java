@@ -17,16 +17,12 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class MustacheEngine implements ReportEngine {
 
-    private Mustache mustache;
-
+    private final Mustache mustache;
     private final List<OfficeDto> offices;
 
-    public MustacheEngine(List<OfficeDto> offices){
+    public MustacheEngine(String
+            report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) {
         MustacheFactory mf = new DefaultMustacheFactory();
         mustache = mf.compile(new StringReader(report), "office");
     }

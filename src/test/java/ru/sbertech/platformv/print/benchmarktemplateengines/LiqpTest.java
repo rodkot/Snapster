@@ -13,6 +13,7 @@ import com.google.common.base.Stopwatch;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.LiqpEngine;
 
@@ -29,23 +30,18 @@ public class LiqpTest extends ExpectedOutputTest {
     @Autowired
     private OfficeService officeService;
 
-    @BeforeEach
-    public void setup(){
-        liqpEngine = new LiqpEngine(officeService.loadAll());
-    }
-
     @Test
     public void testFreemarkerOutput() throws IOException, TemplateException {
-        liqpEngine.setup(readExpectedOutputResource(report));
-        assertOutput(readExpectedOutputResource(output),liqpEngine.process());
+        var engine = new LiqpEngine(readExpectedOutputResource(report), officeService.loadAll());
+        assertOutput(readExpectedOutputResource(output),engine.process());
     }
 
     @Test
     public void benchmark() throws TemplateException, IOException {
-        liqpEngine.setup(readExpectedOutputResource(report));
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            liqpEngine.process();
+            var engine = new LiqpEngine(readExpectedOutputResource(report), officeService.loadAll());
+            System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

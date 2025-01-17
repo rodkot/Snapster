@@ -16,20 +16,13 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class ThymeleafEngine implements ReportEngine {
 
-    private String report;
-
-    private Context context;
-
-    private TemplateEngine templateEngine;
-
+    private final String report;
+    private final Context context;
+    private final TemplateEngine templateEngine;
     private final List<OfficeDto> offices;
 
-    public ThymeleafEngine(List<OfficeDto> offices){
+    public ThymeleafEngine(String report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) {
         StringTemplateResolver stringTemplateResolver = new StringTemplateResolver();
         stringTemplateResolver.setTemplateMode("HTML");
         stringTemplateResolver.setCacheable(false);

@@ -18,16 +18,11 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class TrimouEngine implements ReportEngine {
 
-    private Mustache mustache;
-
+    private final Mustache mustache;
     private final List<OfficeDto> offices;
 
-    public TrimouEngine(List<OfficeDto> offices){
+    public TrimouEngine(String report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) throws IOException {
         var engine =
                 MustacheEngineBuilder.newBuilder()
                         .registerHelper("color",
@@ -41,7 +36,6 @@ public class TrimouEngine implements ReportEngine {
     }
 
     private Map<String, Object> setupContext() {
-
         return Map.of("offices", offices);
     }
 

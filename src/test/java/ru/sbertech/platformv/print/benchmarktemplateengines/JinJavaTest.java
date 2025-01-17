@@ -28,23 +28,19 @@ public class JinJavaTest extends ExpectedOutputTest {
     @Autowired
     private OfficeService officeService;
 
-    @BeforeEach
-    public void setup(){
-        jinJavaEngine = new JinJavaEngine(officeService.loadAll());
-    }
-
     @Test
     public void testOutput() throws IOException {
-        jinJavaEngine.setup(readExpectedOutputResource(report));
-        assertOutput(readExpectedOutputResource(output),jinJavaEngine.process());
+        var engine = new JinJavaEngine(readExpectedOutputResource(report), officeService.loadAll());
+        assertOutput(readExpectedOutputResource(output),engine.process());
     }
 
     @Test
     public void benchmark() throws IOException {
-        jinJavaEngine.setup(readExpectedOutputResource(report));
+
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            jinJavaEngine.process();
+            var engine = new JinJavaEngine(readExpectedOutputResource(report), officeService.loadAll());
+            System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

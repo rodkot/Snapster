@@ -20,7 +20,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl
 
 public class FreemarkerTest extends ExpectedOutputTest {
 
-    private FreemarkerEngine freemarkerEngine;
+
 
     @Value("${templates.freemarker.report}")
     private String report;
@@ -31,23 +31,19 @@ public class FreemarkerTest extends ExpectedOutputTest {
     @Autowired
     private OfficeService officeService;
 
-    @BeforeEach
-    public void setup(){
-        freemarkerEngine = new FreemarkerEngine(officeService.loadAll());
-    }
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        freemarkerEngine.setup(readExpectedOutputResource(report));
-        assertOutput(readExpectedOutputResource(output),freemarkerEngine.process());
+        var engine = new FreemarkerEngine(readExpectedOutputResource(report), officeService.loadAll());
+        assertOutput(readExpectedOutputResource(output),engine.process());
     }
 
     @Test
     public void benchmark() throws IOException, TemplateException {
-        freemarkerEngine.setup(readExpectedOutputResource(report));
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            freemarkerEngine.process();
+            var engine = new FreemarkerEngine(readExpectedOutputResource(report), officeService.loadAll());
+            assertOutput(readExpectedOutputResource(output),engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

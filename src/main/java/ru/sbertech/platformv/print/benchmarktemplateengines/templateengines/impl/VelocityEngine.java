@@ -17,21 +17,15 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeServic
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
-@Service
+
 public class VelocityEngine implements ReportEngine {
 
-    private String template;
-
-    private org.apache.velocity.app.VelocityEngine velocityEngine;
-
+    private final String template;
+    private final org.apache.velocity.app.VelocityEngine velocityEngine;
     private final List<OfficeDto> offices;
 
-    public VelocityEngine(List<OfficeDto> offices){
+    public VelocityEngine(String report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) {
         Properties properties = new Properties();
         properties.setProperty("resource.loader", "class");
         properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader" +
@@ -40,7 +34,6 @@ public class VelocityEngine implements ReportEngine {
         velocityEngine = new org.apache.velocity.app.VelocityEngine(properties);
         velocityEngine.init();
     }
-
 
     private Context getContext(){
         VelocityContext context = new VelocityContext();
@@ -54,7 +47,7 @@ public class VelocityEngine implements ReportEngine {
     @Override
     public String process() throws TemplateException, IOException {
         Writer writer = new StringWriter();
-        velocityEngine.evaluate(getContext(), writer, "velocity", template );
+        velocityEngine.evaluate(getContext(), writer, "velocity", template);
 
         return writer.toString();
     }

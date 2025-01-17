@@ -6,31 +6,19 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.hubspot.jinjava.Jinjava;
-
 import httl.Engine;
 import httl.Template;
-import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 public class HttlEngine implements ReportEngine {
 
-    private Map<String, Object> context;
+    private final Map<String, Object> context;
     private final List<OfficeDto> offices;
-    private Template template;
+    private final Template template;
 
-    public HttlEngine(List<OfficeDto> offices){
+    public HttlEngine(String report, List<OfficeDto> offices) throws ParseException {
         this.offices = offices;
-    }
-
-
-    @Override
-    public void setup(String report) throws ParseException {
         Engine engine = Engine.getEngine();
 
         template = engine.parseTemplate(report);

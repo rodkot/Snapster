@@ -14,16 +14,11 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class LiqpEngine implements ReportEngine {
 
-    private Template template;
-
+    private final Template template;
     private final List<OfficeDto> offices;
 
-    public LiqpEngine(List<OfficeDto> offices){
+    public LiqpEngine(String report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) throws IOException {
 
         TemplateParser parser = new TemplateParser.Builder().withFilter(new Filter("color") {
             @Override
@@ -36,7 +31,6 @@ public class LiqpEngine implements ReportEngine {
             }
         }).build();
         template = parser.parse(report);
-
     }
 
     private Map<String, Object> setupContext() {

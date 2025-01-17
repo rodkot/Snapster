@@ -18,19 +18,15 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 public class FreemarkerEngine implements ReportEngine {
 
     private final List<OfficeDto> offices;
-    private Map<String, Object> context;
-    private Template template;
+    private final Map<String, Object> context;
+    private final Template template;
 
-    public FreemarkerEngine(List<OfficeDto> offices){
+    public FreemarkerEngine(String report, List<OfficeDto> offices) throws IOException {
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) throws IOException {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
         configuration.setDefaultEncoding("UTF-8");
 
-        template = new Template("offices",new StringReader(report), configuration);
+        template = new Template("offices", new StringReader(report), configuration);
 
         context = setupContext();
     }

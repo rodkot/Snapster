@@ -10,21 +10,17 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class JinJavaEngine implements ReportEngine {
 
-    private Map<String,Object> context;
-    private String report;
-    private Jinjava jinjava;
+    private final Map<String,Object> context;
+    private final String report;
+    private final Jinjava jinjava;
 
     private final List<OfficeDto> offices;
 
-    public JinJavaEngine(List<OfficeDto> offices){
+    public JinJavaEngine(String report, List<OfficeDto> offices){
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) {
-     this.report = report;
-     context = setupContext();
-     jinjava = new Jinjava();
+        this.report = report;
+        context = setupContext();
+        jinjava = new Jinjava();
     }
 
     private Map<String,Object> setupContext(){

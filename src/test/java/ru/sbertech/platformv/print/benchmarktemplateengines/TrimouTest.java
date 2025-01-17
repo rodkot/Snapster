@@ -13,12 +13,12 @@ import com.google.common.base.Stopwatch;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
 
 public class TrimouTest extends ExpectedOutputTest {
-
-    private TrimouEngine trimouEngine;
 
     @Value("${templates.trimou.report}")
     private String report;
@@ -30,23 +30,18 @@ public class TrimouTest extends ExpectedOutputTest {
     @Autowired
     private OfficeService officeService;
 
-    @BeforeEach
-    public void setup(){
-        trimouEngine = new TrimouEngine(officeService.loadAll());
-    }
-
     @Test
     public void testOutput() throws IOException, TemplateException {
-        trimouEngine.setup(readExpectedOutputResource(report));
-        assertOutput(readExpectedOutputResource(output),trimouEngine.process());
+        var engine = new TrimouEngine(readExpectedOutputResource(report), officeService.loadAll());
+        assertOutput(readExpectedOutputResource(output),engine.process());
     }
 
     @Test
     public void benchmark() throws TemplateException, IOException {
-        trimouEngine.setup(readExpectedOutputResource(report));
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            trimouEngine.process();
+            var engine = new TrimouEngine(readExpectedOutputResource(report), officeService.loadAll());
+            System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

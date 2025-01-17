@@ -13,12 +13,12 @@ import com.google.common.base.Stopwatch;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.LiqpEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.MustacheEngine;
 
 public class MustacheTest extends ExpectedOutputTest {
-
-    private MustacheEngine mustacheEngine;
 
     @Value("${templates.mustache.report}")
     private String report;
@@ -29,23 +29,18 @@ public class MustacheTest extends ExpectedOutputTest {
     @Autowired
     private OfficeService officeService;
 
-    @BeforeEach
-    public void setup(){
-        mustacheEngine = new MustacheEngine(officeService.loadAll());
-    }
-
     @Test
     public void testFreemarkerOutput() throws IOException {
-        mustacheEngine.setup(readExpectedOutputResource(report));
-        assertOutput(readExpectedOutputResource(output),mustacheEngine.process());
+        var engine = new MustacheEngine(readExpectedOutputResource(report), officeService.loadAll());
+        assertOutput(readExpectedOutputResource(output),engine.process());
     }
 
     @Test
     public void benchmark() throws IOException {
-        mustacheEngine.setup(readExpectedOutputResource(report));
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            mustacheEngine.process();
+            var engine = new MustacheEngine(readExpectedOutputResource(report), officeService.loadAll());
+            System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
     }

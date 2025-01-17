@@ -21,16 +21,11 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class PebbleEngine implements ReportEngine {
 
-    PebbleTemplate compiledTemplate;
-
+    private final PebbleTemplate compiledTemplate;
     private final List<OfficeDto> offices;
 
-    public PebbleEngine(List<OfficeDto> offices){
+    public PebbleEngine(String report,List<OfficeDto> offices) throws IOException {
         this.offices = offices;
-    }
-
-    @Override
-    public void setup(String report) throws IOException {
         var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().build();
 
         File tempFile = File.createTempFile("pebble",".html");
