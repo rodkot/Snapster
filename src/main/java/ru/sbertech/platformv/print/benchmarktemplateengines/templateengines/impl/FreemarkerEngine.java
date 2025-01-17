@@ -41,7 +41,6 @@ public class FreemarkerEngine implements ReportEngine {
         template = new Template("offices",new StringReader(report), configuration);
 
         context = setupContext();
-        //this.context = getContext();
     }
 
     private HashMap<String, Object> setupContext(){
@@ -60,19 +59,4 @@ public class FreemarkerEngine implements ReportEngine {
         template.process(context, writer);
         return writer.toString();
     }
-
-//    @Setup
-//    public void setup() throws IOException {
-//        Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
-//        configuration.setTemplateLoader(new ClassTemplateLoader(getClass(), "/"));
-//        template = configuration.getTemplate(path);
-//        this.context = getContext();
-//    }
-//
-//    @Benchmark
-//    public String benchmark() throws TemplateException, IOException {
-//        Writer writer = new StringWriter();
-//        template.process(context, writer);
-//        return writer.toString();
-//    }
 }

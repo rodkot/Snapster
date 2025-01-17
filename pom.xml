@@ -208,9 +208,9 @@
         <!-- benchmarking dependencies -->
 
         <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-core</artifactId>
-            <version>${jmh.version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.4.0-jre</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -229,12 +229,7 @@
             <version>${junit.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-generator-annprocess</artifactId>
-            <version>${jmh.version}</version>
-            <scope>test</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

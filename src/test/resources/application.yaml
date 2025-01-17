@@ -11,7 +11,7 @@ spring:
 
 templates:
     thymeleaf:
-        report: /templates/thymeleaf/index.rocker.html
+        report: /templates/thymeleaf/office.html
         output: /templates/thymeleaf/output2.html
     freemarker:
         report: /templates/freemarker/office.ftl
@@ -20,22 +20,22 @@ templates:
         report: /templates/fizzed/index.rocker.html
         output: /templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/office.liqp
+        report: /templates/mustache/office.html
         output: /templates/mustache/output.html
     trimou:
-        report: /templates/trimou/office.liqp
+        report: /templates/trimou/office.html
         output: /templates/trimou/output.html
     velocity:
         report: /templates/velocity/office.pm
         output: /templates/velocity/output.html
     pebble:
-        report: /templates/pebble/office.liqp
+        report: /templates/pebble/office.html
         output: /templates/pebble/output.html
     liqp:
         report: /templates/liqp/office.liqp
         output: /templates/liqp/output.html
     jinjava:
-        report: /templates/jinjava/office.httl
+        report: /templates/jinjava/office.html
         output: /templates/jinjava/output.html
     httl:
         report: /templates/httl/office.httl
