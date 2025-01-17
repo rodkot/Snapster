@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import freemarker.template.TemplateException;
 
@@ -11,6 +12,6 @@ import freemarker.template.TemplateException;
 //@OutputTimeUnit(TimeUnit.SECONDS)
 //@State(Scope.Benchmark)
 public interface ReportEngine {
-    void setup(String report) throws IOException;
-    String process() throws TemplateException, IOException;
+    void setup(String report) throws IOException, ParseException;
+    String process() throws TemplateException, IOException, ParseException;
 }
