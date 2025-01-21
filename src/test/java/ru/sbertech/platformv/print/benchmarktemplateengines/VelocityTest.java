@@ -4,18 +4,13 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.VelocityEngine;
 
 public class VelocityTest extends ExpectedOutputTest {
