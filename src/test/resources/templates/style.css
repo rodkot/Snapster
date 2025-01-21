@@ -31,6 +31,28 @@ table {
     border-radius: 50%;
     border: 1px solid #ccc;
 }
+
+.company-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.company-info {
+    flex: 1;
+}
+
+.company-logo img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+    margin-left: 20px;
+    border-radius: 8px;
+}
+
 th, td {
     padding: 10px;
     text-align: left;

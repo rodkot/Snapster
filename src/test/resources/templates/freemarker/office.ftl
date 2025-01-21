@@ -11,20 +11,25 @@
 <h1>Companies Report</h1>
 
 <#list companies as company>
-    <h2>${company.name}</h2>
-    <p><strong>Code:</strong> ${company.code}</p>
-    <p><strong>Director:</strong> ${company.director.name}</p>
-    <p><strong>Main office:</strong> ${company.generalOffice.name}</p>
+    <div class="company-section">
+    <div class="company-info"><h2>${company.name}</h2>
+        <p><strong>Code:</strong> ${company.code}</p>
+        <p><strong>Director:</strong> ${company.director.name}</p>
+        <p><strong>Main office:</strong> ${company.generalOffice.name}</p></div>
+    <div class="company-logo"><img src="../assets/${company.logo}" alt="${company.name} logo"/></div>
+    </div>
+    <h3>Additional Offices</h3>
     <#list company.additionalOffices as office>
         <section>
-            <h3>${office.name}</h3>
+            <h4>${office.name}</h4>
             <p><strong>Location:</strong> ${office.location}</p>
 
             <#if office.resources??>
                 <div>
                     <strong>Resources:</strong>
                     <#list office.resources as resource>
-                        <p class="resources" style="background-color: ${['#ff5733', '#33ff57', '#3357ff'][resource?index % 3]};">
+                        <p class="resources"
+                           style="background-color: ${['#ff5733', '#33ff57', '#3357ff'][resource?index % 3]};">
                             ${resource}
                         </p>
                     </#list>

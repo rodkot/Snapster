@@ -6,29 +6,29 @@
 
     <changeSet id="insert_offices" author="r.kotov">
         <insert tableName="office">
-            <column name="name" value="Regional office in Novosibirsk"/>
+            <column name="name" value="Business center 'Oasis'"/>
             <column name="location" value="Novosibirsk, st. Titova 12, office 2002"/>
             <column name="resources"
                     value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
         </insert>
         <insert tableName="office">
-            <column name="name" value="Regional office in Akademgorodok"/>
+            <column name="name" value="Business center 'Technopark'"/>
             <column name="location" value="Novosibirsk, st. Nikolaeva 20, office 2002"/>
             <column name="resources"
                     value="[&quot;open-spaces&quot;, &quot;food places&quot;]"/>
         </insert>
         <insert tableName="office">
-            <column name="name" value="Regional office in Omsk"/>
+            <column name="name" value="Business center 'Ordzhonikidze'"/>
             <column name="location" value="Omsk, st. Ordzhonikidze 211"/>
             <column name="resources"
                     value="[&quot;open-spaces&quot;, &quot;gym&quot;]"/>
         </insert>
         <insert tableName="office">
-            <column name="name" value="Regional office in Tomsk"/>
+            <column name="name" value="Business center 'Bubnova'"/>
             <column name="location" value="Tomsk, st. Bubnova 99"/>
         </insert>
         <insert tableName="office">
-            <column name="name" value="General office"/>
+            <column name="name" value="Business center 'Moscow'"/>
             <column name="location" value="Moscow, Novodanilovskaya embankment 11"/>
             <column name="resources"
                     value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
@@ -120,6 +120,7 @@
             <column name="name" value="Sberbank"/>
             <column name="code" value="12643748382"/>
             <column name="email" value="info@sberbank.ru"/>
+            <column name="logo" value="sberpao.png"/>
             <column name="director_id" valueNumeric="1"/>
             <column name="general_office_id" valueNumeric="3"/>
         </insert>

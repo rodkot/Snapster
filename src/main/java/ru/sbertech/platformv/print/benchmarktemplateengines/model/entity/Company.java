@@ -39,6 +39,9 @@ public class Company {
     @Column
     private String code;
 
+    @Column
+    private String logo;
+
     @ManyToOne
     private Employee director;
 

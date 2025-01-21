@@ -10,10 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CompanyDto {
-
     private Long id;
     private String name;
     private String email;
+    private String logo;
     private String code;
     private EmployeeDto director;
     private OfficeDto generalOffice;
