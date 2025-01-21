@@ -5,37 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Office Report</title>
 </head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .resources {
-            display: inline-block;
-            padding: 5px;
-            margin: 5px;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ccc;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+<link rel="stylesheet" type="text/css" href="../style.css">
 <body>
     <h1>Offices Report</h1>
 

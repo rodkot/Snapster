@@ -5,49 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offices Report</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .resources {
-            display: inline-block;
-            padding: 5px;
-            margin: 5px;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-        }
-        .departament-list {
-        display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .departament-list img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ccc;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 <h1>Offices Report</h1>
