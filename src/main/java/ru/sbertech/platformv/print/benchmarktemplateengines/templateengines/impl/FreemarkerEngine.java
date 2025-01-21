@@ -11,18 +11,19 @@ import java.util.Map;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 
 public class FreemarkerEngine implements ReportEngine {
 
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
     private final Map<String, Object> context;
     private final Template template;
 
-    public FreemarkerEngine(String report, List<OfficeDto> offices) throws IOException {
-        this.offices = offices;
+    public FreemarkerEngine(String report, List<CompanyDto> companies) throws IOException {
+        this.companies = companies;
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
         configuration.setDefaultEncoding("UTF-8");
 
@@ -33,7 +34,7 @@ public class FreemarkerEngine implements ReportEngine {
 
     private HashMap<String, Object> setupContext(){
         var context = new HashMap<String, Object>();
-        context.put("offices", offices);
+        context.put("companies", companies);
 
         return context;
     }
