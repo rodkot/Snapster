@@ -11,5 +11,5 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.model.entity.Office;
 
 @Mapper(componentModel = "spring", uses = {EmployeeMapper.class, ProjectsMapper.class})
 public interface OfficeMapper {
-    OfficeDto officeToDto(Office office, List<Employee> employees);
+    OfficeDto officeToDto(Office office);
 }

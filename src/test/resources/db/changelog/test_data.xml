@@ -114,4 +114,25 @@
         </insert>
     </changeSet>
 
+    <changeSet id="insert_sberbank" author="r.kotov">
+
+        <insert tableName="company">
+            <column name="name" value="Sberbank"/>
+            <column name="code" value="12643748382"/>
+            <column name="email" value="info@sberbank.ru"/>
+            <column name="director_id" valueNumeric="1"/>
+            <column name="general_office_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="2"/>
+            <column name="company_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="3"/>
+            <column name="company_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>

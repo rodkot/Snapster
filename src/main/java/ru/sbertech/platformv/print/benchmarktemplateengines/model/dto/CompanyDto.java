@@ -1,0 +1,21 @@
+package ru.sbertech.platformv.print.benchmarktemplateengines.model.dto;
+
+import java.util.List;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class CompanyDto {
+
+    private Long id;
+    private String name;
+    private String email;
+    private String code;
+    private EmployeeDto director;
+    private OfficeDto generalOffice;
+    private List<OfficeDto> additionalOffices;
+}

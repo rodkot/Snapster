@@ -38,6 +38,9 @@ public class Office {
     @Column
     private String location;
 
+    @OneToMany(mappedBy = "office")
+    private List<Employee> employees;
+
 //    @OneToMany(fetch = FetchType.EAGER)
 //    private List<Department> departments;
 

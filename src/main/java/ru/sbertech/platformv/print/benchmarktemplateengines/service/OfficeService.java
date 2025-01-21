@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapper;
@@ -22,11 +23,11 @@ public class OfficeService {
     private final EmployeeRepository employeeRepository;
     private final OfficeMapper officeMapper;
 
+    @Transactional
     public List<OfficeDto> loadAll(){
         List<Office> offices = officeRepository.findAll();
 
-        return offices.stream().map(office -> officeMapper.officeToDto(office,
-                employeeRepository.findAllByOffice(office))).toList();
+        return offices.stream().map(officeMapper::officeToDto).toList();
     }
 
 }

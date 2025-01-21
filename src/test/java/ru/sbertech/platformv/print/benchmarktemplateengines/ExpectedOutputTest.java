@@ -19,11 +19,15 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.CompanyMapper;
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.CompanyMapperImpl;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.EmployeeMapperImpl;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapperImpl;
+import ru.sbertech.platformv.print.benchmarktemplateengines.repository.CompanyRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.EmployeeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.OfficeRepository;
 import ru.sbertech.platformv.print.benchmarktemplateengines.repository.ProjectRepository;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 
@@ -33,6 +37,9 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceReso
         ResourceResolverService.class,
         ProjectRepository.class,
         OfficeRepository.class,
+        CompanyRepository.class,
+        CompanyMapperImpl.class,
+        CompanyService.class,
         EmployeeRepository.class, OfficeService.class, ExpectedOutputTest.Configuration.class, ResourceConfig.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
