@@ -24,10 +24,10 @@ templates:
         report: /templates/fizzed/index.rocker.html
         output: /templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/company.html
+        report: /templates/mustache/office.html
         output: /templates/mustache/output.html
     trimou:
-        report: /templates/trimou/company.html
+        report: /templates/trimou/office.html
         output: /templates/trimou/output.html
     velocity:
         report: /templates/velocity/office.pm
@@ -39,7 +39,7 @@ templates:
         report: /templates/liqp/office.liqp
         output: /templates/liqp/output.html
     jinjava:
-        report: /templates/jinjava/company.html
+        report: /templates/jinjava/office.html
         output: /templates/jinjava/output.html
     httl:
         report: /templates/httl/office.httl

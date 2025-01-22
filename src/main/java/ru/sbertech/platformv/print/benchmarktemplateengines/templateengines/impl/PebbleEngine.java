@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import io.pebbletemplates.pebble.template.PebbleTemplate;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
@@ -22,10 +23,10 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 public class PebbleEngine implements ReportEngine {
 
     private final PebbleTemplate compiledTemplate;
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
 
-    public PebbleEngine(String report,List<OfficeDto> offices) throws IOException {
-        this.offices = offices;
+    public PebbleEngine(String report,List<CompanyDto> companies) throws IOException {
+        this.companies = companies;
         var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().build();
 
         File tempFile = File.createTempFile("pebble",".html");
@@ -48,7 +49,7 @@ public class PebbleEngine implements ReportEngine {
     private Map<String,Object> setupContext(){
         var context = new HashMap<String, Object>();
 
-        context.put("offices", offices);
+        context.put("companies", companies);
 
         return context;
     }
