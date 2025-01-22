@@ -15,31 +15,31 @@ logging:
 
 templates:
     thymeleaf:
-        report: /templates/thymeleaf/office.html
+        report: /templates/thymeleaf/company.html
         output: /templates/thymeleaf/output2.html
     freemarker:
-        report: /templates/freemarker/office.ftl
+        report: /templates/freemarker/company.ftl
         output: /templates/freemarker/output.html
     fizzed:
         report: /templates/fizzed/index.rocker.html
         output: /templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/office.html
+        report: /templates/mustache/company.html
         output: /templates/mustache/output.html
     trimou:
-        report: /templates/trimou/office.html
+        report: /templates/trimou/company.html
         output: /templates/trimou/output.html
     velocity:
         report: /templates/velocity/office.pm
         output: /templates/velocity/output.html
     pebble:
-        report: /templates/pebble/office.html
+        report: /templates/pebble/company.html
         output: /templates/pebble/output.html
     liqp:
         report: /templates/liqp/office.liqp
         output: /templates/liqp/output.html
     jinjava:
-        report: /templates/jinjava/office.html
+        report: /templates/jinjava/company.html
         output: /templates/jinjava/output.html
     httl:
         report: /templates/httl/office.httl

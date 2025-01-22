@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.base.Stopwatch;
 
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HttlEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JinJavaEngine;
@@ -28,11 +29,11 @@ public class ThymeleafTest extends ExpectedOutputTest {
     private String output;
 
     @Autowired
-    private OfficeService officeService;
+    private CompanyService companyService;
 
     @Test
     public void testOutput() {
-        var engine = new ThymeleafEngine(report, officeService.loadAll());
+        var engine = new ThymeleafEngine(report, companyService.loadAll());
         assertOutput(output,engine.process());
     }
 
@@ -40,7 +41,7 @@ public class ThymeleafTest extends ExpectedOutputTest {
     public void benchmark() {
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 100; i++){
-            var engine = new ThymeleafEngine(report, officeService.loadAll());
+            var engine = new ThymeleafEngine(report, companyService.loadAll());
             System.out.println(engine.process());
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
