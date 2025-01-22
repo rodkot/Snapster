@@ -11,6 +11,7 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.github.mustachejava.TemplateFunction;
 
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
@@ -18,13 +19,13 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 public class MustacheEngine implements ReportEngine {
 
     private final Mustache mustache;
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
 
     public MustacheEngine(String
-            report, List<OfficeDto> offices){
-        this.offices = offices;
+            report, List<CompanyDto> companies){
+        this.companies = companies;
         MustacheFactory mf = new DefaultMustacheFactory();
-        mustache = mf.compile(new StringReader(report), "office");
+        mustache = mf.compile(new StringReader(report), "company");
     }
 
     @Override
@@ -41,6 +42,6 @@ public class MustacheEngine implements ReportEngine {
             return colors.get(new Random(100).nextInt(100) % colors.size());
         });
 
-        return Map.of("offices",offices, "getColor", color);
+        return Map.of("companies",companies, "getColor", color);
     }
 }

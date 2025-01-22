@@ -24,7 +24,7 @@ templates:
         report: /templates/fizzed/index.rocker.html
         output: /templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/office.html
+        report: /templates/mustache/company.html
         output: /templates/mustache/output.html
     trimou:
         report: /templates/trimou/office.html
