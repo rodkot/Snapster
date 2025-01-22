@@ -9,16 +9,17 @@ import liqp.Template;
 import liqp.TemplateContext;
 import liqp.TemplateParser;
 import liqp.filters.Filter;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 public class LiqpEngine implements ReportEngine {
 
     private final Template template;
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
 
-    public LiqpEngine(String report, List<OfficeDto> offices){
-        this.offices = offices;
+    public LiqpEngine(String report, List<CompanyDto> companies){
+        this.companies = companies;
 
         TemplateParser parser = new TemplateParser.Builder().withFilter(new Filter("color") {
             @Override
@@ -34,7 +35,7 @@ public class LiqpEngine implements ReportEngine {
     }
 
     private Map<String, Object> setupContext() {
-        return Map.of("offices", offices);
+        return Map.of("companies", companies);
     }
 
     @Override

@@ -36,7 +36,7 @@ templates:
         report: /templates/pebble/company.html
         output: /templates/pebble/output.html
     liqp:
-        report: /templates/liqp/office.liqp
+        report: /templates/liqp/company.liqp
         output: /templates/liqp/output.html
     jinjava:
         report: /templates/jinjava/office.html
