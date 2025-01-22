@@ -42,5 +42,5 @@ templates:
         report: /templates/jinjava/company.html
         output: /templates/jinjava/output.html
     httl:
-        report: /templates/httl/office.httl
+        report: /templates/httl/company.httl
         output: /templates/httl/output.html

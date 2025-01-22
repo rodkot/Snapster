@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies Report</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h1>Companies Report</h1>
+
+<!-- #set(OfficeDto office, CompanyDto company, EmployeeDto employee, List<OfficeDto> offices, List<String> colors)-->
+
+<!--#foreach(company in companies)-->
+    <div class="company-section">
+        <div class="company-info"><h2>${company.name}</h2>
+            <p><strong>Code:</strong> ${company.code}</p>
+            <p><strong>Director:</strong> ${company.director.name}</p>
+            <p><strong>Main office:</strong> ${company.generalOffice.name}</p></div>
+        <div class="company-logo"><img src="../assets/${company.logo}" alt="${company.name} logo"/></div>
+    </div>
+    <h3>Additional Offices</h3>
+    <!--#foreach(office in company.additionalOffices)-->
+    <section>
+        <h4>${office.name}</h4>
+        <p><strong>Location:</strong> ${office.location}</p>
+        <!--#if(office.resources != null)-->
+        <div>
+            <strong>Resources:</strong>
+            <!--#foreach(resource in office.resources)-->
+            <span class="resources" style="background-color: ${colors[foreach.index % colors.size()]};" >
+                    ${resource}
+                </span>
+            <!--#end-->
+        </div>
+        <!--#end-->
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Project</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Experience (years)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--#foreach(employee in office.employees)-->
+            <tr>
+                <td>${employee.id}</td>
+                <td>${employee.name}</td>
+                <td>${employee.project.name}</td>
+                <td>${employee.position}</td>
+                <td>${employee.salary}</td>
+                <td>${employee.experience}</td>
+            </tr>
+            <!--#end-->
+            </tbody>
+        </table>
+    </section>
+    <!--#end-->
+<!--#end-->
+</body>
+</html>
