@@ -27,7 +27,7 @@ templates:
         report: /templates/mustache/company.html
         output: /templates/mustache/output.html
     trimou:
-        report: /templates/trimou/office.html
+        report: /templates/trimou/company.html
         output: /templates/trimou/output.html
     velocity:
         report: /templates/velocity/office.pm

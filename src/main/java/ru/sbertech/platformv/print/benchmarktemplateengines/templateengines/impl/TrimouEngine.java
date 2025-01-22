@@ -12,6 +12,7 @@ import org.trimou.handlebars.SimpleHelpers;
 
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
@@ -19,10 +20,10 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 public class TrimouEngine implements ReportEngine {
 
     private final Mustache mustache;
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
 
-    public TrimouEngine(String report, List<OfficeDto> offices){
-        this.offices = offices;
+    public TrimouEngine(String report, List<CompanyDto> companies){
+        this.companies = companies;
         var engine =
                 MustacheEngineBuilder.newBuilder()
                         .registerHelper("color",
@@ -32,11 +33,11 @@ public class TrimouEngine implements ReportEngine {
                                 }).build()).
                         build();
 
-        mustache = engine.compileMustache("offices", report);
+        mustache = engine.compileMustache("company", report);
     }
 
     private Map<String, Object> setupContext() {
-        return Map.of("offices", offices);
+        return Map.of("companies", companies);
     }
 
     @Override
