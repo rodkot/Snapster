@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hubspot.jinjava.Jinjava;
 
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
@@ -14,17 +15,17 @@ public class JinJavaEngine implements ReportEngine {
     private final String report;
     private final Jinjava jinjava;
 
-    private final List<OfficeDto> offices;
+    private final List<CompanyDto> companies;
 
-    public JinJavaEngine(String report, List<OfficeDto> offices){
-        this.offices = offices;
+    public JinJavaEngine(String report, List<CompanyDto> companies){
+        this.companies = companies;
         this.report = report;
         context = setupContext();
         jinjava = new Jinjava();
     }
 
     private Map<String,Object> setupContext(){
-        return Map.of("offices", offices, "colors", List.of( "#ff5733", "#33ff57" ,"#3357ff"));
+        return Map.of("companies", companies, "colors", List.of( "#ff5733", "#33ff57" ,"#3357ff"));
     }
 
     @Override

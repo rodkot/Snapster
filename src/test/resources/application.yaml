@@ -39,7 +39,7 @@ templates:
         report: /templates/liqp/company.liqp
         output: /templates/liqp/output.html
     jinjava:
-        report: /templates/jinjava/office.html
+        report: /templates/jinjava/company.html
         output: /templates/jinjava/output.html
     httl:
         report: /templates/httl/office.httl
