@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office Report</title>
+    <title>Companies Report</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../style.css">
 <body>
-    <h1>Offices Report</h1>
-
-    #foreach($office in $offices)
+    <h1>Companies Report</h1>
+    #foreach($company in $companies)
+    <div class="company-section">
+        <div class="company-info"><h2>$company.name</h2>
+            <p><strong>Code:</strong> $company.code</p>
+            <p><strong>Director:</strong> $company.director.name</p>
+            <p><strong>Main office:</strong> $company.generalOffice.name</p></div>
+        <div class="company-logo"><img src="../assets/$company.logo" alt="$company.name logo"/></div>
+    </div>
+    <h3>Additional Offices</h3>
+    #foreach($office in $company.additionalOffices)
         <section>
-            <h2>$office.name</h2>
+            <h4>$office.name</h4>
             <p><strong>Location:</strong> $office.location</p>
 
             #if($office.resources)
@@ -51,6 +59,7 @@
                 </tbody>
             </table>
         </section>
+    #end
     #end
 </body>
 </html>

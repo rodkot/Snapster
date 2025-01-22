@@ -30,7 +30,7 @@ templates:
         report: /templates/trimou/company.html
         output: /templates/trimou/output.html
     velocity:
-        report: /templates/velocity/office.pm
+        report: /templates/velocity/company.pm
         output: /templates/velocity/output.html
     pebble:
         report: /templates/pebble/company.html
