@@ -15,7 +15,9 @@
             <p><strong>Code:</strong><span th:text="${company.code}"></span></p>
             <p><strong>Director:</strong> <span th:text="${company.director.name}"></span></p>
             <p><strong>Main office:</strong> <span th:text="${company.generalOffice.name}"></span></p></div>
-        <div class="company-logo"><img th:src="'../assets/company/'+ ${company.logo}" th:alt="${company.name}"/></div>
+        <div class="company-logo">
+            <img th:src="'../assets/company/'+ ${company.logo}" th:alt="${company.name}"/>
+        </div>
     </div>
     <h3>Additional Offices</h3>
     <div th:each="office : ${company.additionalOffices}">

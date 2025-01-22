@@ -17,7 +17,9 @@
         <p><strong>Code:</strong> ${company.code}</p>
         <p><strong>Director:</strong> ${company.director.name}</p>
         <p><strong>Main office:</strong> ${company.generalOffice.name}</p></div>
-    <div class="company-logo"><img src="../assets/company/${company.logo}" alt="${company.name} logo"/></div>
+    <div class="company-logo">
+        <img src="../assets/company/${company.logo}" alt="${company.name} logo"/>
+    </div>
 </div>
 <h3>Additional Offices</h3>
 <!--#foreach(office in company.additionalOffices)-->
