@@ -41,6 +41,9 @@ public class Office {
     @OneToMany(mappedBy = "office")
     private List<Employee> employees;
 
+    @Column
+    private String photo;
+
 //    @OneToMany(fetch = FetchType.EAGER)
 //    private List<Department> departments;
 

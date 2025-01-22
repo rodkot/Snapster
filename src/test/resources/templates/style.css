@@ -53,6 +53,23 @@ table {
     border-radius: 8px;
 }
 
+.office-section {
+    padding-bottom: 30px;
+}
+.office-info-section {
+    display: flex;
+}
+.office-info {
+    flex: 1;
+}
+.office-photo {
+    margin-left: 20px;
+}
+.office-photo img {
+    width: 300px;
+    height: auto;
+}
+
 th, td {
     padding: 10px;
     text-align: left;

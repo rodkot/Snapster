@@ -15,29 +15,35 @@
         <p><strong>Code:</strong> {{ company.code }}</p>
         <p><strong>Director:</strong> {{ company.director.name }}</p>
         <p><strong>Main office:</strong> {{ company.generalOffice.name }}</p></div>
-    <div class="company-logo"><img src="../assets/{{ company.logo }}" alt="{{ company.name }} logo"/></div>
+    <div class="company-logo"><img src="../assets/company/{{ company.logo }}" alt="{{ company.name }} logo"/></div>
 </div>
 {% for office in company.additionalOffices %}
-<section>
-    <h2>{{ office.name }}</h2>
-    <p><strong>Location:</strong> {{ office.location }}</p>
+<section class="office-section">
+    <section class="office-info-section">
+        <div class="office-info">
+            <h2>{{ office.name }}</h2>
+            <p><strong>Location:</strong> {{ office.location }}</p>
 
-    {% if office.resources | length > 0 %}
-    <div>
-        <strong>Resources:</strong>
-        {% for resource in office.resources %}
+            {% if office.resources | length > 0 %}
+            <div>
+                <strong>Resources:</strong>
+                {% for resource in office.resources %}
 
-        <p class="resources" style="
+                <p class="resources" style="
             {% if loop.index % 3 == 0 %}
             background-color: #ff5733;
             {% elseif loop.index
              % 3 == 1 %} background-color: #33ff57; {% else %} background-color: #3357ff; {% endif %}">
-            {{ resource }}
-        </p>
-        {% endfor %}
-    </div>
-    {% endif %}
-
+                    {{ resource }}
+                </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="office-photo">
+            <img src="../assets/office/{{ office.photo }}" alt="{{ office.name }} logo"/>
+        </div>
+    </section>
     <table>
         <thead>
         <tr>
@@ -56,7 +62,7 @@
             <td>{{ employee.name }}</td>
             <td>{{ employee.project.name }}</td>
             <td>{{ employee.position }}</td>
-            <td>{{ employee.salary  }}</td>
+            <td>{{ employee.salary }}</td>
             <td>{{ employee.experience }}</td>
         </tr>
         {% endfor %}

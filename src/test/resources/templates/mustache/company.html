@@ -14,26 +14,29 @@
         <p><strong>Code:</strong> {{code}}</p>
         <p><strong>Director:</strong> {{director.name}}</p>
         <p><strong>Main office:</strong> {{generalOffice.name}}</p></div>
-    <div class="company-logo"><img src="../assets/{{logo}}" alt="{{name}} logo"/></div>
+    <div class="company-logo"><img src="../assets/company/{{logo}}" alt="{{name}} logo"/></div>
 </div>
 <h3>Additional Offices</h3>
 {{#additionalOffices}}
-<section>
-    <h4>{{name}}</h4>
-    <p><strong>Location:</strong> {{location}}</p>
-
-    {{#resources}}
-    <div>
-        <strong>Resources:</strong>
-        {{#resources}}
-        {{@index}}
-        <p class="resources" style="background-color: {{getColor}}">
-            {{.}}
-        </p>
-        {{/resources}}
-    </div>
-    {{/resources}}
-
+<section class="office-section">
+    <section class="office-info-section">
+        <div class="office-info">
+            <h4>{{name}}</h4>
+            <p><strong>Location:</strong> {{location}}</p>
+            <div>
+                <strong>Resources:</strong>
+                {{#resources}}
+                {{@index}}
+                <p class="resources" style="background-color: {{getColor}}">
+                    {{.}}
+                </p>
+                {{/resources}}
+            </div>
+        </div>
+        <div class="office-photo">
+            <img src="../assets/office/{{photo}}" alt="{{name}} logo"/>
+        </div>
+    </section>
     <table>
         <thead>
         <tr>

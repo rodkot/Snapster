@@ -15,6 +15,7 @@ public class OfficeDto implements Inspectable, Serializable {
     private Long id;
     private String name;
     private String location;
+    private String photo;
     private List<EmployeeDto> employees;
     private List<String> resources;
 }

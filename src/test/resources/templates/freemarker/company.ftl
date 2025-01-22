@@ -16,11 +16,13 @@
         <p><strong>Code:</strong> ${company.code}</p>
         <p><strong>Director:</strong> ${company.director.name}</p>
         <p><strong>Main office:</strong> ${company.generalOffice.name}</p></div>
-    <div class="company-logo"><img src="../assets/${company.logo}" alt="${company.name} logo"/></div>
+    <div class="company-logo"><img src="../assets/company/${company.logo}" alt="${company.name} logo"/></div>
     </div>
     <h3>Additional Offices</h3>
     <#list company.additionalOffices as office>
-        <section>
+        <section class="office-section">
+            <section class="office-info-section">
+                <div class="office-info">
             <h4>${office.name}</h4>
             <p><strong>Location:</strong> ${office.location}</p>
 
@@ -35,6 +37,11 @@
                     </#list>
                 </div>
             </#if>
+                </div>
+                <div class="office-photo">
+                    <img src="../assets/office/${office.photo}" alt="${office.name}" />
+                </div>
+            </section>
             <table>
                 <thead>
                 <tr>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="insert_offices_sbt" author="r.kotov">
+        <insert tableName="office">
+            <column name="id" valueNumeric="6"/>
+            <column name="name" value="Business center 'Evid'"/>
+            <column name="photo" value="evid.jpg"/>
+            <column name="location" value="Novosibirsk, st. Radnikova 12, office 202"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
+        </insert>
+        <insert tableName="office">
+            <column name="id" valueNumeric="7"/>
+            <column name="name" value="Business center 'Red Book'"/>
+            <column name="photo" value="redbook.png"/>
+            <column name="location" value="Novosibirsk, st. Popova 20, office 102"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;]"/>
+        </insert>
+        <insert tableName="office">
+            <column name="id" valueNumeric="8"/>
+            <column name="name" value="Business center 'Logika'"/>
+            <column name="photo" value="logika.jpeg"/>
+            <column name="location" value="Omsk, st. Lomova 211"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;gym&quot;]"/>
+        </insert>
+        <insert tableName="office">
+            <column name="id" valueNumeric="9"/>
+            <column name="name" value="Business center 'Volga'"/>
+            <column name="photo" value="volga.jpeg"/>
+            <column name="location" value="Tomsk, st. Bubnova 100"/>
+        </insert>
+        <insert tableName="office">
+            <column name="id" valueNumeric="10"/>
+            <column name="name" value="Business center 'Moscow2'"/>
+            <column name="photo" value="moscow2.jpeg"/>
+            <column name="location" value="Moscow, Novodanilovskaya embankment 12"/>
+            <column name="resources"
+                    value="[&quot;open-spaces&quot;, &quot;food places&quot;, &quot;gym&quot;, &quot;pool&quot;]"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="insert_departments_sbt" author="r.kotov">
+        <insert tableName="department">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Platform V"/>
+            <column name="budget" value="10.9"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_project_platform_v_logger" author="r.kotov">
+        <insert tableName="project">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="Platform V Logger"/>
+            <column name="description" value="Cool Team !"/>
+            <column name="status" value="IN PROCESS"/>
+        </insert>
+        <insert tableName="department_projects">
+            <column name="department_id" valueNumeric="2"/>
+            <column name="projects_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="12"/>
+            <column name="name" value="Pavel Lomov"/>
+            <column name="position" value="Team Lead"/>
+            <column name="experience" valueNumeric="10"/>
+            <column name="salary" valueNumeric="100500"/>
+            <column name="office_id" valueNumeric="6"/>
+            <column name="project_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="13"/>
+            <column name="name" value="Nikita Zonov"/>
+            <column name="position" value="Middle Backend Java"/>
+            <column name="experience" valueNumeric="5"/>
+            <column name="salary" valueNumeric="100000"/>
+            <column name="office_id" valueNumeric="7"/>
+            <column name="project_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="14"/>
+            <column name="name" value="Boris Elevoy"/>
+            <column name="position" value="Middle Backend Java"/>
+            <column name="experience" valueNumeric="4"/>
+            <column name="salary" valueNumeric="100000"/>
+            <column name="office_id" valueNumeric="8"/>
+            <column name="project_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_project_platform_v_cocoa" author="r.kotov">
+        <insert tableName="project">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="Platform V Cocoa"/>
+            <column name="description" value="Cool Team !"/>
+            <column name="status" value="IN PROCESS"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="15"/>
+            <column name="name" value="Marina Kolova"/>
+            <column name="position" value="Team Lead"/>
+            <column name="experience" valueNumeric="12"/>
+            <column name="salary" valueNumeric="200000"/>
+            <column name="office_id" valueNumeric="8"/>
+            <column name="project_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="employee">
+            <column name="id" valueNumeric="16"/>
+            <column name="name" value="Egor Jurelvo"/>
+            <column name="position" value="Middle Backend Java"/>
+            <column name="experience" valueNumeric="3"/>
+            <column name="salary" valueNumeric="102000"/>
+            <column name="office_id" valueNumeric="9"/>
+            <column name="project_id" valueNumeric="4"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_hrs_sbt" author="r.kotov">
+
+        <insert tableName="employee">
+            <column name="id" valueNumeric="17"/>
+            <column name="name" value="Alexey Bulka"/>
+            <column name="position" value="HR Specialist"/>
+            <column name="experience" valueNumeric="12"/>
+            <column name="salary" valueNumeric="120000"/>
+            <column name="office_id" valueNumeric="9"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="18"/>
+            <column name="name" value="Katerina Karpova"/>
+            <column name="position" value="HR Specialist"/>
+            <column name="experience" valueNumeric="5"/>
+            <column name="salary" valueNumeric="100000"/>
+            <column name="office_id" valueNumeric="10"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueNumeric="20"/>
+            <column name="name" value="Anna Annovna"/>
+            <column name="position" value="HR Specialist"/>
+            <column name="experience" valueNumeric="10"/>
+            <column name="salary" valueNumeric="150000"/>
+            <column name="office_id" valueNumeric="7"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_sbt" author="r.kotov">
+
+        <insert tableName="company">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Sbt"/>
+            <column name="code" value="1264378383873739"/>
+            <column name="email" value="info@sbertech.ru"/>
+            <column name="logo" value="sbt.jpeg"/>
+            <column name="director_id" valueNumeric="12"/>
+            <column name="general_office_id" valueNumeric="10"/>
+        </insert>
+
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="6"/>
+            <column name="company_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="7"/>
+            <column name="company_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="8"/>
+            <column name="company_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="9"/>
+            <column name="company_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="company_additional_offices">
+            <column name="additional_offices_id" valueNumeric="10"/>
+            <column name="company_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
