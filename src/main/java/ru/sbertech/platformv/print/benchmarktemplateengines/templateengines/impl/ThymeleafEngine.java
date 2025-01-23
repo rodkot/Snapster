@@ -2,17 +2,11 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.imp
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
-import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 public class ThymeleafEngine implements ReportEngine {
@@ -22,11 +16,11 @@ public class ThymeleafEngine implements ReportEngine {
     private final TemplateEngine templateEngine;
     private final List<CompanyDto> companies;
 
-    public ThymeleafEngine(String report, List<CompanyDto> companies){
+    private ThymeleafEngine(String report, List<CompanyDto> companies, Boolean caching) {
         this.companies = companies;
         StringTemplateResolver stringTemplateResolver = new StringTemplateResolver();
         stringTemplateResolver.setTemplateMode("HTML");
-        stringTemplateResolver.setCacheable(false);
+        stringTemplateResolver.setCacheable(caching);
 
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(stringTemplateResolver);
@@ -35,7 +29,15 @@ public class ThymeleafEngine implements ReportEngine {
         context = setupContext();
     }
 
-    private Context setupContext(){
+    public static ThymeleafEngine of(String report, List<CompanyDto> companies) {
+        return new ThymeleafEngine(report, companies, false);
+    }
+
+    public static ThymeleafEngine cachingOf(String report, List<CompanyDto> companies) {
+        return new ThymeleafEngine(report, companies, true);
+    }
+
+    private Context setupContext() {
         var context = new Context();
 
         context.setVariable("companies", companies);
@@ -45,6 +47,6 @@ public class ThymeleafEngine implements ReportEngine {
 
     @Override
     public String process() {
-        return templateEngine.process( report, context);
+        return templateEngine.process(report, context);
     }
 }
