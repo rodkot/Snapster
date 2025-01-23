@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import freemarker.cache.MruCacheStorage;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -22,14 +23,25 @@ public class FreemarkerEngine implements ReportEngine {
     private final Map<String, Object> context;
     private final Template template;
 
-    public FreemarkerEngine(String report, List<CompanyDto> companies) throws IOException {
+    private FreemarkerEngine(String report, List<CompanyDto> companies, Boolean cashing) throws IOException {
         this.companies = companies;
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
+        if (cashing){
+            configuration.setCacheStorage(new MruCacheStorage(20,250));
+        }
         configuration.setDefaultEncoding("UTF-8");
 
         template = new Template("offices", new StringReader(report), configuration);
 
         context = setupContext();
+    }
+
+    public static FreemarkerEngine of(String report, List<CompanyDto> companies) throws IOException {
+        return new FreemarkerEngine(report, companies, false);
+    }
+
+    public static FreemarkerEngine cashingOf(String report, List<CompanyDto> companies) throws IOException {
+        return new FreemarkerEngine(report, companies, true);
     }
 
     private HashMap<String, Object> setupContext(){

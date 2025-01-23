@@ -26,20 +26,29 @@ public class FreemarkerTest extends ExpectedOutputTest {
     @Autowired
     private CompanyService companyService;
 
-
     @Test
     public void testOutput() throws IOException, TemplateException {
-        var engine = new FreemarkerEngine(report, companyService.loadAll());
+        var engine = FreemarkerEngine.of(report, companyService.loadAll());
         assertOutput(output,engine.process());
     }
 
     @Test
-    public void benchmark() throws IOException, TemplateException {
+    public void benchmarkWithOutOptimizations() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
-        for (int i =0; i< 100; i++){
-            var engine = new FreemarkerEngine(report, companyService.loadAll());
-            assertOutput(output,engine.process());
+        for (int i =0; i< 1000; i++){
+            var engine =  FreemarkerEngine.of(report, companyService.loadAll());
+            engine.process();
         }
-        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ "ms.");
+    }
+
+    @Test
+    public void benchmarkWithOptimizations() throws IOException, TemplateException {
+        Stopwatch sw = Stopwatch.createStarted();
+        var engine =  FreemarkerEngine.cashingOf(report, companyService.loadAll());
+        for (int i =0; i< 1000; i++){
+            engine.process();
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
     }
 }
