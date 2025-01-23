@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.trimou.Mustache;
 import org.trimou.engine.MustacheEngineBuilder;
+import org.trimou.engine.cache.DefaultComputingCacheFactory;
 import org.trimou.handlebars.SimpleHelpers;
 
 import freemarker.template.TemplateException;
@@ -22,18 +23,28 @@ public class TrimouEngine implements ReportEngine {
     private final Mustache mustache;
     private final List<CompanyDto> companies;
 
-    public TrimouEngine(String report, List<CompanyDto> companies){
+    private TrimouEngine(String report, List<CompanyDto> companies, Boolean caching){
         this.companies = companies;
-        var engine =
+        var engineBuilder =
                 MustacheEngineBuilder.newBuilder()
                         .registerHelper("color",
                                 new SimpleHelpers.Builder().execute((o, p) -> {
                                     var colors = List.of("#ff5733", "#33ff57", "#3357ff");
                                     o.append(colors.get(((Integer) o.getParameters().get(0)) % colors.size()));
-                                }).build()).
-                        build();
+                                }).build());
+        if (caching){
+            engineBuilder.setComputingCacheFactory(new DefaultComputingCacheFactory());
+        }
 
-        mustache = engine.compileMustache("company", report);
+        mustache = engineBuilder.build().compileMustache("company", report);
+    }
+
+    public static TrimouEngine of(String report, List<CompanyDto> companies){
+        return new TrimouEngine(report, companies, false);
+    }
+
+    public static TrimouEngine cachingOf(String report, List<CompanyDto> companies){
+        return new TrimouEngine(report, companies, true);
     }
 
     private Map<String, Object> setupContext() {
