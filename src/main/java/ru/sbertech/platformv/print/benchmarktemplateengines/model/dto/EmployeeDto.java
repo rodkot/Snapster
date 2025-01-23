@@ -6,7 +6,6 @@ import liqp.parser.Inspectable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.entity.Project;
 
 @Getter
 @Setter
@@ -15,7 +14,7 @@ public class EmployeeDto implements Inspectable, Serializable {
     private Long id;
     private String name;
     private String position;
-    private Project project;
+    private ProjectDto project;
     private double salary;
     private int experience;
 }

@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.google.common.base.Stopwatch;
 
-import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.PebbleEngine;
 
 public class PebbleTest extends ExpectedOutputTest {
