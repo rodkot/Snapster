@@ -21,11 +21,16 @@ public class MustacheEngine implements ReportEngine {
     private final Mustache mustache;
     private final List<CompanyDto> companies;
 
-    public MustacheEngine(String
+    private MustacheEngine(String
             report, List<CompanyDto> companies){
         this.companies = companies;
         MustacheFactory mf = new DefaultMustacheFactory();
         mustache = mf.compile(new StringReader(report), "company");
+    }
+
+    public static MustacheEngine of(String
+            report, List<CompanyDto> companies){
+        return new MustacheEngine(report, companies);
     }
 
     @Override
