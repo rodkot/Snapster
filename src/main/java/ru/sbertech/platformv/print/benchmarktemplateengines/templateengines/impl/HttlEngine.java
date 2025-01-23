@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import httl.Engine;
 import httl.Template;
@@ -17,17 +18,30 @@ public class HttlEngine implements ReportEngine {
     private final List<CompanyDto> companies;
     private final Template template;
 
-    public HttlEngine(String report, List<CompanyDto> companies) throws ParseException {
+    private HttlEngine(String report, List<CompanyDto> companies, Boolean caching) throws ParseException {
         this.companies = companies;
-        Engine engine = Engine.getEngine();
+        Properties properties = new Properties();
+        if (caching){
+            properties.setProperty("cache.capacity", "1000");
+        }
+
+        Engine engine = Engine.getEngine(properties);
 
         template = engine.parseTemplate(report);
         context = setupContext();
     }
 
-    private Map<String,Object> setupContext(){
+    public static HttlEngine of(String report, List<CompanyDto> companies) throws ParseException {
+        return new HttlEngine(report, companies, false);
+    }
 
-        return Map.of("companies", companies, "colors", List.of( "#ff5733", "#33ff57" ,"#3357ff"));
+    public static HttlEngine cachingOf(String report, List<CompanyDto> companies) throws ParseException {
+        return new HttlEngine(report, companies, false);
+    }
+
+    private Map<String, Object> setupContext() {
+
+        return Map.of("companies", companies, "colors", List.of("#ff5733", "#33ff57", "#3357ff"));
     }
 
     @Override

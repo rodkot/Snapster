@@ -41,7 +41,7 @@ public class FreemarkerTest extends ExpectedOutputTest {
             var engine =  FreemarkerEngine.of(report, companies);
             engine.process();
         }
-        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ "ms.");
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
     }
 
     @Test
