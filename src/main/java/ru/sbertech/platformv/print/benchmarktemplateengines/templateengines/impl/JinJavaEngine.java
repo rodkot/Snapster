@@ -11,21 +11,25 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.Repo
 
 public class JinJavaEngine implements ReportEngine {
 
-    private final Map<String,Object> context;
+    private final Map<String, Object> context;
     private final String report;
     private final Jinjava jinjava;
 
     private final List<CompanyDto> companies;
 
-    public JinJavaEngine(String report, List<CompanyDto> companies){
+    private JinJavaEngine(String report, List<CompanyDto> companies) {
         this.companies = companies;
         this.report = report;
         context = setupContext();
         jinjava = new Jinjava();
     }
 
-    private Map<String,Object> setupContext(){
-        return Map.of("companies", companies, "colors", List.of( "#ff5733", "#33ff57" ,"#3357ff"));
+    public static JinJavaEngine of(String report, List<CompanyDto> companies) {
+        return new JinJavaEngine(report, companies);
+    }
+
+    private Map<String, Object> setupContext() {
+        return Map.of("companies", companies, "colors", List.of("#ff5733", "#33ff57", "#3357ff"));
     }
 
     @Override
