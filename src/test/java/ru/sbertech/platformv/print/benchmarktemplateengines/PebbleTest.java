@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -9,13 +10,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.google.common.base.Stopwatch;
 
+import freemarker.template.TemplateException;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.PebbleEngine;
 
 public class PebbleTest extends ExpectedOutputTest {
-
-    @Autowired
-    private CompanyService companyService;
 
     @Autowired
     @Qualifier("reportPebble")
@@ -25,19 +26,32 @@ public class PebbleTest extends ExpectedOutputTest {
     @Qualifier("outputPebble")
     private String output;
 
+    @Autowired
+    private List<CompanyDto> companies;
+
     @Test
     public void testOutput() throws IOException {
-        var engine = new PebbleEngine(report, companyService.loadAll());
-        assertOutput(output, engine.process());
+        var engine = PebbleEngine.of(report, companies);
+        assertOutput(output,engine.process());
     }
 
     @Test
-    public void benchmark() throws IOException {
+    public void benchmarkWithOutOptimizations() throws IOException {
         Stopwatch sw = Stopwatch.createStarted();
-        for (int i =0; i< 100; i++){
-            var engine = new PebbleEngine(report, companyService.loadAll());
-            System.out.println(engine.process());
+        for (int i =0; i< 1000; i++){
+            var engine =  PebbleEngine.of(report, companies);
+            engine.process();
         }
-        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS));
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+    }
+
+    @Test
+    public void benchmarkWithOptimizations() throws IOException {
+        Stopwatch sw = Stopwatch.createStarted();
+        var engine =  PebbleEngine.cachingOf(report, companies);
+        for (int i =0; i< 1000; i++){
+            engine.process();
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
     }
 }

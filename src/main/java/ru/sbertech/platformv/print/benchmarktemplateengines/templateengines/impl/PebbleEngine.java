@@ -25,17 +25,28 @@ public class PebbleEngine implements ReportEngine {
     private final PebbleTemplate compiledTemplate;
     private final List<CompanyDto> companies;
 
-    public PebbleEngine(String report,List<CompanyDto> companies) throws IOException {
+    private PebbleEngine(String report, List<CompanyDto> companies, Boolean caching) throws IOException {
         this.companies = companies;
-        var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().build();
+        var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder();
+        if (caching) {
+            engine.cacheActive(true);
+        }
 
-        File tempFile = File.createTempFile("pebble",".html");
+        File tempFile = File.createTempFile("pebble", ".html");
 
-        try(FileWriter fileWriter = new FileWriter(tempFile)){
+        try (FileWriter fileWriter = new FileWriter(tempFile)) {
             fileWriter.write(report);
         }
 
-        compiledTemplate = engine.getTemplate(tempFile.getAbsolutePath());
+        compiledTemplate = engine.build().getTemplate(tempFile.getAbsolutePath());
+    }
+
+    public static PebbleEngine of(String report, List<CompanyDto> companies) throws IOException {
+        return new PebbleEngine(report, companies, false);
+    }
+
+    public static PebbleEngine cachingOf(String report, List<CompanyDto> companies) throws IOException {
+        return new PebbleEngine(report, companies, true);
     }
 
     @Override
@@ -46,7 +57,7 @@ public class PebbleEngine implements ReportEngine {
         return writer.toString();
     }
 
-    private Map<String,Object> setupContext(){
+    private Map<String, Object> setupContext() {
         var context = new HashMap<String, Object>();
 
         context.put("companies", companies);
