@@ -46,7 +46,7 @@ public class VelocityTest extends ExpectedOutputTest {
     @Test
     public void benchmarkWithOptimizations() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
-        var engine =  VelocityEngine.cashingOf(report, companies);
+        var engine =  VelocityEngine.cachingOf(report, companies);
         for (int i =0; i< 1000; i++){
             engine.process();
         }

@@ -13,7 +13,6 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 
@@ -40,7 +39,7 @@ public class FreemarkerEngine implements ReportEngine {
         return new FreemarkerEngine(report, companies, false);
     }
 
-    public static FreemarkerEngine cashingOf(String report, List<CompanyDto> companies) throws IOException {
+    public static FreemarkerEngine cachingOf(String report, List<CompanyDto> companies) throws IOException {
         return new FreemarkerEngine(report, companies, true);
     }
 

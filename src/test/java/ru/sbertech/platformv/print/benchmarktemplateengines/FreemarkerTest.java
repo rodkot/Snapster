@@ -12,7 +12,6 @@ import com.google.common.base.Stopwatch;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 
 public class FreemarkerTest extends ExpectedOutputTest {
@@ -47,7 +46,7 @@ public class FreemarkerTest extends ExpectedOutputTest {
     @Test
     public void benchmarkWithOptimizations() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
-        var engine =  FreemarkerEngine.cashingOf(report, companies);
+        var engine =  FreemarkerEngine.cachingOf(report, companies);
         for (int i =0; i< 1000; i++){
             engine.process();
         }

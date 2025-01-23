@@ -10,14 +10,9 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 
@@ -47,7 +42,7 @@ public class VelocityEngine implements ReportEngine {
         return new VelocityEngine(report, companies, false);
     }
 
-    public static VelocityEngine cashingOf(String report, List<CompanyDto> companies){
+    public static VelocityEngine cachingOf(String report, List<CompanyDto> companies){
         return new VelocityEngine(report, companies, true);
     }
 
