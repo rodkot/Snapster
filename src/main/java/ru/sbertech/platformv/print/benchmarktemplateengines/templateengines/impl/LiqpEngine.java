@@ -18,7 +18,7 @@ public class LiqpEngine implements ReportEngine {
     private final Template template;
     private final List<CompanyDto> companies;
 
-    public LiqpEngine(String report, List<CompanyDto> companies){
+    private LiqpEngine(String report, List<CompanyDto> companies){
         this.companies = companies;
 
         TemplateParser parser = new TemplateParser.Builder().withFilter(new Filter("color") {
@@ -32,6 +32,10 @@ public class LiqpEngine implements ReportEngine {
             }
         }).build();
         template = parser.parse(report);
+    }
+
+    public static LiqpEngine of(String report, List<CompanyDto> companies){
+        return new LiqpEngine(report, companies);
     }
 
     private Map<String, Object> setupContext() {
