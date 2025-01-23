@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.google.common.base.Stopwatch;
 
 import freemarker.template.TemplateException;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 
@@ -24,11 +26,11 @@ public class FreemarkerTest extends ExpectedOutputTest {
     private String output;
 
     @Autowired
-    private CompanyService companyService;
+    private List<CompanyDto> companies;
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        var engine = FreemarkerEngine.of(report, companyService.loadAll());
+        var engine = FreemarkerEngine.of(report, companies);
         assertOutput(output,engine.process());
     }
 
@@ -36,7 +38,7 @@ public class FreemarkerTest extends ExpectedOutputTest {
     public void benchmarkWithOutOptimizations() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 1000; i++){
-            var engine =  FreemarkerEngine.of(report, companyService.loadAll());
+            var engine =  FreemarkerEngine.of(report, companies);
             engine.process();
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ "ms.");
@@ -45,7 +47,7 @@ public class FreemarkerTest extends ExpectedOutputTest {
     @Test
     public void benchmarkWithOptimizations() throws IOException, TemplateException {
         Stopwatch sw = Stopwatch.createStarted();
-        var engine =  FreemarkerEngine.cashingOf(report, companyService.loadAll());
+        var engine =  FreemarkerEngine.cashingOf(report, companies);
         for (int i =0; i< 1000; i++){
             engine.process();
         }

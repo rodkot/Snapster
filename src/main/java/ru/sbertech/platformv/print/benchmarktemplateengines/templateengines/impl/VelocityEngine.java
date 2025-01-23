@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +27,28 @@ public class VelocityEngine implements ReportEngine {
     private final org.apache.velocity.app.VelocityEngine velocityEngine;
     private final List<CompanyDto> companies;
 
-    public VelocityEngine(String report, List<CompanyDto> companies){
+    private VelocityEngine(String report, List<CompanyDto> companies, Boolean cashing){
         this.companies = companies;
         Properties properties = new Properties();
         properties.setProperty("resource.loader", "class");
         properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader" +
                 ".StringResourceLoader");
+        if (cashing){
+            properties.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            properties.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        }
+
         template = report;
         velocityEngine = new org.apache.velocity.app.VelocityEngine(properties);
         velocityEngine.init();
+    }
+
+    public static VelocityEngine of(String report, List<CompanyDto> companies){
+        return new VelocityEngine(report, companies, false);
+    }
+
+    public static VelocityEngine cashingOf(String report, List<CompanyDto> companies){
+        return new VelocityEngine(report, companies, true);
     }
 
     private Context getContext(){

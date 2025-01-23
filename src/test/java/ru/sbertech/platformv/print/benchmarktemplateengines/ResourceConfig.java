@@ -3,15 +3,27 @@ package ru.sbertech.platformv.print.benchmarktemplateengines;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.testcontainers.shaded.org.bouncycastle.est.LimitedSource;
+
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 
 @TestConfiguration
 public class ResourceConfig {
+
+    @Bean
+    @Scope("prototype")
+    public List<CompanyDto> companies(CompanyService companyService){
+        return companyService.loadAll();
+    }
 
     @Bean
     public String reportFreemarker(@Value("${templates.freemarker.report}") String path) throws IOException {
