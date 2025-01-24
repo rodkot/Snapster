@@ -7,9 +7,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
+import fr.opensagres.xdocreport.document.images.ClassPathImageProvider;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
@@ -26,6 +29,9 @@ public class XDocReportEngine implements ReportEngine {
         report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Freemarker);
         FieldsMetadata metadata = report.createFieldsMetadata();
         metadata.load("companies", CompanyDto.class, true);
+        companies.forEach(
+                companyDto -> companyDto.setLogoImage(
+                        new ClassPathImageProvider(XDocReportEngine.class, companyDto.getLogo())));
 
         context = report.createContext();
         context.put("companies", companies);
@@ -39,7 +45,7 @@ public class XDocReportEngine implements ReportEngine {
 
     @Override
     public String process() throws TemplateException, IOException, ParseException, XDocReportException {
-        OutputStream out = new FileOutputStream("DocxProjectWithFreemarkerList_Out.docx");
+        OutputStream out = new FileOutputStream("Out.docx");
         report.process(context, out);
         return null;
     }
