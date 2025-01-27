@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports/schema"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/schema
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="CompaniesReport"
+              pageWidth="595"
+              pageHeight="842"
+              columnWidth="555"
+              leftMargin="20"
+              rightMargin="20"
+              topMargin="20"
+              bottomMargin="20"
+              isIgnorePagination="false">
+
+    <!-- Parameters -->
+    <parameter name="companies" class="java.util.List"/>
+
+    <!-- Variables -->
+    <variable name="companyLogo" class="java.lang.String" resetType="Report">
+        <variableExpression><![CDATA[$P{companies}.get(0).getLogo()]]></variableExpression>
+    </variable>
+
+    <!-- Title -->
+    <title>
+        <band height="50">
+            <textField>
+                <reportElement x="0" y="0" width="200" height="30" uuid="f1f1e717-6764-44a0-b9e9-1b042597c7a5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Companies Report"]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <!-- Detail Section -->
+    <detail>
+        <band height="100">
+            <!-- Company Logo -->
+            <image>
+                <reportElement x="10" y="10" width="50" height="50" uuid="f3f1d0c0-9c8a-46d7-9d26-91161b56422d"/>
+                <imageExpression><![CDATA[$F{companyLogo}]]></imageExpression>
+            </image>
+
+            <!-- Company Information -->
+            <textField>
+                <reportElement x="70" y="10" width="200" height="20" uuid="61f1a64d-8196-4534-95d9-f4a45654b6d4"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{companyName}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="70" y="30" width="200" height="20" uuid="b5f1d10d-13d4-492f-a5b5-67b62011c8be"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Code: " + $F{companyCode}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="70" y="50" width="200" height="20" uuid="1c3b1b66-b32e-4751-a02a-c7e1b39685f0"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Director: " + $F{directorName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- Office Section -->
+    <detail>
+        <band height="80">
+            <textField>
+                <reportElement x="10" y="10" width="150" height="20" uuid="9f63d35d-f9c9-400b-8a0e-963dbf5994b1"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{officeName}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="10" y="30" width="150" height="20" uuid="9f63d35d-f9c9-400b-8a0e-963dbf5994b2"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Location: " + $F{officeLocation}]]></textFieldExpression>
+            </textField>
+
+            <!-- Employees Table -->
+            <subreport>
+                <reportElement x="200" y="10" width="350" height="60" uuid="1f4c19c0-3a61-4782-8153-68f1c9bb3ac5"/>
+                <subreportExpression><![CDATA["employeeReport.jasper"]]></subreportExpression>
+                <dataSourceExpression><![CDATA[$P{employees}]]></dataSourceExpression>
+            </subreport>
+        </band>
+    </detail>
+
+    <!-- Employee Subreport -->
+    <subreport>
+        <reportElement x="0" y="0" width="555" height="50"/>
+        <subreportExpression><![CDATA["employeeSubreport.jasper"]]></subreportExpression>
+        <dataSourceExpression><![CDATA[$P{employees}]]></dataSourceExpression>
+    </subreport>
+</jasperReport>

@@ -40,6 +40,17 @@ public class ResourceConfig {
         return new File(path);
     }
 
+
+    @Bean
+    public File reportJasper(@Value("${templates.jasper.report}") String path) throws URISyntaxException {
+        return new File(Objects.requireNonNull(ResourceConfig.class.getResource(path)).toURI());
+    }
+
+    @Bean
+    public File outputJasper(@Value("${templates.jasper.output}") String path) {
+        return new File(path);
+    }
+
     @Bean
     public String reportFreemarker(@Value("${templates.freemarker.report}") String path) throws IOException {
         return readExpectedOutputResource(path);

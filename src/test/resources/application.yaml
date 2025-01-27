@@ -47,3 +47,6 @@ templates:
     xdoc:
         report: /templates/xdocreport/companies.odt
         output: src/test/resources/templates/xdocreport/output.odt
+    jasper:
+        report: /templates/japser/companies.jrxml
+        output: src/test/resources/templates/jasper/output.pdf

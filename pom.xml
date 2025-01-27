@@ -10,6 +10,10 @@
             <url>https://jitpack.io</url>
         </repository>
         <repository>
+            <id>jaspersoft.jfrog.io</id>
+            <url>https://jaspersoft.jfrog.io/</url>
+        </repository>
+        <repository>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -49,6 +53,7 @@
         <jinjava.version>2.7.4</jinjava.version>
         <xdocreport.version>2.1.0</xdocreport.version>
         <yarg.version>2.2.14</yarg.version>
+        <jasper.version>6.7.0</jasper.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -158,6 +163,11 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>${jasper.version}</version>
+        </dependency>
         <!-- datasource dependencies -->
 
         <dependency>

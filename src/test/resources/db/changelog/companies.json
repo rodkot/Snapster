@@ -1,0 +1,521 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "Sberbank",
+      "email": "info@sberbank.ru",
+      "logo": "sberpao.png",
+      "code": "12643748382",
+      "director": {
+        "id": 1,
+        "name": "Pavel Romanov",
+        "position": "Team Lead",
+        "project": {
+          "id": 1,
+          "name": "Sber Drive",
+          "description": "Cool Team !",
+          "departaments": null,
+          "status": "IN PROCESS"
+        },
+        "salary": 200000.0,
+        "experience": 15
+      },
+      "generalOffice": {
+        "id": 3,
+        "name": "Business center 'Ordzhonikidze'",
+        "location": "Omsk, st. Ordzhonikidze 211",
+        "photo": "ordzhonikidze.jpg",
+        "employees": [
+          {
+            "id": 1,
+            "name": "Pavel Romanov",
+            "position": "Team Lead",
+            "project": {
+              "id": 1,
+              "name": "Sber Drive",
+              "description": "Cool Team !",
+              "departaments": null,
+              "status": "IN PROCESS"
+            },
+            "salary": 200000.0,
+            "experience": 15
+          },
+          {
+            "id": 3,
+            "name": "Igor Panko",
+            "position": "QA",
+            "project": {
+              "id": 1,
+              "name": "Sber Drive",
+              "description": "Cool Team !",
+              "departaments": null,
+              "status": "IN PROCESS"
+            },
+            "salary": 90000.0,
+            "experience": 5
+          },
+          {
+            "id": 5,
+            "name": "Marina Volkova",
+            "position": "Team Lead",
+            "project": {
+              "id": 2,
+              "name": "Sber Jazz",
+              "description": "Cool Team !",
+              "departaments": null,
+              "status": "IN PROCESS"
+            },
+            "salary": 120000.0,
+            "experience": 12
+          },
+          {
+            "id": 8,
+            "name": "Alexey Fedorov",
+            "position": "HR Specialist",
+            "project": {
+              "id": 2,
+              "name": "Sber Jazz",
+              "description": "Cool Team !",
+              "departaments": null,
+              "status": "IN PROCESS"
+            },
+            "salary": 120000.0,
+            "experience": 12
+          }
+        ],
+        "resources": [
+          "open-spaces",
+          "gym"
+        ]
+      },
+      "additionalOffices": [
+        {
+          "id": 2,
+          "name": "Business center 'Technopark'",
+          "location": "Novosibirsk, st. Nikolaeva 20, office 2002",
+          "photo": "technopark.jpg",
+          "employees": [
+            {
+              "id": 7,
+              "name": "Egor Popenko",
+              "position": "Middle Backend Java",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 4
+            },
+            {
+              "id": 10,
+              "name": "Anna Andeeva",
+              "position": "HR Specialist",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 150000.0,
+              "experience": 10
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "food places"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Business center 'Ordzhonikidze'",
+          "location": "Omsk, st. Ordzhonikidze 211",
+          "photo": "ordzhonikidze.jpg",
+          "employees": [
+            {
+              "id": 1,
+              "name": "Pavel Romanov",
+              "position": "Team Lead",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 200000.0,
+              "experience": 15
+            },
+            {
+              "id": 3,
+              "name": "Igor Panko",
+              "position": "QA",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 90000.0,
+              "experience": 5
+            },
+            {
+              "id": 5,
+              "name": "Marina Volkova",
+              "position": "Team Lead",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 120000.0,
+              "experience": 12
+            },
+            {
+              "id": 8,
+              "name": "Alexey Fedorov",
+              "position": "HR Specialist",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 120000.0,
+              "experience": 12
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "gym"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Business center 'Bubnova'",
+          "location": "Tomsk, st. Bubnova 99",
+          "photo": "bubnova.jpg",
+          "employees": [
+            {
+              "id": 2,
+              "name": "Olga Pavlova",
+              "position": "Finance Manager",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 5
+            },
+            {
+              "id": 4,
+              "name": "Tatyana Pomogaeva",
+              "position": "Middle Backend-dev",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 5
+            },
+            {
+              "id": 9,
+              "name": "Svetlana Karpova",
+              "position": "HR Specialist",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 5
+            }
+          ],
+          "resources": null
+        },
+        {
+          "id": 1,
+          "name": "Business center 'Oasis'",
+          "location": "Novosibirsk, st. Titova 12, office 2002",
+          "photo": "oasis.jpeg",
+          "employees": [
+            {
+              "id": 6,
+              "name": "Egor Popenko",
+              "position": "Middle Backend Java",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 3
+            },
+            {
+              "id": 11,
+              "name": "Ekaterina Volkova",
+              "position": "HR Specialist",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 130000.0,
+              "experience": 7
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "food places",
+            "gym",
+            "pool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sbt",
+      "email": "info@sbertech.ru",
+      "logo": "sbt.jpeg",
+      "code": "1264378383873739",
+      "director": {
+        "id": 12,
+        "name": "Pavel Lomov",
+        "position": "Team Lead",
+        "project": {
+          "id": 3,
+          "name": "Platform V Logger",
+          "description": "Cool Team !",
+          "departaments": null,
+          "status": "IN PROCESS"
+        },
+        "salary": 100500.0,
+        "experience": 10
+      },
+      "generalOffice": {
+        "id": 10,
+        "name": "Business center 'Moscow2'",
+        "location": "Moscow, Novodanilovskaya embankment 12",
+        "photo": "moscow2.jpeg",
+        "employees": [
+          {
+            "id": 18,
+            "name": "Katerina Karpova",
+            "position": "HR Specialist",
+            "project": {
+              "id": 2,
+              "name": "Sber Jazz",
+              "description": "Cool Team !",
+              "departaments": null,
+              "status": "IN PROCESS"
+            },
+            "salary": 100000.0,
+            "experience": 5
+          }
+        ],
+        "resources": [
+          "open-spaces",
+          "food places",
+          "gym",
+          "pool"
+        ]
+      },
+      "additionalOffices": [
+        {
+          "id": 6,
+          "name": "Business center 'Evid'",
+          "location": "Novosibirsk, st. Radnikova 12, office 202",
+          "photo": "evid.jpg",
+          "employees": [
+            {
+              "id": 12,
+              "name": "Pavel Lomov",
+              "position": "Team Lead",
+              "project": {
+                "id": 3,
+                "name": "Platform V Logger",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100500.0,
+              "experience": 10
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "food places",
+            "gym",
+            "pool"
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Business center 'Red Book'",
+          "location": "Novosibirsk, st. Popova 20, office 102",
+          "photo": "redbook.png",
+          "employees": [
+            {
+              "id": 13,
+              "name": "Nikita Zonov",
+              "position": "Middle Backend Java",
+              "project": {
+                "id": 3,
+                "name": "Platform V Logger",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 5
+            },
+            {
+              "id": 20,
+              "name": "Anna Annovna",
+              "position": "HR Specialist",
+              "project": {
+                "id": 3,
+                "name": "Platform V Logger",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 150000.0,
+              "experience": 10
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "food places"
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Business center 'Logika'",
+          "location": "Omsk, st. Lomova 211",
+          "photo": "logika.jpeg",
+          "employees": [
+            {
+              "id": 14,
+              "name": "Boris Elevoy",
+              "position": "Middle Backend Java",
+              "project": {
+                "id": 3,
+                "name": "Platform V Logger",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 4
+            },
+            {
+              "id": 15,
+              "name": "Marina Kolova",
+              "position": "Team Lead",
+              "project": {
+                "id": 4,
+                "name": "Platform V Cocoa",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 200000.0,
+              "experience": 12
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "gym"
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Business center 'Volga'",
+          "location": "Tomsk, st. Bubnova 100",
+          "photo": "volga.jpeg",
+          "employees": [
+            {
+              "id": 16,
+              "name": "Egor Jurelvo",
+              "position": "Middle Backend Java",
+              "project": {
+                "id": 4,
+                "name": "Platform V Cocoa",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 102000.0,
+              "experience": 3
+            },
+            {
+              "id": 17,
+              "name": "Alexey Bulka",
+              "position": "HR Specialist",
+              "project": {
+                "id": 1,
+                "name": "Sber Drive",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 120000.0,
+              "experience": 12
+            }
+          ],
+          "resources": null
+        },
+        {
+          "id": 10,
+          "name": "Business center 'Moscow2'",
+          "location": "Moscow, Novodanilovskaya embankment 12",
+          "photo": "moscow2.jpeg",
+          "employees": [
+            {
+              "id": 18,
+              "name": "Katerina Karpova",
+              "position": "HR Specialist",
+              "project": {
+                "id": 2,
+                "name": "Sber Jazz",
+                "description": "Cool Team !",
+                "departaments": null,
+                "status": "IN PROCESS"
+              },
+              "salary": 100000.0,
+              "experience": 5
+            }
+          ],
+          "resources": [
+            "open-spaces",
+            "food places",
+            "gym",
+            "pool"
+          ]
+        }
+      ]
+    }
+  ]
+
+}
