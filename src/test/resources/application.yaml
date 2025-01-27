@@ -44,3 +44,6 @@ templates:
     httl:
         report: /templates/httl/company.httl
         output: /templates/httl/output.html
+    xdoc:
+        report: /templates/xdocreport/companies.odt
+        output: src/test/resources/templates/xdocreport/output.odt

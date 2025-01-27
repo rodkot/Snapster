@@ -1,8 +1,13 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +28,16 @@ public class ResourceConfig {
     @Scope("prototype")
     public List<CompanyDto> companies(CompanyService companyService){
         return companyService.loadAll();
+    }
+
+    @Bean
+    public File reportXDoc(@Value("${templates.xdoc.report}") String path) throws URISyntaxException {
+        return new File(Objects.requireNonNull(ResourceConfig.class.getResource(path)).toURI());
+    }
+
+    @Bean
+    public File outputXDoc(@Value("${templates.xdoc.output}") String path) {
+        return new File(path);
     }
 
     @Bean
