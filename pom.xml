@@ -9,6 +9,14 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>repo-cuba-platform-work</id>
+            <name>repo</name>
+            <url>https://repo.cuba-platform.com/content/groups/work</url>
+        </repository>
     </repositories>
 
     <parent>
@@ -40,6 +48,7 @@
         <httl.version>1.0.11</httl.version>
         <jinjava.version>2.7.4</jinjava.version>
         <xdocreport.version>2.1.0</xdocreport.version>
+        <yarg.version>2.2.14</yarg.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -140,6 +149,13 @@
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
             <version>${xdocreport.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.haulmont.yarg</groupId>
+            <artifactId>yarg</artifactId>
+            <version>${yarg.version}</version>
+            <type>pom</type>
         </dependency>
 
         <!-- datasource dependencies -->
