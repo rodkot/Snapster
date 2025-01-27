@@ -27,7 +27,7 @@ public class CompanyDto implements Inspectable, Serializable {
     private OfficeDto generalOffice;
     private List<OfficeDto> additionalOffices;
 
-    @FieldMetadata( images = { @ImageMetadata( name = "logo" ) } )
+    @FieldMetadata( images = { @ImageMetadata( name = "logoImage" ) } )
     public IImageProvider getLogoImage() {
         return logoImage;
     }

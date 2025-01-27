@@ -141,7 +141,7 @@
 
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
-            <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+            <artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
 

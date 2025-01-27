@@ -19,7 +19,8 @@ public class XDocReportTest extends ExpectedOutputTest {
 
     @Test
     public void test() throws IOException, XDocReportException, TemplateException, ParseException {
-        var engine = XDocReportEngine.of(XDocReportTest.class.getResourceAsStream("/templates/xdocreport/company.docx"),
+        var engine = XDocReportEngine.of(XDocReportTest.class.getResourceAsStream("/templates/xdocreport/companies" +
+                        ".odt"),
                 companies);
 
         engine.process();

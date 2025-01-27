@@ -1,14 +1,11 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
@@ -22,7 +19,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
 
 public class XDocReportEngine implements ReportEngine {
-    private final IContext context;
+    private IContext context;
     private final IXDocReport report;
 
     private XDocReportEngine(InputStream in, List<CompanyDto> companies) throws IOException, XDocReportException {
@@ -34,6 +31,7 @@ public class XDocReportEngine implements ReportEngine {
                         new ClassPathImageProvider(XDocReportEngine.class, companyDto.getLogo())));
 
         context = report.createContext();
+
         context.put("companies", companies);
     }
 
@@ -45,7 +43,7 @@ public class XDocReportEngine implements ReportEngine {
 
     @Override
     public String process() throws TemplateException, IOException, ParseException, XDocReportException {
-        OutputStream out = new FileOutputStream("Out.docx");
+        OutputStream out = new FileOutputStream("Out.odt");
         report.process(context, out);
         return null;
     }
