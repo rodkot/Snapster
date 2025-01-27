@@ -10,10 +10,9 @@ import liqp.TemplateContext;
 import liqp.TemplateParser;
 import liqp.filters.Filter;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class LiqpEngine implements ReportEngine {
+public class LiqpEngine implements StringReportEngine {
 
     private final Template template;
     private final List<CompanyDto> companies;

@@ -6,10 +6,9 @@ import java.util.Map;
 import com.hubspot.jinjava.Jinjava;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class JinJavaEngine implements ReportEngine {
+public class JinJavaEngine implements StringReportEngine {
 
     private final Map<String, Object> context;
     private final String report;

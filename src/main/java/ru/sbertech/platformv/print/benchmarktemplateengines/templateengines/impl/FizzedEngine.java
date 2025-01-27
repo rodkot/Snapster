@@ -8,9 +8,9 @@ import com.fizzed.rocker.Rocker;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class FizzedEngine implements ReportEngine {
+public class FizzedEngine implements StringReportEngine {
 
     private final BindableRockerModel rockerModel;
     private final List<OfficeDto> offices;

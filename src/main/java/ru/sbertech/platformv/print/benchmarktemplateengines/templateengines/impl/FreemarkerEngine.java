@@ -13,10 +13,10 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
 
-public class FreemarkerEngine implements ReportEngine {
+public class FreemarkerEngine implements StringReportEngine {
 
     private final List<CompanyDto> companies;
     private final Map<String, Object> context;

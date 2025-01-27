@@ -10,9 +10,9 @@ import java.util.Properties;
 import httl.Engine;
 import httl.Template;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class HttlEngine implements ReportEngine {
+public class HttlEngine implements StringReportEngine {
 
     private final Map<String, Object> context;
     private final List<CompanyDto> companies;

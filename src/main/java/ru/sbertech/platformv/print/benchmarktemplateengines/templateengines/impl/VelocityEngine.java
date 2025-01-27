@@ -13,10 +13,10 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
 
-public class VelocityEngine implements ReportEngine {
+public class VelocityEngine implements StringReportEngine {
 
     private final String template;
     private final org.apache.velocity.app.VelocityEngine velocityEngine;

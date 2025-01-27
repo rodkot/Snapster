@@ -12,11 +12,10 @@ import com.github.mustachejava.MustacheFactory;
 import com.github.mustachejava.TemplateFunction;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
 
-public class MustacheEngine implements ReportEngine {
+public class MustacheEngine implements StringReportEngine {
 
     private final Mustache mustache;
     private final List<CompanyDto> companies;

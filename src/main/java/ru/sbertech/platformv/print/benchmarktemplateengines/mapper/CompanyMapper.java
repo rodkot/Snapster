@@ -8,6 +8,5 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.model.entity.Company
 
 @Mapper(componentModel = "spring", uses = {OfficeMapper.class, EmployeeMapper.class, ProjectsMapper.class})
 public interface CompanyMapper {
-    @Mapping(target = "logoImage", ignore = true )
     CompanyDto companyToDto(Company company);
 }

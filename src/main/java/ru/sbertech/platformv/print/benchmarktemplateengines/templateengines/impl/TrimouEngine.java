@@ -4,21 +4,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.trimou.Mustache;
 import org.trimou.engine.MustacheEngineBuilder;
 import org.trimou.engine.cache.DefaultComputingCacheFactory;
 import org.trimou.handlebars.SimpleHelpers;
 
 import freemarker.template.TemplateException;
-import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class TrimouEngine implements ReportEngine {
+public class TrimouEngine implements StringReportEngine {
 
     private final Mustache mustache;
     private final List<CompanyDto> companies;

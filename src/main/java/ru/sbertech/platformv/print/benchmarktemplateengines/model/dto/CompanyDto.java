@@ -21,14 +21,8 @@ public class CompanyDto implements Inspectable, Serializable {
     private String name;
     private String email;
     private String logo;
-    private IImageProvider logoImage;
     private String code;
     private EmployeeDto director;
     private OfficeDto generalOffice;
     private List<OfficeDto> additionalOffices;
-
-    @FieldMetadata( images = { @ImageMetadata( name = "logoImage" ) } )
-    public IImageProvider getLogoImage() {
-        return logoImage;
-    }
 }

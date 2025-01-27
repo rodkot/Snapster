@@ -7,9 +7,9 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
-public class ThymeleafEngine implements ReportEngine {
+public class ThymeleafEngine implements StringReportEngine {
 
     private final String report;
     private final Context context;

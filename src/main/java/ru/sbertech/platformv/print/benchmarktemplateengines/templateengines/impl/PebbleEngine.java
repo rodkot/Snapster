@@ -9,18 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import io.pebbletemplates.pebble.template.PebbleTemplate;
-import lombok.RequiredArgsConstructor;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.OfficeDto;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ReportEngine;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
 
 
-public class PebbleEngine implements ReportEngine {
+public class PebbleEngine implements StringReportEngine {
 
     private final PebbleTemplate compiledTemplate;
     private final List<CompanyDto> companies;
