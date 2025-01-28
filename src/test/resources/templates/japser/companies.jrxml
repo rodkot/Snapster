@@ -47,6 +47,7 @@
         <field name="name" class="java.lang.String"/>
         <field name="location" class="java.lang.String"/>
         <field name="employees" class="java.util.List"/>
+        <field name="photo" class="java.lang.String"/>
     </subDataset>
     <subDataset name="Employees" uuid="bbe5170e-4ffb-4606-8562-25b9af46ea6d">
         <queryString>
@@ -72,14 +73,14 @@
         </band>
     </title>
     <detail>
-        <band height="390">
+        <band height="490">
             <componentElement>
-                <reportElement x="0" y="0" width="540" height="380" uuid="5f9a8bf9-1b9f-4a67-9cd2-efbfffde83cb"/>
+                <reportElement x="0" y="0" width="545" height="490" uuid="5f9a8bf9-1b9f-4a67-9cd2-efbfffde83cb"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
                     <datasetRun subDataset="Companies" uuid="b9888a70-09fd-478f-94be-b1e187e7b9f8">
                         <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{companies})]]></dataSourceExpression>
                     </datasetRun>
-                    <jr:listContents height="380" width="540">
+                    <jr:listContents height="490" width="545">
                         <textField>
                             <reportElement x="120" y="60" width="170" height="30" uuid="e8d064b8-071c-4760-b42c-286d6c9ce17e"/>
                             <textElement verticalAlignment="Middle"/>
@@ -131,12 +132,12 @@
                             <text><![CDATA[Additional Offices]]></text>
                         </staticText>
                         <componentElement>
-                            <reportElement x="9" y="220" width="531" height="160" uuid="da10f04a-cea6-4412-8953-fb07f80f132e"/>
+                            <reportElement x="9" y="220" width="531" height="240" uuid="da10f04a-cea6-4412-8953-fb07f80f132e"/>
                             <jr:list printOrder="Vertical">
                                 <datasetRun subDataset="Offices" uuid="78d8d0cf-07ac-40fc-815b-916c71a1ffb6">
                                     <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{additionalOffices})]]></dataSourceExpression>
                                 </datasetRun>
-                                <jr:listContents height="160" width="531">
+                                <jr:listContents height="240" width="531">
                                     <textField>
                                         <reportElement x="1" y="1" width="370" height="30" uuid="df1a5f64-a82e-465c-8e65-1fbf691b73ff"/>
                                         <textElement textAlignment="Left" verticalAlignment="Middle">
@@ -152,12 +153,12 @@
                                         <text><![CDATA[Location:]]></text>
                                     </staticText>
                                     <textField>
-                                        <reportElement x="83" y="32" width="250" height="30" uuid="15e644e1-903c-470b-af46-41dc4f1e56e4"/>
+                                        <reportElement x="83" y="32" width="227" height="30" uuid="15e644e1-903c-470b-af46-41dc4f1e56e4"/>
                                         <textElement verticalAlignment="Middle"/>
                                         <textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
                                     </textField>
                                     <componentElement>
-                                        <reportElement x="10" y="80" width="500" height="61" uuid="1e87f94f-46ad-468a-8b58-9b8ff951ecbd">
+                                        <reportElement x="10" y="160" width="500" height="61" uuid="1e87f94f-46ad-468a-8b58-9b8ff951ecbd">
                                             <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
                                             <property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
                                             <property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -265,6 +266,10 @@
                                             </jr:column>
                                         </jr:table>
                                     </componentElement>
+                                    <image>
+                                        <reportElement x="320" y="31" width="192" height="108" uuid="b0bbb7b1-9b90-4fcd-97fe-3d757e4d02ff"/>
+                                        <imageExpression><![CDATA[net.sf.jasperreports.engine.util.JRLoader.loadBytes( Thread.currentThread().getContextClassLoader().getResourceAsStream("templates/assets/office/" + $F{photo}) )]]></imageExpression>
+                                    </image>
                                 </jr:listContents>
                             </jr:list>
                         </componentElement>
