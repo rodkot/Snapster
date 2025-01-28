@@ -38,6 +38,7 @@
         <field name="email" class="java.lang.String"/>
         <field name="additionalOffices" class="java.util.List"/>
         <field name="director.name" class="java.lang.String"/>
+        <field name="logo" class="java.lang.String"/>
     </subDataset>
     <subDataset name="Offices" uuid="052a9320-4b0c-4161-85c2-b6db0fcd6308">
         <queryString>
@@ -73,14 +74,14 @@
     <detail>
         <band height="390">
             <componentElement>
-                <reportElement x="0" y="0" width="550" height="390" uuid="5f9a8bf9-1b9f-4a67-9cd2-efbfffde83cb"/>
+                <reportElement x="0" y="0" width="540" height="380" uuid="5f9a8bf9-1b9f-4a67-9cd2-efbfffde83cb"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
                     <datasetRun subDataset="Companies" uuid="b9888a70-09fd-478f-94be-b1e187e7b9f8">
                         <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{companies})]]></dataSourceExpression>
                     </datasetRun>
-                    <jr:listContents height="390" width="550">
+                    <jr:listContents height="380" width="540">
                         <textField>
-                            <reportElement x="120" y="60" width="320" height="30" uuid="e8d064b8-071c-4760-b42c-286d6c9ce17e"/>
+                            <reportElement x="120" y="60" width="170" height="30" uuid="e8d064b8-071c-4760-b42c-286d6c9ce17e"/>
                             <textElement verticalAlignment="Middle"/>
                             <textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
                         </textField>
@@ -106,7 +107,7 @@
                             <text><![CDATA[General Office:]]></text>
                         </staticText>
                         <textField>
-                            <reportElement x="120" y="125" width="320" height="30" uuid="e0017a74-2796-4f0c-a3c1-45175cb030ee"/>
+                            <reportElement x="120" y="125" width="230" height="30" uuid="e0017a74-2796-4f0c-a3c1-45175cb030ee"/>
                             <textElement verticalAlignment="Middle"/>
                             <textFieldExpression><![CDATA[$F{generalOffice.name}]]></textFieldExpression>
                         </textField>
@@ -118,7 +119,7 @@
                             <text><![CDATA[Email:]]></text>
                         </staticText>
                         <textField>
-                            <reportElement x="120" y="93" width="320" height="30" uuid="49da3950-3e39-421b-b6da-fe87608b0aca"/>
+                            <reportElement x="120" y="93" width="190" height="30" uuid="49da3950-3e39-421b-b6da-fe87608b0aca"/>
                             <textElement verticalAlignment="Middle"/>
                             <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
                         </textField>
@@ -275,10 +276,14 @@
                             <text><![CDATA[Director:]]></text>
                         </staticText>
                         <textField>
-                            <reportElement x="120" y="156" width="219" height="30" uuid="15337a23-870e-450b-b9d2-6781eb8d175e"/>
+                            <reportElement x="120" y="156" width="180" height="30" uuid="15337a23-870e-450b-b9d2-6781eb8d175e"/>
                             <textElement verticalAlignment="Middle"/>
                             <textFieldExpression><![CDATA[$F{director.name}]]></textFieldExpression>
                         </textField>
+                        <image>
+                            <reportElement x="380" y="61" width="100" height="95" uuid="d0d245ba-c73d-478c-90fe-f06a931fcd64"/>
+                            <imageExpression><![CDATA[net.sf.jasperreports.engine.util.JRLoader.loadBytes( Thread.currentThread().getContextClassLoader().getResourceAsStream("templates/assets/company/" + $F{logo}) )]]></imageExpression>
+                        </image>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
