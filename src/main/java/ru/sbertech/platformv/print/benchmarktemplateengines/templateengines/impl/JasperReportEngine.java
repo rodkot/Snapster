@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -24,12 +24,10 @@ public class JasperReportEngine implements FileReportEngine {
     private final JasperPrint jasperPrint;
 
     private JasperReportEngine(List<CompanyDto> companies, InputStream report) throws JRException {
-        JRBeanCollectionDataSource companiesDS = new JRBeanCollectionDataSource(companies);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("companies", companies);
-        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), parameters, companiesDS);
+        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), parameters, new JREmptyDataSource());
         pdfExporter = new JRPdfExporter();
-
     }
 
     public static JasperReportEngine of(InputStream report, List<CompanyDto> companies) throws JRException {
