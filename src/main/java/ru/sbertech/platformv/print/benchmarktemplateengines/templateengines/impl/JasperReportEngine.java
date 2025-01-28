@@ -7,11 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.core.io.ClassPathResource;
-
 import fr.opensagres.xdocreport.core.XDocReportException;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -29,8 +27,7 @@ public class JasperReportEngine implements FileReportEngine {
         JRBeanCollectionDataSource companiesDS = new JRBeanCollectionDataSource(companies);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("companies", companies);
-
-        jasperPrint = JasperFillManager.fillReport(report, parameters, companiesDS);
+        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), parameters, companiesDS);
         pdfExporter = new JRPdfExporter();
 
     }

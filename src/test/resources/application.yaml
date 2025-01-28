@@ -49,4 +49,4 @@ templates:
         output: src/test/resources/templates/xdocreport/output.odt
     jasper:
         report: /templates/japser/companies.jrxml
-        output: src/test/resources/templates/jasper/output.pdf
+        output: src/test/resources/templates/japser/output.pdf
