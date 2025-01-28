@@ -17,7 +17,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="18" isBold="true"/>
                 </textElement>
-                <textFieldExpression><![CDATA[Companies Report]]></textFieldExpression>
+                <textFieldExpression><![CDATA["Companies Report"]]></textFieldExpression>
             </textField>
         </band>
     </title>
