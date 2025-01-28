@@ -8,12 +8,13 @@
         <field name="name" class="java.lang.String"/>
         <field name="code" class="java.lang.String"/>
         <field name="generalOffice.name" class="java.lang.String"/>
+        <field name="email" class="java.lang.String"/>
     </subDataset>
     <parameter name="companies" class="java.util.List"/>
     <title>
         <band height="51">
             <textField>
-                <reportElement x="0" y="0" width="200" height="30" uuid="f1f1e717-6764-44a0-b9e9-1b042597c7a5"/>
+                <reportElement x="-4" y="0" width="200" height="30" uuid="f1f1e717-6764-44a0-b9e9-1b042597c7a5"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="18" isBold="true"/>
                 </textElement>
@@ -50,16 +51,28 @@
                             <text><![CDATA[Code:]]></text>
                         </staticText>
                         <staticText>
-                            <reportElement x="10" y="130" width="100" height="30" uuid="65e625df-a743-4a79-8943-28527658f054"/>
+                            <reportElement x="10" y="125" width="100" height="30" uuid="65e625df-a743-4a79-8943-28527658f054"/>
                             <textElement verticalAlignment="Middle">
                                 <font size="12" isBold="true"/>
                             </textElement>
                             <text><![CDATA[General Office:]]></text>
                         </staticText>
                         <textField>
-                            <reportElement x="120" y="130" width="320" height="30" uuid="e0017a74-2796-4f0c-a3c1-45175cb030ee"/>
+                            <reportElement x="120" y="125" width="320" height="30" uuid="e0017a74-2796-4f0c-a3c1-45175cb030ee"/>
                             <textElement verticalAlignment="Middle"/>
                             <textFieldExpression><![CDATA[$F{generalOffice.name}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                            <reportElement x="9" y="93" width="100" height="30" uuid="5cf83a64-5b88-41c7-9378-84b341e4db43"/>
+                            <textElement verticalAlignment="Middle">
+                                <font size="12" isBold="true"/>
+                            </textElement>
+                            <text><![CDATA[Email:]]></text>
+                        </staticText>
+                        <textField>
+                            <reportElement x="120" y="93" width="320" height="30" uuid="49da3950-3e39-421b-b6da-fe87608b0aca"/>
+                            <textElement verticalAlignment="Middle"/>
+                            <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
