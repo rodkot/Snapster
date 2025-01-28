@@ -10,6 +10,7 @@
         <field name="generalOffice.name" class="java.lang.String"/>
         <field name="email" class="java.lang.String"/>
         <field name="additionalOffices" class="java.util.List"/>
+        <field name="director.name" class="java.lang.String"/>
     </subDataset>
     <subDataset name="Offices" uuid="052a9320-4b0c-4161-85c2-b6db0fcd6308">
         <queryString>
@@ -59,7 +60,7 @@
                             <text><![CDATA[Code:]]></text>
                         </staticText>
                         <staticText>
-                            <reportElement x="10" y="125" width="100" height="30" uuid="65e625df-a743-4a79-8943-28527658f054"/>
+                            <reportElement x="9" y="125" width="100" height="30" uuid="65e625df-a743-4a79-8943-28527658f054"/>
                             <textElement verticalAlignment="Middle">
                                 <font size="12" isBold="true"/>
                             </textElement>
@@ -83,41 +84,53 @@
                             <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
                         </textField>
                         <staticText>
-                            <reportElement x="10" y="170" width="170" height="30" uuid="79eea9c2-6988-4345-985e-c5ca9e0215e0"/>
+                            <reportElement x="7" y="187" width="170" height="30" uuid="79eea9c2-6988-4345-985e-c5ca9e0215e0"/>
                             <textElement verticalAlignment="Middle">
                                 <font size="14" isBold="true"/>
                             </textElement>
                             <text><![CDATA[Additional Offices]]></text>
                         </staticText>
                         <componentElement>
-                            <reportElement x="9" y="210" width="431" height="150" uuid="da10f04a-cea6-4412-8953-fb07f80f132e"/>
+                            <reportElement x="9" y="220" width="431" height="150" uuid="da10f04a-cea6-4412-8953-fb07f80f132e"/>
                             <jr:list printOrder="Vertical">
                                 <datasetRun subDataset="Offices" uuid="78d8d0cf-07ac-40fc-815b-916c71a1ffb6">
                                     <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{additionalOffices})]]></dataSourceExpression>
                                 </datasetRun>
                                 <jr:listContents height="150" width="431">
                                     <textField>
-                                        <reportElement x="20" y="10" width="370" height="30" uuid="df1a5f64-a82e-465c-8e65-1fbf691b73ff"/>
+                                        <reportElement x="1" y="1" width="370" height="30" uuid="df1a5f64-a82e-465c-8e65-1fbf691b73ff"/>
                                         <textElement textAlignment="Left" verticalAlignment="Middle">
                                             <font size="14" isBold="true"/>
                                         </textElement>
                                         <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
                                     </textField>
                                     <staticText>
-                                        <reportElement x="20" y="50" width="100" height="30" uuid="9507b0f1-4a7f-4b86-a6b7-9604b71acd20"/>
+                                        <reportElement x="1" y="32" width="70" height="30" uuid="9507b0f1-4a7f-4b86-a6b7-9604b71acd20"/>
                                         <textElement verticalAlignment="Middle">
                                             <font size="12" isBold="true"/>
                                         </textElement>
                                         <text><![CDATA[Location:]]></text>
                                     </staticText>
                                     <textField>
-                                        <reportElement x="140" y="50" width="250" height="30" uuid="15e644e1-903c-470b-af46-41dc4f1e56e4"/>
+                                        <reportElement x="83" y="32" width="250" height="30" uuid="15e644e1-903c-470b-af46-41dc4f1e56e4"/>
                                         <textElement verticalAlignment="Middle"/>
                                         <textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
                                     </textField>
                                 </jr:listContents>
                             </jr:list>
                         </componentElement>
+                        <staticText>
+                            <reportElement x="9" y="156" width="100" height="30" uuid="714cb62b-ea86-43ef-9c0e-9f1025980ec2"/>
+                            <textElement verticalAlignment="Middle">
+                                <font size="12" isBold="true"/>
+                            </textElement>
+                            <text><![CDATA[Director:]]></text>
+                        </staticText>
+                        <textField>
+                            <reportElement x="120" y="156" width="219" height="30" uuid="15337a23-870e-450b-b9d2-6781eb8d175e"/>
+                            <textElement verticalAlignment="Middle"/>
+                            <textFieldExpression><![CDATA[$F{director.name}]]></textFieldExpression>
+                        </textField>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
