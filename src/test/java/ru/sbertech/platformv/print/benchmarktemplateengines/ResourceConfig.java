@@ -38,8 +38,8 @@ public class ResourceConfig {
     }
 
     @Bean
-    public File reportXDoc(@Value("${templates.xdoc.report}") String path) throws URISyntaxException {
-        return new File(Objects.requireNonNull(ResourceConfig.class.getResource(path)).toURI());
+    public File reportXDoc(@Value("${templates.xdoc.report}") String path, ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
     }
 
     @Bean
@@ -49,8 +49,8 @@ public class ResourceConfig {
 
 
     @Bean
-    public File reportJasper(@Value("${templates.jasper.report}") String path) throws URISyntaxException {
-        return new File(Objects.requireNonNull(ResourceConfig.class.getResource(path)).toURI());
+    public File reportJasper(@Value("${templates.jasper.report}") String path, ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
     }
 
     @Bean

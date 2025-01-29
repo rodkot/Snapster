@@ -51,6 +51,10 @@ public class ResourceResolverService {
     }
 
     public File getFileFromResource(String directory, String name) throws URISyntaxException {
-        return new File(Objects.requireNonNull(resourceLoader.getResource(directory+name)).toURI());
+        return getFileFromResource(directory+name);
+    }
+
+    public File getFileFromResource(String path) throws URISyntaxException {
+        return new File(Objects.requireNonNull(resourceLoader.getResource(path)).toURI());
     }
 }
