@@ -26,6 +26,7 @@ public abstract class CompanyMapper {
 
     @Named("logoToFileDto")
     public FileDto stringToFileDto(String name) throws URISyntaxException {
-        return new FileDto(name, resourceResolverService.getFileFromResource(directoryLogoCompanies, name));
+        return new FileDto(name, directoryLogoCompanies,
+                resourceResolverService.getFileFromResource(directoryLogoCompanies, name));
     }
 }

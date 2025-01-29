@@ -18,7 +18,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FileDto implements Inspectable, Serializable {
     private String name;
+    private String directory;
     private File file;
+
+    public String getPath(){
+        return directory+name;
+    }
 
     public InputStream getInputStream() throws FileNotFoundException {
         return new FileInputStream(file);

@@ -27,6 +27,7 @@ public abstract class OfficeMapper {
 
     @Named("photoToFileDto")
     public FileDto stringToFileDto(String name) throws URISyntaxException {
-        return new FileDto(name, resourceResolverService.getFileFromResource(directoryPhotoOffice,name));
+        return new FileDto(name, directoryPhotoOffice,
+                resourceResolverService.getFileFromResource(directoryPhotoOffice,name));
     }
 }
