@@ -54,3 +54,6 @@ templates:
         jrxml: templates/jasper/companies.jrxml
         report: templates/jasper/companies.jasper
         output: src/test/resources/templates/jasper/output.pdf
+    docx-stamper:
+        report: templates/docx-stamper/companies.docx
+        output: src/test/resources/templates/docx-stamper/output.docx

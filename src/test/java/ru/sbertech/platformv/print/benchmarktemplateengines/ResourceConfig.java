@@ -1,24 +1,15 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.testcontainers.shaded.org.bouncycastle.est.LimitedSource;
 
-import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
@@ -36,6 +27,19 @@ public class ResourceConfig {
     public List<CompanyDto> companies(CompanyService companyService){
         return companyService.loadAll();
     }
+
+
+    @Bean
+    public File reportDocxStamper(@Value("${templates.docx-stamper.report}") String path,
+            ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
+    }
+
+    @Bean
+    public File outputDocxStamper(@Value("${templates.docx-stamper.output}") String path) {
+        return new File(path);
+    }
+
 
     @Bean
     public File reportXDoc(@Value("${templates.xdoc.report}") String path, ResourceResolverService resourceResolverService) throws URISyntaxException {

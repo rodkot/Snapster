@@ -8,9 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,7 +17,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
-import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.CompanyMapper;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.CompanyMapperImpl;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.EmployeeMapperImpl;
 import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.OfficeMapperImpl;

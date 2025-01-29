@@ -19,7 +19,7 @@ import net.sf.jasperreports.engine.JRException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JasperReportEngine;
 
-public class JasperReportTest extends ExpectedOutputTest{
+public class JasperReportTest extends ExpectedOutputTest {
 
     @Autowired
     private List<CompanyDto> companies;
