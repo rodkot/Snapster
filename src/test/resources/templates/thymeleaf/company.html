@@ -16,7 +16,7 @@
             <p><strong>Director:</strong> <span th:text="${company.director.name}"></span></p>
             <p><strong>Main office:</strong> <span th:text="${company.generalOffice.name}"></span></p></div>
         <div class="company-logo">
-            <img th:src="'../assets/company/'+ ${company.logo}" th:alt="${company.name}"/>
+            <img th:src="'../assets/company/'+ ${company.logo.name}" th:alt="${company.name}"/>
         </div>
     </div>
     <h3>Additional Offices</h3>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="office-photo">
-                    <img th:src="'../assets/office/'+ ${office.photo}" th:alt="${office.name}"/>
+                    <img th:src="'../assets/office/'+ ${office.photo.name}" th:alt="${office.name}"/>
                 </div>
             </section>
             <table>

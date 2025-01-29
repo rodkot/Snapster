@@ -17,7 +17,7 @@
         <p><strong>Director:</strong> ${company.director.name}</p>
         <p><strong>Main office:</strong> ${company.generalOffice.name}</p></div>
     <div class="company-logo">
-        <img src="../assets/company/${company.logo}" alt="${company.name} logo"/>
+        <img src="../assets/company/${company.logo.name}" alt="${company.name} logo"/>
     </div>
     </div>
     <h3>Additional Offices</h3>
@@ -41,7 +41,7 @@
             </#if>
                 </div>
                 <div class="office-photo">
-                    <img src="../assets/office/${office.photo}" alt="${office.name}" />
+                    <img src="../assets/office/${office.photo.name}" alt="${office.name}" />
                 </div>
             </section>
             <table>

@@ -1,7 +1,6 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.model.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
@@ -13,11 +12,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OfficeDto implements Inspectable, Serializable {
-    private Long id;
+public class FileDto implements Inspectable, Serializable {
     private String name;
-    private String location;
-    private FileDto photo;
-    private List<EmployeeDto> employees;
-    private List<String> resources;
 }

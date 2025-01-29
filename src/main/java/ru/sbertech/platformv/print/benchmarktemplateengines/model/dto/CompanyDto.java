@@ -1,5 +1,9 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.model.dto;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +24,7 @@ public class CompanyDto implements Inspectable, Serializable {
     private Long id;
     private String name;
     private String email;
-    private String logo;
+    private FileDto logo;
     private String code;
     private EmployeeDto director;
     private OfficeDto generalOffice;
