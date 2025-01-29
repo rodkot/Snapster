@@ -36,7 +36,6 @@ public class JasperReportEngine implements FileReportEngine {
 
     public static JasperReportEngine ofFormatReport(File reportJrxml, List<CompanyDto> companies) throws JRException,
             FileNotFoundException {
-        JasperCompileManager.compileReportToFile(reportJrxml.getAbsolutePath(),"");
         return new JasperReportEngine(companies, JasperCompileManager.compileReport(new FileInputStream(reportJrxml)) );
     }
 
