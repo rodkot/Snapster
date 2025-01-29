@@ -1,7 +1,6 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,8 +25,12 @@ public class JasperReportTest extends ExpectedOutputTest{
     private List<CompanyDto> companies;
 
     @Autowired
-    @Qualifier("reportJasper")
+    @Qualifier("reportJRXML")
     private File report;
+
+    @Autowired
+    @Qualifier("reportJasper")
+    private File reportCompile;
 
     @Autowired
     @Qualifier("outputJasper")
@@ -36,7 +39,18 @@ public class JasperReportTest extends ExpectedOutputTest{
     @Test
     public void benchmarkWithOutOptimizations() throws IOException, XDocReportException, TemplateException,
             ParseException, JRException {
-        var engine = JasperReportEngine.of(new FileInputStream(report), companies);
+        Stopwatch sw = Stopwatch.createStarted();
+        for (int i =0; i< 1000; i++){
+            var engine = JasperReportEngine.ofFormatReport(report, companies);
+            engine.process(new FileOutputStream(output, false));
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+    }
+
+    @Test
+    public void benchmarkWithCompileReport() throws IOException, XDocReportException,
+            JRException {
+        var engine = JasperReportEngine.ofCompileReport(reportCompile, companies);
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 1000; i++){
             engine.process(new FileOutputStream(output, false));

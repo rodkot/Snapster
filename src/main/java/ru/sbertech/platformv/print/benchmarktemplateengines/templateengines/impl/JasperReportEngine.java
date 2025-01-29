@@ -1,5 +1,8 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,7 +16,9 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
@@ -23,14 +28,20 @@ public class JasperReportEngine implements FileReportEngine {
     private final JRPdfExporter pdfExporter;
     private final JasperPrint jasperPrint;
 
-    private JasperReportEngine(List<CompanyDto> companies, InputStream report) throws JRException {
-        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), setupContext(companies),
+    private JasperReportEngine(List<CompanyDto> companies, JasperReport report) throws JRException {
+        jasperPrint = JasperFillManager.fillReport(report, setupContext(companies),
                 new JREmptyDataSource());
         pdfExporter = new JRPdfExporter();
     }
 
-    public static JasperReportEngine of(InputStream report, List<CompanyDto> companies) throws JRException {
-        return new JasperReportEngine(companies, report);
+    public static JasperReportEngine ofFormatReport(File reportJrxml, List<CompanyDto> companies) throws JRException,
+            FileNotFoundException {
+        JasperCompileManager.compileReportToFile(reportJrxml.getAbsolutePath(),"");
+        return new JasperReportEngine(companies, JasperCompileManager.compileReport(new FileInputStream(reportJrxml)) );
+    }
+
+    public static JasperReportEngine ofCompileReport(File report, List<CompanyDto> companies) throws JRException {
+        return new JasperReportEngine(companies, (JasperReport) JRLoader.loadObject(report));
     }
 
     private Map<String, Object> setupContext(List<CompanyDto> companies){

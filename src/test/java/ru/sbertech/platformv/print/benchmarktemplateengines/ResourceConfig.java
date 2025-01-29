@@ -49,7 +49,14 @@ public class ResourceConfig {
 
 
     @Bean
-    public File reportJasper(@Value("${templates.jasper.report}") String path, ResourceResolverService resourceResolverService) throws URISyntaxException {
+    public File reportJRXML(@Value("${templates.jasper.jrxml}") String path,
+            ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
+    }
+
+    @Bean
+    public File reportJasper(@Value("${templates.jasper.report}") String path,
+            ResourceResolverService resourceResolverService) throws URISyntaxException {
         return resourceResolverService.getFileFromResource(path);
     }
 
