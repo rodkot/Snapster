@@ -24,14 +24,19 @@ public class JasperReportEngine implements FileReportEngine {
     private final JasperPrint jasperPrint;
 
     private JasperReportEngine(List<CompanyDto> companies, InputStream report) throws JRException {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("companies", companies);
-        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), parameters, new JREmptyDataSource());
+        jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(report), setupContext(companies),
+                new JREmptyDataSource());
         pdfExporter = new JRPdfExporter();
     }
 
     public static JasperReportEngine of(InputStream report, List<CompanyDto> companies) throws JRException {
         return new JasperReportEngine(companies, report);
+    }
+
+    private Map<String, Object> setupContext(List<CompanyDto> companies){
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("companies", companies);
+        return parameters;
     }
 
     @Override

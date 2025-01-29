@@ -48,8 +48,8 @@ templates:
         report: templates/httl/company.httl
         output: templates/httl/output.html
     xdoc:
-        report: /templates/xdocreport/companies.odt
+        report: templates/xdocreport/companies.odt
         output: src/test/resources/templates/xdocreport/output.odt
     jasper:
-        report: /templates/japser/companies.jrxml
+        report: templates/japser/companies.jrxml
         output: src/test/resources/templates/japser/output.pdf

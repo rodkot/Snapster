@@ -19,7 +19,6 @@ import freemarker.template.TemplateException;
 import net.sf.jasperreports.engine.JRException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.JasperReportEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.XDocReportEngine;
 
 public class JasperReportTest extends ExpectedOutputTest{
 
@@ -37,14 +36,11 @@ public class JasperReportTest extends ExpectedOutputTest{
     @Test
     public void benchmarkWithOutOptimizations() throws IOException, XDocReportException, TemplateException,
             ParseException, JRException {
+        var engine = JasperReportEngine.of(new FileInputStream(report), companies);
         Stopwatch sw = Stopwatch.createStarted();
         for (int i =0; i< 1000; i++){
-            var engine = JasperReportEngine.of(new FileInputStream(report), companies);
             engine.process(new FileOutputStream(output, false));
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
     }
-
-
-
 }
