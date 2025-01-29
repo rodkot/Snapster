@@ -14,6 +14,10 @@
             <url>https://jaspersoft.jfrog.io/</url>
         </repository>
         <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -54,6 +58,7 @@
         <xdocreport.version>2.1.0</xdocreport.version>
         <yarg.version>2.2.14</yarg.version>
         <jasper.version>6.7.0</jasper.version>
+        <docx-stamper.version>1.2.2</docx-stamper.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -168,6 +173,13 @@
             <artifactId>jasperreports</artifactId>
             <version>${jasper.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.wickedsource</groupId>
+            <artifactId>docx-stamper</artifactId>
+            <version>${docx-stamper.version}</version>
+        </dependency>
+
         <!-- datasource dependencies -->
 
         <dependency>
