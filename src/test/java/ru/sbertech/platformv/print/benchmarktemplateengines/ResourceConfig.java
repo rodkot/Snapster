@@ -18,11 +18,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.testcontainers.shaded.org.bouncycastle.est.LimitedSource;
 
+import ru.sbertech.platformv.print.benchmarktemplateengines.configuration.BenchmarkTemplateEnginesAutoConfiguration;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.service.CompanyService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceResolverService;
 
 @TestConfiguration
 public class ResourceConfig {
+
+    @Bean
+    public ClassLoader resourceLoader(){
+        return ResourceConfig.class.getClassLoader();
+    }
 
     @Bean
     @Scope("prototype")
@@ -52,108 +59,92 @@ public class ResourceConfig {
     }
 
     @Bean
-    public String reportFreemarker(@Value("${templates.freemarker.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportFreemarker(@Value("${templates.freemarker.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputFreemarker(@Value("${templates.freemarker.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputFreemarker(@Value("${templates.freemarker.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportHttl(@Value("${templates.httl.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportHttl(@Value("${templates.httl.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputHttl(@Value("${templates.httl.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputHttl(@Value("${templates.httl.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportJinjava(@Value("${templates.jinjava.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportJinjava(@Value("${templates.jinjava.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputJinjava(@Value("${templates.jinjava.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputJinjava(@Value("${templates.jinjava.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportLiqp(@Value("${templates.liqp.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportLiqp(@Value("${templates.liqp.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputLiqp(@Value("${templates.liqp.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputLiqp(@Value("${templates.liqp.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportMustache(@Value("${templates.mustache.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportMustache(@Value("${templates.mustache.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputMustache(@Value("${templates.mustache.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputMustache(@Value("${templates.mustache.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportPebble(@Value("${templates.pebble.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportPebble(@Value("${templates.pebble.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputPebble(@Value("${templates.pebble.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputPebble(@Value("${templates.pebble.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportThymeleaf(@Value("${templates.thymeleaf.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportThymeleaf(@Value("${templates.thymeleaf.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputThymeleaf(@Value("${templates.thymeleaf.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputThymeleaf(@Value("${templates.thymeleaf.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportTrimou(@Value("${templates.trimou.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportTrimou(@Value("${templates.trimou.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputTrimou(@Value("${templates.trimou.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String outputTrimou(@Value("${templates.trimou.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String reportVelocity(@Value("${templates.velocity.report}") String path) throws IOException {
-        return readExpectedOutputResource(path);
+    public String reportVelocity(@Value("${templates.velocity.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 
     @Bean
-    public String outputVelocity(@Value("${templates.velocity.output}") String path) throws IOException {
-        return readExpectedOutputResource(path);
-    }
-
-    private String readExpectedOutputResource(String path) throws IOException {
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(ExpectedOutputTest.class.getResourceAsStream(path))))) {
-            for (; ; ) {
-                String line = in.readLine();
-                if (line == null) {
-                    break;
-                }
-                builder.append(line);
-            }
-        }
-
-        return builder.toString();
+    public String outputVelocity(@Value("${templates.velocity.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
     }
 }

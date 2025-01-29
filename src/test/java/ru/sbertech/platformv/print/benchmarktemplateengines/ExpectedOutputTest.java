@@ -40,7 +40,7 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.service.ResourceReso
         CompanyRepository.class,
         CompanyMapperImpl.class,
         CompanyService.class,
-        EmployeeRepository.class, OfficeService.class, ExpectedOutputTest.Configuration.class, ResourceConfig.class})
+        EmployeeRepository.class, OfficeService.class, ResourceConfig.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
 public abstract class ExpectedOutputTest {
@@ -51,14 +51,6 @@ public abstract class ExpectedOutputTest {
 
     static {
         postgres.start();
-    }
-
-    @TestConfiguration
-    static class Configuration {
-        @Bean
-        public ClassLoader resourceLoader() {
-            return Configuration.class.getClassLoader();
-        }
     }
 
     @DynamicPropertySource

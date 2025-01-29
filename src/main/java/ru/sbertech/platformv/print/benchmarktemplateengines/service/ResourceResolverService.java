@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,18 +34,19 @@ public class ResourceResolverService {
         return filename.toString();
     }
 
-    public String readResourceFile(String path) throws IOException {
-        try (InputStream inputStream = resourceLoader.getResourceAsStream(path)) {
-            assert inputStream != null;
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-                StringBuilder content = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    content.append(line).append("\n");
+    public String readExpectedOutputResource(String path) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(
+                Objects.requireNonNull(resourceLoader.getResourceAsStream(path))))) {
+            for (; ; ) {
+                String line = in.readLine();
+                if (line == null) {
+                    break;
                 }
-                return content.toString();
+                builder.append(line);
             }
         }
+
+        return builder.toString();
     }
 }

@@ -15,35 +15,35 @@ logging:
 
 templates:
     thymeleaf:
-        report: /templates/thymeleaf/company.html
-        output: /templates/thymeleaf/output2.html
+        report: templates/thymeleaf/company.html
+        output: templates/thymeleaf/output2.html
     freemarker:
-        report: /templates/freemarker/company.ftl
-        output: /templates/freemarker/output.html
+        report: templates/freemarker/company.ftl
+        output: templates/freemarker/output.html
     fizzed:
-        report: /templates/fizzed/index.rocker.html
-        output: /templates/fizzed/output.html
+        report: templates/fizzed/index.rocker.html
+        output: templates/fizzed/output.html
     mustache:
-        report: /templates/mustache/company.html
-        output: /templates/mustache/output.html
+        report: templates/mustache/company.html
+        output: templates/mustache/output.html
     trimou:
-        report: /templates/trimou/company.html
-        output: /templates/trimou/output.html
+        report: templates/trimou/company.html
+        output: templates/trimou/output.html
     velocity:
-        report: /templates/velocity/company.pm
-        output: /templates/velocity/output.html
+        report: templates/velocity/company.pm
+        output: templates/velocity/output.html
     pebble:
-        report: /templates/pebble/company.html
-        output: /templates/pebble/output.html
+        report: templates/pebble/company.html
+        output: templates/pebble/output.html
     liqp:
-        report: /templates/liqp/company.liqp
-        output: /templates/liqp/output.html
+        report: templates/liqp/company.liqp
+        output: templates/liqp/output.html
     jinjava:
-        report: /templates/jinjava/company.html
-        output: /templates/jinjava/output.html
+        report: templates/jinjava/company.html
+        output: templates/jinjava/output.html
     httl:
-        report: /templates/httl/company.httl
-        output: /templates/httl/output.html
+        report: templates/httl/company.httl
+        output: templates/httl/output.html
     xdoc:
         report: /templates/xdocreport/companies.odt
         output: src/test/resources/templates/xdocreport/output.odt

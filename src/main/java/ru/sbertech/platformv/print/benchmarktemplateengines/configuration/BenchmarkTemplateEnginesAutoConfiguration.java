@@ -48,7 +48,6 @@ public class BenchmarkTemplateEnginesAutoConfiguration {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setPackagesToScan("ru.sbertech.platformv.print.benchmarktemplateengines");
         lef.setDataSource(dataSource());
@@ -56,7 +55,6 @@ public class BenchmarkTemplateEnginesAutoConfiguration {
         lef.setJpaProperties(new Properties());
         return lef;
     }
-
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
@@ -68,10 +66,4 @@ public class BenchmarkTemplateEnginesAutoConfiguration {
         jpaVendorAdapter.setDatabasePlatform("org.postgresql.Driver");
         return jpaVendorAdapter;
     }
-
-    @Bean
-    public ClassLoader resourceLoader(){
-        return BenchmarkTemplateEnginesAutoConfiguration.class.getClassLoader();
-    }
-
 }
