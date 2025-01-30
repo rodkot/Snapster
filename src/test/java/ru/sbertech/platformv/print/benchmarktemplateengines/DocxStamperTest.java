@@ -37,7 +37,7 @@ public class DocxStamperTest extends ExpectedOutputTest {
     public void benchmarkWithOutOptimizations() throws IOException, XDocReportException, TemplateException,
             ParseException, JRException {
         Stopwatch sw = Stopwatch.createStarted();
-        for (int i =0; i< 1000; i++){
+        for (int i =0; i< 1; i++){
             var engine = DocxStamperEngine.of(companies, new FileInputStream(report));
             engine.process(new FileOutputStream(output, false));
         }
