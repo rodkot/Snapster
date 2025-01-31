@@ -1,3 +1,7 @@
+@import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto
+@import java.util.List
+@args (List<CompanyDto> companies)
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,8 @@
 </head>
 <body>
 <h1>Companies Report</h1>
+
+
 @for (company : companies) {
 <section>
     <h2>@company.getName()</h2>

@@ -1,6 +1,5 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,9 +12,6 @@ import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
 
 public class FizzedTest extends ExpectedOutputTest {
-    @Autowired
-    @Qualifier("reportFizzed")
-    private File report;
 
     @Autowired
     @Qualifier("outputFizzed")
@@ -26,7 +22,7 @@ public class FizzedTest extends ExpectedOutputTest {
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        FizzedEngine engine = new FizzedEngine(report.getAbsolutePath(), companies);
+        FizzedEngine engine =  FizzedEngine.of(companies);
         assertOutput(output,engine.process());
     }
 }
