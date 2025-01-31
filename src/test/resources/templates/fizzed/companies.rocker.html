@@ -40,13 +40,13 @@
                     <strong>Resources:</strong>
 
                     @with (colors = List.of("#ff5733", "#33ff57", "#3357ff")) {
-                    @for ((i, resource) : office.getResources()) {
-                    @with (color = colors.get(i.index()%3)){
-                    <p class="resources" style="background-color: @color">
-                        @resource
-                    </p>
-                    }
-                    }
+                         @for ((i, resource) : office.getResources()) {
+                            @with (color = colors.get(i.index()%3)){
+                                 <p class="resources" style="background-color: @color">
+                                     @resource
+                                 </p>
+                            }
+                         }
                     }
                 </div>
                 }
