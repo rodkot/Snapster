@@ -49,6 +49,31 @@
             <img src="../assets/office/@office.getPhoto().getName()" alt="@office.getName()"/>
         </div>
     </section>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Personal Table</th>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Experience (years)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for (employee : office.getEmployees()) {
+        <tr>
+            <td>@employee.getId()</td>
+            <td>@employee.getName()</td>
+            <td>@employee.getProject().getName()</td>
+            <td>@employee.getPosition()</td>
+            <td>@String.format("$%,.2f", employee.getSalary())</td>
+            <td>@employee.getExperience()</td>
+        </tr>
+        }
+        </tbody>
+    </table>
 </section>
 }
 }
