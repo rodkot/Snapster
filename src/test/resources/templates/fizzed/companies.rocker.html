@@ -13,11 +13,19 @@
 <body>
 <h1>Companies Report</h1>
 
-
 @for (company : companies) {
-<section>
-    <h2>@company.getName()</h2>
-</section>
+<div class="company-section">
+    <div class="company-info">
+        <h2>@company.getName()</h2>
+        <p><strong>Code:</strong> @company.getCode()</p>
+        <p><strong>Director:</strong> @company.getDirector().getName()</p>
+        <p><strong>Main office:</strong> @company.getGeneralOffice().getName()</p>
+    </div>
+    <div class="company-logo">
+        <img src="../assets/company/@company.getLogo().getName()" alt="@company.getName() logo"/>
+    </div>
+</div>
 }
+
 </body>
 </html>
