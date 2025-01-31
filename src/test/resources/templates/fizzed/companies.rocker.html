@@ -33,12 +33,22 @@
         <div class="office-info">
             <h4>@office.getName()</h4>
             <p><strong>Location:</strong> @office.getLocation()</p>
+
+            @if (office.getResources() != null && !office.getResources().isEmpty()) {
+            <div>
+                <strong>Resources:</strong>
+                @for (resource : office.getResources()) {
+                <p class="resources">
+                @resource
+                </p>
+                }
+            </div>
+            }
         </div>
         <div class="office-photo">
             <img src="../assets/office/@office.getPhoto().getName()" alt="@office.getName()"/>
         </div>
     </section>
-
 </section>
 }
 }
