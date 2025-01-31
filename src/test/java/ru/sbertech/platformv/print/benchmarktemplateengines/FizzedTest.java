@@ -13,7 +13,6 @@ import com.google.common.base.Stopwatch;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FreemarkerEngine;
 
 public class FizzedTest extends ExpectedOutputTest {
 
