@@ -1,30 +1,32 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.Test;
-import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import freemarker.template.TemplateException;
-import ru.sbertech.platformv.print.benchmarktemplateengines.service.OfficeService;
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.FizzedEngine;
 
 public class FizzedTest extends ExpectedOutputTest {
+    @Autowired
+    @Qualifier("reportFizzed")
+    private File report;
 
-    @Value("${templates.fizzed.report}")
-    private String report;
-
-    @Value("${templates.fizzed.output}")
+    @Autowired
+    @Qualifier("outputFizzed")
     private String output;
 
     @Autowired
-    private OfficeService officeService;
+    private List<CompanyDto> companies;
 
     @Test
     public void testOutput() throws IOException, TemplateException {
-        FizzedEngine fizzedEngine = new FizzedEngine(officeService.loadAll());
-        assertOutput(readExpectedOutputResource(output),fizzedEngine.process());
+        FizzedEngine engine = new FizzedEngine(report.getAbsolutePath(), companies);
+        assertOutput(output,engine.process());
     }
 }

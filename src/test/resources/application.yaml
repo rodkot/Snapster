@@ -24,7 +24,7 @@ templates:
         report: templates/freemarker/company.ftl
         output: templates/freemarker/output.html
     fizzed:
-        report: templates/fizzed/index.rocker.html
+        report: templates/fizzed/companies.rocker.html
         output: templates/fizzed/output.html
     mustache:
         report: templates/mustache/company.html

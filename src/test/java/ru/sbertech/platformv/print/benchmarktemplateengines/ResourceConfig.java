@@ -90,6 +90,18 @@ public class ResourceConfig {
     }
 
     @Bean
+    public File reportFizzed(@Value("${templates.fizzed.report}") String path,
+            ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
+    }
+
+    @Bean
+    public String outputFizzed(@Value("${templates.fizzed.output}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
     public String reportJinjava(@Value("${templates.jinjava.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.readExpectedOutputResource(path);
     }
