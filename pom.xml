@@ -22,6 +22,10 @@
             <url>https://jcenter.bintray.com/</url>
         </repository>
         <repository>
+            <id>eclipse-repo</id>
+            <url>https://download.eclipse.org/releases</url>
+        </repository>
+        <repository>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -206,6 +210,12 @@
             <groupId>org.docx4j</groupId>
             <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
             <version>11.4.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.birt.runtime</groupId>
+            <artifactId>org.eclipse.birt.runtime</artifactId>
+            <version>4.6.0-20160607</version>
         </dependency>
 
         <!-- datasource dependencies -->
