@@ -14,6 +14,10 @@
             <url>https://jaspersoft.jfrog.io/</url>
         </repository>
         <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com/</url>
         </repository>
@@ -31,6 +35,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.5</version>
+        <relativePath/>
     </parent>
 
     <groupId>ru.sbertech.platformv.print</groupId>
