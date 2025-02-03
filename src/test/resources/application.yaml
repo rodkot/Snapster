@@ -57,3 +57,7 @@ templates:
     docx-stamper:
         report: templates/docx-stamper/companies.docx
         output: src/test/resources/templates/docx-stamper/output.docx
+    birt:
+        report: templates/birt/companies.rptdesign
+        output: src/test/resources/templates/birt/output.pdf
+

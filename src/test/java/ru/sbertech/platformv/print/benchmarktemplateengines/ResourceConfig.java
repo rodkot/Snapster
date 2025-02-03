@@ -28,6 +28,17 @@ public class ResourceConfig {
         return companyService.loadAll();
     }
 
+    @Bean
+    public File reportBirt(@Value("${templates.birt.report}") String path,
+                                  ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
+    }
+
+    @Bean
+    public File outputBirt(@Value("${templates.birt.output}") String path) {
+        return new File(path);
+    }
+
 
     @Bean
     public File reportDocxStamper(@Value("${templates.docx-stamper.report}") String path,
