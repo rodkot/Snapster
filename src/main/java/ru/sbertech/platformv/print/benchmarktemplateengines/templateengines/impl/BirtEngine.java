@@ -20,6 +20,7 @@ public class BirtEngine implements FileReportEngine {
 
         IReportRunnable design = engine.openReportDesign(in);
 
+
         task = engine.createRunAndRenderTask(design);
         task.setParameterValues(setupContext(companies));
 
@@ -40,6 +41,7 @@ public class BirtEngine implements FileReportEngine {
     @Override
     public void process(OutputStream stream) throws EngineException {
         PDFRenderOption options = new PDFRenderOption();
+        options.setOutputFormat(PDFRenderOption.OUTPUT_FORMAT_PDF);
         options.setOutputStream(stream);
         task.setRenderOption(options);
 

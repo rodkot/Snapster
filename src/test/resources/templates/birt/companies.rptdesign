@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.18.0.v202411161754</property>
+    <text-property name="title">Companies Report</text-property>
+    <body>
+        <label id="2">
+            <property name="fontSize">24pt</property>
+            <text-property name="text">Companies Report</text-property>
+        </label>
+    </body>
+</report>
