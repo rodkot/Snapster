@@ -2,10 +2,115 @@
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.18.0.v202411161754</property>
     <text-property name="title">Companies Report</text-property>
+    <parameters>
+        <scalar-parameter name="companies" id="5"/>
+    </parameters>
+    <data-sources>
+        <script-data-source name="CompanyDataSource" id="6"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="CompanyDtoList" id="7">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">code</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">directorName</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">name</property>
+                </structure>
+                <structure>
+                    <property name="columnName">code</property>
+                </structure>
+                <structure>
+                    <property name="columnName">directorName</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">directorName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CompanyDataSource</property>
+            <method name="open"><![CDATA[
+
+                importPackage(Packages.org.json);
+                var companiesJson = new JSONArray(params['companies']);
+                data = [];
+                for (var i = 0; i < companiesJson.length(); i++) {
+                    var company = companiesJson.getJSONObject(i);
+                    data.push({
+                        name: company.getString("name"),
+                        code: company.getString("code"),
+                        directorName: company.getJSONObject("director").getString("name")
+                    });
+                }
+                index = 0;
+
+            ]]></method>
+            <method name="fetch"><![CDATA[
+
+                if (index < data.length) {
+                    row["name"] = data[index].name;
+                    row["code"] = data[index].code;
+                    row["directorName"] = data[index].directorName;
+                    index++;
+                    return true;
+                }
+                return false;
+
+            ]]></method>
+        </script-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="2"/>
+    </page-setup>
     <body>
-        <label id="2">
+        <label id="3">
             <property name="fontSize">24pt</property>
             <text-property name="text">Companies Report</text-property>
         </label>
+        <list id="4">
+            <property name="dataSet">CompanyDtoList</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <header>
+                <data id="10">
+                    <property name="resultSetColumn">Column Binding</property>
+                </data>
+            </header>
+        </list>
     </body>
 </report>

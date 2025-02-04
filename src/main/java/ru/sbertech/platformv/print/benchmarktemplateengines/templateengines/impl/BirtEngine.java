@@ -1,4 +1,6 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.birt.report.engine.api.*;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.FileReportEngine;
@@ -13,7 +15,7 @@ public class BirtEngine implements FileReportEngine {
     private final ReportEngine engine;
     private final IRunAndRenderTask task;
 
-    private BirtEngine (InputStream in, List<CompanyDto> companies) throws EngineException {
+    private BirtEngine (InputStream in, List<CompanyDto> companies) throws EngineException, JsonProcessingException {
         EngineConfig config = new EngineConfig();
         engine = new ReportEngine(config);
 
@@ -27,14 +29,14 @@ public class BirtEngine implements FileReportEngine {
 
     }
 
-    private Map<String, Object> setupContext(List<CompanyDto> companies){
+    private Map<String, Object> setupContext(List<CompanyDto> companies) throws JsonProcessingException {
         Map<String, Object> params = new HashMap<>();
-        params.put("companies", companies);
+        params.put("companies", new ObjectMapper().writeValueAsString(companies));
 
         return params;
     }
 
-    public static BirtEngine of(InputStream reportStream, List<CompanyDto> companies) throws EngineException {
+    public static BirtEngine of(InputStream reportStream, List<CompanyDto> companies) throws EngineException, JsonProcessingException {
         return new BirtEngine(reportStream, companies);
     }
 

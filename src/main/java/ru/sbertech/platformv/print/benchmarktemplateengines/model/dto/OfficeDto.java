@@ -3,6 +3,7 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.model.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
