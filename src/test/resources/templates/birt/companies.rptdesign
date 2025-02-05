@@ -175,6 +175,11 @@
                         <property name="name">company</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">resources</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">CompanyDataSource</property>
@@ -249,8 +254,14 @@
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Id</property>
+                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
-            <header>
+            <detail>
                 <data id="15">
                     <property name="fontSize">18pt</property>
                     <property name="fontWeight">bold</property>
@@ -258,8 +269,6 @@
                     <property name="paddingBottom">10pt</property>
                     <property name="resultSetColumn">Name</property>
                 </data>
-            </header>
-            <detail>
                 <grid id="18">
                     <property name="width">7.802083333333333in</property>
                     <column id="19">
@@ -329,8 +338,33 @@
                             <property name="dataType">string</property>
                             <property name="allowExport">true</property>
                         </structure>
+                        <structure>
+                            <property name="name">IdCompany</property>
+                            <expression name="expression" type="javascript">row._outer["Id"]</expression>
+                            <property name="dataType">integer</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Company</property>
+                            <expression name="expression" type="javascript">dataSetRow["company"]</expression>
+                            <property name="dataType">string</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Location</property>
+                            <expression name="expression" type="javascript">dataSetRow["location"]</expression>
+                            <property name="dataType">string</property>
+                            <property name="allowExport">true</property>
+                        </structure>
                     </list-property>
-                    <header>
+                    <list-property name="filter">
+                        <structure>
+                            <property name="operator">is-true</property>
+                            <expression name="expr" type="javascript">row["IdCompany"]==row["Company"]</expression>
+                            <property name="updateAggregation">true</property>
+                        </structure>
+                    </list-property>
+                    <detail>
                         <data id="42">
                             <property name="fontSize">14pt</property>
                             <property name="fontWeight">bold</property>
@@ -338,7 +372,40 @@
                             <property name="paddingBottom">10pt</property>
                             <property name="resultSetColumn">Name</property>
                         </data>
-                    </header>
+                        <grid id="44">
+                            <property name="width">7.65625in</property>
+                            <column id="45">
+                                <property name="width">1.7916666666666667in</property>
+                            </column>
+                            <column id="46">
+                                <property name="width">1.8958333333333333in</property>
+                            </column>
+                            <column id="47">
+                                <property name="width">3.96875in</property>
+                            </column>
+                            <row id="48">
+                                <cell id="49">
+                                    <label id="56">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Location:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="50">
+                                    <data id="57">
+                                        <property name="resultSetColumn">Location</property>
+                                    </data>
+                                </cell>
+                                <cell id="51">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">2</property>
+                                </cell>
+                            </row>
+                            <row id="52">
+                                <cell id="53"/>
+                                <cell id="54"/>
+                            </row>
+                        </grid>
+                    </detail>
                 </list>
             </detail>
         </list>
