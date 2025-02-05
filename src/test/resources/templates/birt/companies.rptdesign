@@ -100,17 +100,79 @@
             <property name="dataSet">CompanyDtoList</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">Column Binding</property>
+                    <property name="name">Name</property>
                     <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Code</property>
+                    <expression name="expression" type="javascript">dataSetRow["code"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Director</property>
+                    <expression name="expression" type="javascript">dataSetRow["directorName"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <header>
-                <data id="10">
-                    <property name="resultSetColumn">Column Binding</property>
+                <data id="15">
+                    <property name="fontSize">18pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="resultSetColumn">Name</property>
                 </data>
             </header>
+            <detail>
+                <grid id="18">
+                    <property name="width">7.802083333333333in</property>
+                    <column id="19">
+                        <property name="width">1.1666666666666667in</property>
+                    </column>
+                    <column id="20">
+                        <property name="width">2.3541666666666665in</property>
+                    </column>
+                    <column id="21">
+                        <property name="width">4.28125in</property>
+                    </column>
+                    <row id="22">
+                        <cell id="23">
+                            <label id="34">
+                                <property name="fontWeight">bold</property>
+                                <text-property name="text">Code:</text-property>
+                            </label>
+                        </cell>
+                        <cell id="24">
+                            <data id="16">
+                                <property name="resultSetColumn">Code</property>
+                            </data>
+                        </cell>
+                        <cell id="25">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">3</property>
+                        </cell>
+                    </row>
+                    <row id="26">
+                        <cell id="27">
+                            <label id="35">
+                                <property name="fontWeight">bold</property>
+                                <text-property name="text">Director:</text-property>
+                            </label>
+                        </cell>
+                        <cell id="28">
+                            <data id="17">
+                                <property name="resultSetColumn">Director</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="30">
+                        <cell id="31"/>
+                        <cell id="32"/>
+                    </row>
+                </grid>
+            </detail>
         </list>
     </body>
 </report>
