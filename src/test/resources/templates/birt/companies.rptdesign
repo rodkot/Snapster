@@ -13,21 +13,34 @@
             <list-property name="resultSetHints">
                 <structure>
                     <property name="position">0</property>
+                    <property name="name">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
                     <property name="name">name</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                     <property name="name">code</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                     <property name="name">directorName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">generalOfficeName</property>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
             <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                </structure>
                 <structure>
                     <property name="columnName">name</property>
                 </structure>
@@ -37,9 +50,17 @@
                 <structure>
                     <property name="columnName">directorName</property>
                 </structure>
+                <structure>
+                    <property name="columnName">generalOfficeName</property>
+                </structure>
             </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
+                    <structure>
+                        <property name="position">0</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">name</property>
@@ -55,6 +76,11 @@
                         <property name="name">directorName</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">generalOfficeName</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">CompanyDataSource</property>
@@ -66,9 +92,11 @@
                 for (var i = 0; i < companiesJson.length(); i++) {
                     var company = companiesJson.getJSONObject(i);
                     data.push({
+                    	id: company.getString("id"),
                         name: company.getString("name"),
                         code: company.getString("code"),
-                        directorName: company.getJSONObject("director").getString("name")
+                        directorName: company.getJSONObject("director").getString("name"),
+                        generalOfficeName: company.getJSONObject("generalOffice").getString("name")
                     });
                 }
                 index = 0;
@@ -77,15 +105,105 @@
             <method name="fetch"><![CDATA[
 
                 if (index < data.length) {
+                	row["id"] = data[index].id
                     row["name"] = data[index].name;
                     row["code"] = data[index].code;
                     row["directorName"] = data[index].directorName;
+                    row["generalOfficeName"] = data[index].generalOfficeName;
                     index++;
                     return true;
                 }
                 return false;
 
             ]]></method>
+        </script-data-set>
+        <script-data-set name="OfficeDtoList" id="39">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">location</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">company</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                </structure>
+                <structure>
+                    <property name="columnName">location</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">location</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CompanyDataSource</property>
+            <method name="open">
+                <![CDATA[
+        importPackage(Packages.org.json);
+        data = [];
+        for (var i = 0; i < companiesJson.length(); i++) {
+            var company = companiesJson.getJSONObject(i);
+            var offices = company.getJSONArray("additionalOffices");
+            for (var j = 0; j < offices.length(); j++) {
+                var office = offices.getJSONObject(j);
+                data.push({
+                	id: office.getInteger("id"),
+                    name: office.getString("name"),
+                    location: employee.getString("location"),
+                    company: company.getInteger("id")
+                });
+            }
+        }
+        index = 0;
+        ]]>
+            </method>
+            <method name="fetch">
+                <![CDATA[
+        if (index < data.length) {
+            row["id"] = data[index].id;
+            row["name"] = data[index].name;
+            row["location"] = data[index].location;
+            row["company"] = data[index].company;
+            index++;
+            return true;
+        }
+        return false;
+        ]]>
+            </method>
         </script-data-set>
     </data-sets>
     <page-setup>
@@ -94,6 +212,7 @@
     <body>
         <label id="3">
             <property name="fontSize">24pt</property>
+            <property name="paddingBottom">10pt</property>
             <text-property name="text">Companies Report</text-property>
         </label>
         <list id="4">
@@ -117,11 +236,19 @@
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">General Office</property>
+                    <expression name="expression" type="javascript">dataSetRow["generalOfficeName"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <header>
                 <data id="15">
                     <property name="fontSize">18pt</property>
                     <property name="fontWeight">bold</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingBottom">10pt</property>
                     <property name="resultSetColumn">Name</property>
                 </data>
             </header>
@@ -168,8 +295,17 @@
                         </cell>
                     </row>
                     <row id="30">
-                        <cell id="31"/>
-                        <cell id="32"/>
+                        <cell id="31">
+                            <label id="37">
+                                <property name="fontWeight">bold</property>
+                                <text-property name="text">General office:</text-property>
+                            </label>
+                        </cell>
+                        <cell id="32">
+                            <data id="38">
+                                <property name="resultSetColumn">General Office</property>
+                            </data>
+                        </cell>
                     </row>
                 </grid>
             </detail>
