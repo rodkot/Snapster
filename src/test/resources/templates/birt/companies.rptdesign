@@ -217,6 +217,106 @@
 
     ]]></method>
         </script-data-set>
+        <script-data-set name="EmployeeDtoList" id="58">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">office</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">experience</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">name</property>
+                </structure>
+                <structure>
+                    <property name="columnName">office</property>
+                </structure>
+                <structure>
+                    <property name="columnName">id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">experience</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">office</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">experience</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CompanyDataSource</property>
+            <method name="open"><![CDATA[
+        importPackage(Packages.org.json);
+        data = [];
+        var companiesJson = new JSONArray(params['companies']);
+        for (var i = 0; i < companiesJson.length(); i++) {
+            var company = companiesJson.getJSONObject(i);
+            var offices = company.getJSONArray("additionalOffices");
+            for (var j = 0; j < offices.length(); j++) {
+                var office = offices.getJSONObject(j);
+                var employees = office.getJSONArray("employees");
+                  for (var k = 0; k < employees.length(); j++) {
+                  	var employee = employees.getJSONObject(k);
+                	data.push({
+                		 id: employee.getInt("id"),
+                   		 name: employee.getString("name"),
+                   		 office: office.getInt("id"),
+                   		 experience: employee.getInt("experience")
+             	   });
+                }
+            }
+        }
+        index = 0;
+
+    ]]></method>
+            <method name="fetch"><![CDATA[
+
+        if (index < data.length) {
+            row["id"] = data[index].id;
+            row["name"] = data[index].name;
+            row["office"] = data[index].office;
+            row["experience"] = data[index].experience;
+            index++;
+            return true;
+        }
+        return false;
+
+    ]]></method>
+        </script-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="NewSimpleMasterPage" id="2"/>
@@ -327,7 +427,7 @@
                 <label id="40">
                     <property name="fontSize">16pt</property>
                     <property name="fontWeight">bold</property>
-                    <text-property name="text">Addtional office</text-property>
+                    <text-property name="text">Additional office</text-property>
                 </label>
                 <list id="41">
                     <property name="dataSet">OfficeDtoList</property>
@@ -405,6 +505,78 @@
                                 <cell id="54"/>
                             </row>
                         </grid>
+                        <table id="59">
+                            <property name="dataSet">EmployeeDtoList</property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">name</property>
+                                    <text-property name="displayName">name</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">id</property>
+                                    <text-property name="displayName">id</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">experience</property>
+                                    <text-property name="displayName">experience</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["experience"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">office</property>
+                                    <text-property name="displayName">office</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["office"]</expression>
+                                    <property name="dataType">integer</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">IdOffice</property>
+                                    <expression name="expression" type="javascript">row._outer["Id"]</expression>
+                                    <property name="dataType">integer</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <list-property name="filter">
+                                <structure>
+                                    <property name="operator">is-true</property>
+                                    <expression name="expr" type="javascript">row["IdOffice"]==row["office"]</expression>
+                                    <property name="updateAggregation">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="isSummaryTable">true</property>
+                            <column id="71"/>
+                            <column id="72"/>
+                            <column id="73"/>
+                            <header>
+                                <row id="60">
+                                    <cell id="61">
+                                        <label id="62">
+                                            <text-property name="text">name</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="63">
+                                        <label id="64">
+                                            <text-property name="text">id</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="65">
+                                        <label id="66">
+                                            <text-property name="text">experience</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </header>
+                            <footer>
+                                <row id="67">
+                                    <cell id="68"/>
+                                    <cell id="69"/>
+                                    <cell id="70"/>
+                                </row>
+                            </footer>
+                        </table>
                     </detail>
                 </list>
             </detail>
