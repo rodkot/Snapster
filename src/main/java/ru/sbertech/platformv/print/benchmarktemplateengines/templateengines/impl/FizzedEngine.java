@@ -3,8 +3,6 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.imp
 import java.io.IOException;
 import java.util.List;
 
-import com.fizzed.rocker.RockerModel;
-
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;

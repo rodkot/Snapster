@@ -23,8 +23,6 @@ public class BirtEngine implements FileReportEngine {
         IReportRunnable design = engine.openReportDesign(in);
         task = engine.createRunAndRenderTask(design);
         task.setParameterValues(setupContext(companies));
-
-
     }
 
     private Map<String, Object> setupContext(List<CompanyDto> companies) throws JsonProcessingException {

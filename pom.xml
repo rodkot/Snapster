@@ -67,7 +67,8 @@
         <xdocreport.version>2.1.0</xdocreport.version>
         <yarg.version>2.2.14</yarg.version>
         <jasper.version>6.7.0</jasper.version>
-        <docx-stamper.version>1.4.0</docx-stamper.version>
+        <docx-stamper.version>2.5.0</docx-stamper.version>
+        <birt.version>4.4.1</birt.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -185,7 +186,7 @@
         <dependency>
             <groupId>pro.verron.office-stamper</groupId>
             <artifactId>engine</artifactId>
-            <version>2.5.0</version>
+            <version>${docx-stamper.version}</version>
         </dependency>
 
         <dependency>
@@ -215,7 +216,7 @@
         <dependency>
             <groupId>org.eclipse.birt.runtime</groupId>
             <artifactId>org.eclipse.birt.runtime</artifactId>
-            <version>4.4.1</version>
+            <version>${birt.version}</version>
         </dependency>
 
         <!-- datasource dependencies -->
@@ -269,7 +270,6 @@
             <version>${mapstruct.version}</version>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
