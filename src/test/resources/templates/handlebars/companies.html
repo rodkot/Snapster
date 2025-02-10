@@ -25,7 +25,7 @@
 <h3>Additional Offices</h3>
 
 {{#each additionalOffices}}
-<section class="office-section">
+<section class="office-info-section">
     <div class="office-info">
         <h4>{{name}}</h4>
         <p><strong>Location:</strong> {{location}}</p>
@@ -41,7 +41,7 @@
     <div class="office-photo">
         <img src="../assets/office/{{photo.name}}" alt="{{name}}" />
     </div>
-
+</section>
     <table>
         <thead>
         <tr>
@@ -66,7 +66,6 @@
         {{/each}}
         </tbody>
     </table>
-</section>
 {{/each}}
 
 {{/each}}
