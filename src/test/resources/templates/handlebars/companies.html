@@ -33,7 +33,7 @@
         <div>
             <strong>Resources:</strong>
             {{#each resources}}
-            <p class="resources">{{this}}</p>
+            <p class="resources" style="background-color: {{lookup ../resourcesColors @index}};"> {{this}} </p>
             {{/each}}
         </div>
         {{/if}}

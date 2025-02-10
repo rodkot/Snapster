@@ -34,6 +34,8 @@ public class HandlebarsEngine implements StringReportEngine {
     }
 
     private Map<String, Object> setupContext(List<CompanyDto> companies){
-        return Map.of("companies", companies);
+        var colors =
+                List.of("#ff5733", "#33ff57", "#3357ff", "#ff5733");
+        return Map.of("companies", companies, "resourcesColors", colors);
     }
 }
