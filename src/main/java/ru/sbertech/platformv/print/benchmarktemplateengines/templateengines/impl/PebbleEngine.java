@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.pebbletemplates.pebble.loader.StringLoader;
 import io.pebbletemplates.pebble.template.PebbleTemplate;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine;
@@ -19,20 +20,13 @@ public class PebbleEngine implements StringReportEngine {
     private final PebbleTemplate compiledTemplate;
     private final List<CompanyDto> companies;
 
-    private PebbleEngine(String report, List<CompanyDto> companies, Boolean caching) throws IOException {
+    private PebbleEngine(String report, List<CompanyDto> companies, Boolean caching) {
         this.companies = companies;
-        var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder();
+        var engine = new io.pebbletemplates.pebble.PebbleEngine.Builder().loader(new StringLoader());
         if (caching) {
             engine.cacheActive(true);
         }
-
-        File tempFile = File.createTempFile("pebble", ".html");
-
-        try (FileWriter fileWriter = new FileWriter(tempFile)) {
-            fileWriter.write(report);
-        }
-
-        compiledTemplate = engine.build().getTemplate(tempFile.getAbsolutePath());
+        compiledTemplate = engine.build().getTemplate(report);
     }
 
     public static PebbleEngine of(String report, List<CompanyDto> companies) throws IOException {
