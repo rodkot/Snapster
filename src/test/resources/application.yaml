@@ -60,4 +60,7 @@ templates:
     birt:
         report: templates/birt/companies.rptdesign
         output: src/test/resources/templates/birt/output.pdf
+    handlebars:
+        report: templates/handlebars/companies.html
+        output: templates/handlebars/output.html
 

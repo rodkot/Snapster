@@ -69,6 +69,7 @@
         <jasper.version>6.7.0</jasper.version>
         <docx-stamper.version>2.5.0</docx-stamper.version>
         <birt.version>4.4.1</birt.version>
+        <handlebars.version>4.4.0</handlebars.version>
 
 
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -217,6 +218,12 @@
             <groupId>org.eclipse.birt.runtime</groupId>
             <artifactId>org.eclipse.birt.runtime</artifactId>
             <version>${birt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars</artifactId>
+            <version>${handlebars.version}</version>
         </dependency>
 
         <!-- datasource dependencies -->

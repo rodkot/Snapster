@@ -168,6 +168,18 @@ public class ResourceConfig {
     }
 
     @Bean
+    public String outputHandlebars(@Value("${templates.handlebars.output}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
+    public String reportHandlebars(@Value("${templates.handlebars.report}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
     public String outputTrimou(@Value("${templates.trimou.output}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.readExpectedOutputResource(path);
     }
