@@ -2,8 +2,6 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.imp
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.birt.report.engine.api.*;
-
-import ru.sbertech.platformv.print.benchmarktemplateengines.ScalaClass;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.FileReportEngine;
 

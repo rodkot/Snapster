@@ -234,6 +234,13 @@
             <version>${barber.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.scalatra.scalate</groupId>
+            <artifactId>scalate-core_2.13</artifactId>
+            <version>1.10.1</version>
+        </dependency>
+
+
         <!-- datasource dependencies -->
 
         <dependency>
