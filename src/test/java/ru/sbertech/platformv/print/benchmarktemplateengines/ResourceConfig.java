@@ -185,6 +185,18 @@ public class ResourceConfig {
     }
 
     @Bean
+    public String reportBarber(@Value("${templates.barber.report}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
+    public String outputBarber(@Value("${templates.barber.output}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
     public String reportVelocity(@Value("${templates.velocity.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.readExpectedOutputResource(path);
     }

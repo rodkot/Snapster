@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies Report</title>
+</head>
+<body>
+<h1>Companies Report</h1>
+{{#each companies}}
+<div class="company-section">
+    <div class="company-info">
+        <h2>{{name}}</h2>
+        <p><strong>Code:</strong> {{code}}</p>
+        <p><strong>Director:</strong> {{director.name}}</p>
+        <p><strong>Main office:</strong> {{generalOffice.name}}</p>
+    </div>
+    <div class="company-logo">
+        <img src="../assets/company/{{logo.name}}" alt="{{name}} logo"/>
+    </div>
+</div>
+<h3>Additional Offices</h3>
+{{#each additionalOffices}}
+<section class="office-section">
+    <div class="office-info">
+        <h4>{{name}}</h4>
+        <p><strong>Location:</strong> {{location}}</p>
+        {{#if resources}}
+        <div>
+            <strong>Resources:</strong>
+            {{#each resources}}
+            <p class="resources" style="background-color: {{lookup ../resourcesColors @index}};">
+                {{this}}
+            </p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="office-photo">
+        <img src="../assets/office/{{photo.name}}" alt="{{name}}" />
+    </div>
+</section>
+{{/each}}
+{{/each}}
+</body>
+</html>

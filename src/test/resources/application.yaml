@@ -63,4 +63,8 @@ templates:
     handlebars:
         report: templates/handlebars/companies.html
         output: templates/handlebars/output.html
+    barber:
+        report: templates/barber/companies.html
+        output: templates/barber/output.html
+
 
