@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.cache.ConcurrentMapTemplateCache;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
 import freemarker.template.TemplateException;
@@ -18,14 +19,24 @@ public class HandlebarsEngine implements StringReportEngine {
     private final List<CompanyDto> companies;
     private final Template compiledTemplate;
 
-    private HandlebarsEngine(String report, List<CompanyDto> companies) throws IOException {
+    private HandlebarsEngine(String report, List<CompanyDto> companies, Boolean cashing) throws IOException {
         this.companies = companies;
-        Handlebars handlebars = new Handlebars();
+        Handlebars handlebars;
+        if (cashing){
+            handlebars = new Handlebars().with(new ConcurrentMapTemplateCache());
+        }else {
+            handlebars = new Handlebars();
+        }
+
         compiledTemplate = handlebars.compileInline(report);
     }
 
     public static HandlebarsEngine of(String report, List<CompanyDto> companies) throws IOException {
-        return new HandlebarsEngine(report, companies);
+        return new HandlebarsEngine(report, companies, false);
+    }
+
+    public static HandlebarsEngine cachingOf(String report, List<CompanyDto> companies) throws IOException {
+        return new HandlebarsEngine(report, companies, true);
     }
 
     @Override
