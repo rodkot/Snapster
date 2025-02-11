@@ -66,5 +66,9 @@ templates:
     barber:
         report: templates/barber/companies.html
         output: templates/barber/output.html
+    scalate:
+        ssp:
+            report: templates/scalate/companies.ssp
+        output: templates/scalate/output.html
 
 

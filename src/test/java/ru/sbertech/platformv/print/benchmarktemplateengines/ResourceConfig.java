@@ -191,6 +191,18 @@ public class ResourceConfig {
     }
 
     @Bean
+    public String reportScalateSsp(@Value("${templates.scalate.ssp.report}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
+    public String outputScalate(@Value("${templates.scalate.output}") String path,
+            ResourceResolverService resourceResolverService) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path);
+    }
+
+    @Bean
     public String outputBarber(@Value("${templates.barber.output}") String path,
             ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.readExpectedOutputResource(path);
