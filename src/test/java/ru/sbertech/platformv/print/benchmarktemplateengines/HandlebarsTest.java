@@ -15,7 +15,6 @@ import fr.opensagres.xdocreport.core.XDocReportException;
 import freemarker.template.TemplateException;
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HandlebarsEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.TrimouEngine;
 
 public class HandlebarsTest extends ExpectedOutputTest {
 
@@ -36,7 +35,6 @@ public class HandlebarsTest extends ExpectedOutputTest {
         assertOutput(output,engine.process());
     }
 
-
     @Test
     public void benchmarkWithOutOptimizations() throws IOException, TemplateException, ParseException,
             XDocReportException {
@@ -46,6 +44,17 @@ public class HandlebarsTest extends ExpectedOutputTest {
             engine.process();
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+    }
+
+    @Test
+    public void benchmarkWithOptimizations() throws IOException, TemplateException, ParseException,
+            XDocReportException {
+        Stopwatch sw = Stopwatch.createStarted();
+        var engine =  HandlebarsEngine.cachingOf(report, companies);
+        for (int i =0; i< 1000; i++){
+            engine.process();
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
     }
 
 }
