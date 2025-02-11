@@ -1,5 +1,7 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines
 
+import scala.collection.mutable
+import scala.collection.JavaConverters._
 import org.fusesource.scalate.{TemplateEngine, TemplateSource}
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto._
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.StringReportEngine
@@ -14,6 +16,8 @@ class ScalateSspEngine(val report: String, val companies: java.util.List[Company
     val templateSource = TemplateSource.fromText("test.ssp", report)
     val template = templateEngine.load(templateSource)
 
-      templateEngine.layout("", template)
+    val env = scala.Predef.Map("companies" -> companies.asScala)
+
+      templateEngine.layout("", template, env)
   }
 }
