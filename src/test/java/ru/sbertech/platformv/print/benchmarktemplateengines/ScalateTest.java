@@ -31,4 +31,13 @@ public class ScalateTest extends ExpectedOutputTest {
         assertOutput(engine.process(), output);
     }
 
+    @Test
+    public void benchmarkWithOutOptimizationsSSP() {
+        Stopwatch sw = Stopwatch.createStarted();
+        for (int i =0; i< 1000; i++){
+            var engine =  ScalateEngine.ofSPP(report, companies);
+            engine.process();
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+    }
 }
