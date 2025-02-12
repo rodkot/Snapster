@@ -1,4 +1,5 @@
 <% import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto._  %>
+<% import scala.collection._  %>
 
 <%@ val companies:List[CompanyDto] %>
 
@@ -27,7 +28,21 @@
         <img src="../assets/company/<%= company.getLogo().getName() %>" alt="<%= company.getName() %> logo"/>
         </div>
     </div>
-    <% } %>
 
+    <h3>Additional Offices</h3>
+    <% for (office <- company.getAdditionalOffices().asScala.toList) { %>
+        <section class="office-section">
+        <section class="office-info-section">
+            <div class="office-info">
+                <h4><%= office.getName() %></h4>
+                <p><strong>Location:</strong> <%= office.getLocation() %></p>
+            </div>
+            <div class="office-photo">
+                <img src="../assets/office/<%= office.getPhoto().getName() %>" alt="<%= office.getName() %>" />
+                </div>
+            </section>
+        </section>
+        <% } %>
+    <% } %>
 </body>
 </html>
