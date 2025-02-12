@@ -36,6 +36,16 @@
             <div class="office-info">
                 <h4><%= office.getName() %></h4>
                 <p><strong>Location:</strong> <%= office.getLocation() %></p>
+                <% if (office.getResources() != null && !office.getResources().isEmpty) { %>
+                    <div>
+                        <strong>Resources:</strong>
+                        <% office.getResources().asScala.zipWithIndex.foreach { case (resource, idx) => %>
+                        <p class="resources" style="background-color: <%= List("#ff5733", "#33ff57", "#3357ff")(idx % 3) %>;">
+                        <%= resource %>
+                        </p>
+                        <% } %>
+                    </div>
+                    <% } %>
             </div>
             <div class="office-photo">
                 <img src="../assets/office/<%= office.getPhoto().getName() %>" alt="<%= office.getName() %>" />
