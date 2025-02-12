@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.google.common.base.Stopwatch;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
+import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ScalateEngine;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 
 public class ScalateTest extends ExpectedOutputTest {
@@ -39,5 +40,15 @@ public class ScalateTest extends ExpectedOutputTest {
             engine.process();
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+    }
+
+    @Test
+    public void benchmarkWithOptimizationsSSP() {
+        Stopwatch sw = Stopwatch.createStarted();
+        var engine =  ScalateEngine.ofCashingSPP(report, companies);
+        for (int i =0; i< 1000; i++){
+            engine.process();
+        }
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
     }
 }

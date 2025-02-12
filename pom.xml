@@ -240,7 +240,6 @@
             <version>1.10.1</version>
         </dependency>
 
-
         <!-- datasource dependencies -->
 
         <dependency>
@@ -316,6 +315,7 @@
             <artifactId>jackson-core</artifactId>
             <version>2.18.2</version>
         </dependency>
+
         <!-- benchmarking dependencies -->
 
         <dependency>
