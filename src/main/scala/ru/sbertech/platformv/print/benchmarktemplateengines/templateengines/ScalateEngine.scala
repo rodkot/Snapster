@@ -3,6 +3,8 @@ package ru.sbertech.platformv.print.benchmarktemplateengines.templateengines
 import org.fusesource.scalate.{TemplateEngine, TemplateSource}
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto._
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ScalateEngine.templateEngine
+import ru.sbertech.platformv.print.benchmarktemplateengines.mapper.AsScalaExtensions
+import ru.sbertech.platformv.print.benchmarktemplateengines.model._
 
 import scala.jdk.CollectionConverters._
 
@@ -34,7 +36,7 @@ object ScalateEngine {
 
   def ofSPP(report: String, companies: java.util.List[CompanyDto]): ScalateEngine = {
     val templateSource = TemplateSource.fromText("template.ssp", report)
-    val env: Map[String, AnyRef] = Map("companies" -> companies.asScala.toList)
+    val env: Map[String, AnyRef] = Map("companies" -> companies.asScala.map(company=>company).toList)
     new ScalateEngine(templateSource, env, false)
   }
 
