@@ -11,7 +11,6 @@ import com.google.common.base.Stopwatch;
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.ScalateEngine;
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.ThymeleafEngine;
 
 public class ScalateTest extends ExpectedOutputTest {
 
