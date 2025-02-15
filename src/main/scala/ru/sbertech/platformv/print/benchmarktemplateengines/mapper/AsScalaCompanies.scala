@@ -1,11 +1,11 @@
 package ru.sbertech.platformv.print.benchmarktemplateengines.mapper
 
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.{SCompanyDto, SEmployeeDto, SFileDto, SOfficeDto, SProjectDto}
-import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto._
+import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.{CompanyDto, EmployeeDto, FileDto, OfficeDto, ProjectDto}
 
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 
-trait AsScalaExtensions {
+object AsScalaCompanies {
   implicit class CompanyMapper(company: CompanyDto) {
     def asScala: SCompanyDto = new SCompanyDto(company.getName, company.getCode, company.getEmail,
       company.getLogo.asScala, company.getDirector.asScala, company.getGeneralOffice.asScala, company
