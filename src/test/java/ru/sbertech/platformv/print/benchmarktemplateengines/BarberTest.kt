@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto.CompanyDto
 import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.BarberEngine
-import ru.sbertech.platformv.print.benchmarktemplateengines.templateengines.impl.HandlebarsEngine
 import java.io.IOException
 import java.text.ParseException
 
@@ -36,8 +35,4 @@ class BarberTest: ExpectedOutputTest() {
         val engine = BarberEngine.of(report!!, companies!!)
         assertOutput(output, engine.process())
     }
-
-
-
-
 }
