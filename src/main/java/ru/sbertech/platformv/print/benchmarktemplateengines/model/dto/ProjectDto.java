@@ -17,6 +17,6 @@ public class ProjectDto implements Inspectable, Serializable {
     private Long id;
     private String name;
     private String description;
-    private List<DepartamentDto> departaments;
+    private List<DepartmentDto> departaments;
     private String status;
 }

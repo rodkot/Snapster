@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartamentDto implements Inspectable, Serializable {
+public class DepartmentDto implements Inspectable, Serializable {
     private Long id;
     private String name;
     private double budget;
