@@ -1,4 +1,4 @@
-package ru.sbertech.platformv.print.benchmark.templateengine
+package ru.sbertech.platformv.print.benchmark.kotlin.templateengine
 
 import app.cash.barber.Barber
 import app.cash.barber.BarbershopBuilder
@@ -8,6 +8,7 @@ import app.cash.barber.models.Document
 import app.cash.barber.models.DocumentData
 import app.cash.barber.models.DocumentTemplate
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto
+import ru.sbertech.platformv.print.benchmark.templateengine.StringReportEngine
 
 class BarberEngine private constructor(val report: String, val companies: List<CompanyDto>) : StringReportEngine {
 
