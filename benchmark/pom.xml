@@ -318,6 +318,7 @@
                         <configuration>
                             <sourceDirs>
                                 <source>target/generated-sources/annotations</source>
+                                <source>src/main/kotlin</source>
                                 <source>src/main/java</source>
                                 <source>target/generated-sources/rocker</source>
                             </sourceDirs>
@@ -332,7 +333,8 @@
                         <configuration>
                             <sourceDirs>
                                 <source>target/generated-test-sources/test-annotations</source>
-                                <source>src/test/java</source>
+                                <source>src/main/kotlin</source>
+                                <source>src/main/java</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
