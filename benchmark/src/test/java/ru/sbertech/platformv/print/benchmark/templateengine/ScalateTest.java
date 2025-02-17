@@ -34,8 +34,8 @@ public class ScalateTest extends ExpectedOutputTest {
     @Test
     public void benchmarkWithOutOptimizationsScalaServerPageDialect() {
         Stopwatch sw = Stopwatch.createStarted();
+        var engine = ScalateEngine.of("companies.ssp", report, companies);
         for (int i = 0; i < 1000; i++) {
-            var engine = ScalateEngine.of("companies.ssp", report, companies);
             engine.process();
         }
         System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
