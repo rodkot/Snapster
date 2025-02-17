@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ru.sbertech.platformv.print.benchmark.domain.configuration.BenchmarkTemplateEnginesAutoConfiguration
