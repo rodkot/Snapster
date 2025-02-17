@@ -34,29 +34,29 @@
 ## Структура проекта 
 
 ```html
-├── /benchmark
+├── /benchmark                          # Модуль нагрузочного тестирования
 │   ├── /src
-│   │	├── /main
-│   │	│   ├── /java
+│   │	├── /main                       # Исходники тестируемых компонентов
+│   │	│   ├── /java                   # Библиотеки на JAVA
 │   │   │   │   └── ru.sbertech.platformv.print.benchmark.templateengine
-│   │	│   ├── /kotlin
+│   │	│   ├── /kotlin                 # Библиотеки на Kotlin
 │   │   │   │   └── ru.sbertech.platformv.print.benchmark.kotlin.templateengine
-│   │	│   └── /scala
+│   │	│   └── /scala                  # Библиотеки на Scala
 │   │   │       └── ru.sbertech.platformv.print.benchmark.scala.templateengine
-│   │   │           ├── /engine
+│   │   │           ├── /engine         
 │   │   │           ├── /mapper
 │   │   │           └── /model
-│   │   ├── /test
+│   │   ├── /test                       # Unit тестирование с использованием StopWatch
 │   │   │    └── /java
 │   │   │        └── ru.sbertech.platformv.print.benchmark.templateengine
 │   │   └── /resources
-│   │       ├── /db/changelog
-│   │       ├── /templates
-│   │       ├── application.yaml
+│   │       ├── /db/changelog           # Миграции БД
+│   │       ├── /templates              # Исходники шаблонов
+│   │       ├── application.yaml        # Конфигурация ресурсов
 │   │       ├── httl.properties
-│   │       └── logback.xml
-│   └── pom.xml
-├── /model
+│   │       └── logback.xml             # Настройка Log4J с отключением профилей логирования
+│   └── pom.xml                         # Импорт исходников шаблонизаторов
+├── /model                              # Модуль предметной модели
 │   ├── /src
 │   │	├── /main
 │   │	│   └──  /java
@@ -65,11 +65,11 @@
 │   │   │           ├── /mapper
 │   │   │           ├── /repository
 │   │   │           └── /service
-│   │   └── /resources
+│   │   └── /resources                  # Настройка авто-конфигурации
 │   │        └── /META-INF
 │   │            ├── /spring
 │   │            │   └── org.springframework.boot.autoconfigure.AutoConfiguration.imports
 │   │            └── spring.factories
-│   └── pom.xml
-└── pom.xml
+│   └── pom.xml                         # Проект, отвечающий за сборку компонентов Spring приложения
+└── pom.xml                             # Корневой проект, содержащий версии используемых языков и библиотек
 ```
