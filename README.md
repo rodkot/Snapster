@@ -8,7 +8,7 @@
 | Kotlin | 1.8.0   |
 | Scala  | 2.13.16 |
 
-Тестируемые библиотеки
+## Тестируемые библиотеки
 
 | Название      | Версия                    | Ссылка на GitHub                                            |
 |---------------|---------------------------|-------------------------------------------------------------|
@@ -30,3 +30,46 @@
 | Handlebars    | 4.4.0                     | [🔗 GitHub](https://github.com/jknack/handlebars.java)      |
 | Barber        | 2024.01.12.173005-933c241 | [🔗 GitHub](https://github.com/cashapp/barber)              |
 | Scalate       | 1.10.1                    | [🔗 GitHub](https://github.com/scalate/scalate)             |
+
+## Структура проекта 
+
+```html
+├── /benchmark
+│   ├── /src
+│   │	├── /main
+│   │	│   ├── /java
+│   │   │   │   └── ru.sbertech.platformv.print.benchmark.templateengine
+│   │	│   ├── /kotlin
+│   │   │   │   └── ru.sbertech.platformv.print.benchmark.kotlin.templateengine
+│   │	│   └── /scala
+│   │   │       └── ru.sbertech.platformv.print.benchmark.scala.templateengine
+│   │   │           ├── /engine
+│   │   │           ├── /mapper
+│   │   │           └── /model
+│   │   ├── /test
+│   │   │    └── /java
+│   │   │        └── ru.sbertech.platformv.print.benchmark.templateengine
+│   │   └── /resources
+│   │       ├── /db/changelog
+│   │       ├── /templates
+│   │       ├── application.yaml
+│   │       ├── httl.properties
+│   │       └── logback.xml
+│   └── pom.xml
+├── /model
+│   ├── /src
+│   │	├── /main
+│   │	│   └──  /java
+│   │   │       └── ru.sbertech.platformv.print.benchmark.domain
+│   │   │           ├── /configuration
+│   │   │           ├── /mapper
+│   │   │           ├── /repository
+│   │   │           └── /service
+│   │   └── /resources
+│   │        └── /META-INF
+│   │            ├── /spring
+│   │            │   └── org.springframework.boot.autoconfigure.AutoConfiguration.imports
+│   │            └── spring.factories
+│   └── pom.xml
+└── pom.xml
+```
