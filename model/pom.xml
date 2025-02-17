@@ -19,6 +19,13 @@
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>nl.big-o</groupId>
+            <artifactId>liqp</artifactId>
+            <version>${liqp.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
