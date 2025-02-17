@@ -26,28 +26,28 @@ public class ScalateTest extends ExpectedOutputTest {
     private List<CompanyDto> companies;
 
     @Test
-    public void testOutputSPP() {
-        ScalateEngine engine = ScalateEngine.ofSPP(report, companies);
+    public void testOutputScalaServerPageDialect() {
+        ScalateEngine engine = ScalateEngine.of("companies.ssp", report, companies);
         assertOutput(engine.process(), output);
     }
 
     @Test
-    public void benchmarkWithOutOptimizationsSSP() {
+    public void benchmarkWithOutOptimizationsScalaServerPageDialect() {
         Stopwatch sw = Stopwatch.createStarted();
-        for (int i =0; i< 1000; i++){
-            var engine =  ScalateEngine.ofSPP(report, companies);
+        for (int i = 0; i < 1000; i++) {
+            var engine = ScalateEngine.of("companies.ssp", report, companies);
             engine.process();
         }
-        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
     }
 
     @Test
-    public void benchmarkWithOptimizationsSSP() {
+    public void benchmarkWithOptimizationsScalaServerPageDialect() {
         Stopwatch sw = Stopwatch.createStarted();
-        var engine =  ScalateEngine.ofCashingSPP(report, companies);
-        for (int i =0; i< 1000; i++){
+        var engine = ScalateEngine.cachingOf("companies.spp", report, companies);
+        for (int i = 0; i < 1000; i++) {
             engine.process();
         }
-        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
+        System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
     }
 }

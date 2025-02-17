@@ -4,16 +4,20 @@ import org.fusesource.scalate.{TemplateEngine, TemplateSource}
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto
 import ru.sbertech.platformv.print.benchmark.scala.templateengine.engine.ScalateEngine.templateEngine
 import ru.sbertech.platformv.print.benchmark.scala.templateengine.mapper.AsScalaCompanies.CompanyMapper
+import ru.sbertech.platformv.print.benchmark.scala.templateengine.model.SCompanyDto
 
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 
-class ScalateEngine private (val templateSource: TemplateSource, val env: Map[String, AnyRef], val cashing: Boolean) {
+class ScalateEngine private(val uri: String, val report: String, val companies: List[SCompanyDto], val cashing: Boolean) {
 
   templateEngine.allowCaching = cashing
 
   def process(): String = {
     try {
+      val templateSource = TemplateSource.fromText("template.ssp", report)
       val template = ScalateEngine.templateEngine.load(templateSource)
+
+      val env: Map[String, AnyRef] = Map("companies" -> companies)
 
       ScalateEngine.templateEngine.layout("", template, env)
     } catch {
@@ -31,15 +35,11 @@ object ScalateEngine {
     engine
   }
 
-  def ofSPP(report: String, companies: java.util.List[CompanyDto]): ScalateEngine = {
-    val templateSource = TemplateSource.fromText("template.ssp", report)
-    val env: Map[String, AnyRef] = Map("companies" -> companies.asScala.map(company=>company.asScala).toList)
-    new ScalateEngine(templateSource, env, false)
+  def of(uri: String, report: String, companies: java.util.List[CompanyDto]): ScalateEngine = {
+    new ScalateEngine(uri, report, companies.asScala.map(company=>company.asScala).toList, false)
   }
 
-  def ofCashingSPP(report: String, companies: java.util.List[CompanyDto]): ScalateEngine = {
-    val templateSource = TemplateSource.fromText("template.ssp", report)
-    val env: Map[String, AnyRef] = Map("companies" -> companies.asScala.map(company=>company.asScala).toList)
-    new ScalateEngine(templateSource, env, true)
+  def cachingOf(uri: String, report: String, companies: java.util.List[CompanyDto]): ScalateEngine = {
+    new ScalateEngine(uri, report, companies.asScala.map(company=>company.asScala).toList, false)
   }
 }
