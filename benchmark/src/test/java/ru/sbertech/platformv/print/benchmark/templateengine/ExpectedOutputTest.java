@@ -44,7 +44,7 @@ import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverServ
         EmployeeRepository.class, OfficeService.class, ResourceConfig.class})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {BenchmarkTemplateEnginesAutoConfiguration.class})
-public abstract class   ExpectedOutputTest {
+public abstract class  ExpectedOutputTest {
 
     @Container
     @ServiceConnection
