@@ -108,7 +108,46 @@
 [Преобразованный шаблон в PDF](./docs/OfficesReport.pdf)  
 [ODT шаблон](./docs/ReportCompanies.odt)
 
+## Результаты тестирования 
+
+Характеристика тестирования:
+- Для замера времени использовалась компонент StopWatch из библиотеки [Guava](https://github.com/google/guava?ysclid=m78zlftyls759452872)
+- В качестве результатов замеров использовалось время выполнения 1000 операций
+- Все шаблоны заранее выгружены из ресурсов (чтоб не учитывать время чтения из памяти)
+
+### Тестирование без оптимизаторов
+
+Тестирование без оптимизаторов предполагает, что в замер входит:
+- Создание движка (с отключенным кешированием)
+- Рендер шаблона
+
+```java
+   @Test
+   public void benchmarkWithOutOptimizations() throws IOException {
+       Stopwatch sw = Stopwatch.createStarted();
+       for (int i =0; i< 1000; i++){
+           var engine =  PebbleEngine.of(report, companies);
+           engine.process();
+       }
+       System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
+   }
+```
+### Тестирование с оптимизаторами 
+
+Тестирование с оптимизацией предполагает, что в замер входит предварительное создание движка с включенным кешированием и операция рендера.
+```java
+ @Test
+ public void benchmarkWithOptimizations() throws IOException, TemplateException {
+     Stopwatch sw = Stopwatch.createStarted();
+     var engine =  TrimouEngine.cachingOf(report, companies);
+     for (int i =0; i< 1000; i++){
+         engine.process();
+     }
+     System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
+ }
+```
+
 
 ## Список улучшений
 
-- Использование Clogure и Groovy библиотек
+- Использование Clojure и Groovy библиотек
