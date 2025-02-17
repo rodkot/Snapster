@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto;
-import ru.sbertech.platformv.print.benchmark.scala.templateengine.engine.ScalateEngine;
+import ru.sbertech.platformv.print.benchmark.scala.templateengine.ScalateEngine;
 
 
 import java.util.List;

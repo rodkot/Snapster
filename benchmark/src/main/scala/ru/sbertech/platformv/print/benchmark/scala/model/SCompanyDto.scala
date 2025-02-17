@@ -1,4 +1,4 @@
-package ru.sbertech.platformv.print.benchmark.scala.templateengine.model
+package ru.sbertech.platformv.print.benchmark.scala.model
 
 class SCompanyDto(val name: String,
                   val code: String,

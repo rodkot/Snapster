@@ -1,7 +1,7 @@
-package ru.sbertech.platformv.print.benchmark.scala.templateengine.mapper
+package ru.sbertech.platformv.print.benchmark.scala.mapper
 
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.{CompanyDto, EmployeeDto, FileDto, OfficeDto, ProjectDto}
-import ru.sbertech.platformv.print.benchmark.scala.templateengine.model.{SCompanyDto, SEmployeeDto, SFileDto, SOfficeDto, SProjectDto}
+import ru.sbertech.platformv.print.benchmark.scala.model.{SCompanyDto, SEmployeeDto, SFileDto, SOfficeDto, SProjectDto}
 
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 

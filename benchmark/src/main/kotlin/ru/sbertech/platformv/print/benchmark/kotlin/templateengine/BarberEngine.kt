@@ -8,11 +8,13 @@ import app.cash.barber.models.Document
 import app.cash.barber.models.DocumentData
 import app.cash.barber.models.DocumentTemplate
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto
+import ru.sbertech.platformv.print.benchmark.kotlin.mapper.AsKotlinCompanies.asKotlin
+import ru.sbertech.platformv.print.benchmark.kotlin.model.KCompanyDto
 import ru.sbertech.platformv.print.benchmark.templateengine.StringReportEngine
 
 class BarberEngine private constructor(val report: String, val companies: List<CompanyDto>) : StringReportEngine {
 
-    private val context: Context = Context(companies)
+    private val context: Context = Context(companies.map { it.asKotlin() })
     private val barber: Barber<Companies>
 
     init {
@@ -32,7 +34,7 @@ class BarberEngine private constructor(val report: String, val companies: List<C
     }
 
     private data class Companies(val companies: String) : Document
-    private data class Context(val companies: List<CompanyDto>) : DocumentData
+    private data class Context(val companies: List<KCompanyDto>) : DocumentData
 
 
     companion object {

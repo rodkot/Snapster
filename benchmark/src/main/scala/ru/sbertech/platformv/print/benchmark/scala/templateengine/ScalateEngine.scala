@@ -1,10 +1,10 @@
-package ru.sbertech.platformv.print.benchmark.scala.templateengine.engine
+package ru.sbertech.platformv.print.benchmark.scala.templateengine
 
 import org.fusesource.scalate.{TemplateEngine, TemplateSource}
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto
-import ru.sbertech.platformv.print.benchmark.scala.templateengine.engine.ScalateEngine.templateEngine
-import ru.sbertech.platformv.print.benchmark.scala.templateengine.mapper.AsScalaCompanies.CompanyMapper
-import ru.sbertech.platformv.print.benchmark.scala.templateengine.model.SCompanyDto
+import ru.sbertech.platformv.print.benchmark.scala.mapper.AsScalaCompanies.CompanyMapper
+import ru.sbertech.platformv.print.benchmark.scala.model.SCompanyDto
+import ru.sbertech.platformv.print.benchmark.scala.templateengine.ScalateEngine.templateEngine
 
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 

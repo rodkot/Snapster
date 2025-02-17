@@ -1,4 +1,4 @@
-package ru.sbertech.platformv.print.benchmark.scala.templateengine.model
+package ru.sbertech.platformv.print.benchmark.scala.model
 
 class SOfficeDto(val name: String,
                  val location: String,
