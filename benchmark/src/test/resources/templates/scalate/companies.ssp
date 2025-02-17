@@ -1,7 +1,6 @@
-<% import ru.sbertech.platformv.print.benchmarktemplateengines.model.dto._  %>
-<% import scala.collection._  %>
+<% import ru.sbertech.platformv.print.benchmark.scala.templateengine.model._  %>
 
-<%@ val companies:List[CompanyDto] %>
+<%@ val companies:List[SCompanyDto] %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,28 +17,28 @@
     <% for (company <- companies) { %>
     <div class="company-section">
     <div class="company-info">
-        <h2><%= company.getName %></h2>
-        <p><strong>Code:</strong> <%= company.getCode %></p>
-        <p><strong>Email:</strong> <%= company.getEmail %></p>
-        <p><strong>Director:</strong> <%= company.getDirector.getName %></p>
-        <p><strong>Main office:</strong> <%= company.getGeneralOffice.getName %></p>
+        <h2><%= company.name %></h2>
+        <p><strong>Code:</strong> <%= company.code %></p>
+        <p><strong>Email:</strong> <%= company.email %></p>
+        <p><strong>Director:</strong> <%= company.director.name %></p>
+        <p><strong>Main office:</strong> <%= company.generalOffice.name %></p>
     </div>
     <div class="company-logo">
-        <img src="../assets/company/<%= company.getLogo.getName %>" alt="<%= company.getName %> logo"/>
+        <img src="../assets/company/<%= company.logo.name %>" alt="<%= company.name %> logo"/>
         </div>
     </div>
 
     <h3>Additional Offices</h3>
-    <% for (office <- company.getAdditionalOffices.asScala.toList) { %>
+    <% for (office <- company.additionalOffices) { %>
         <section class="office-section">
         <section class="office-info-section">
             <div class="office-info">
-                <h4><%= office.getName %></h4>
-                <p><strong>Location:</strong> <%= office.getLocation %></p>
-                <% if (office.getResources != null && !office.getResources.isEmpty) { %>
+                <h4><%= office.name %></h4>
+                <p><strong>Location:</strong> <%= office.location %></p>
+                <% if (office.resources != null && office.resources.nonEmpty) { %>
                     <div>
                         <strong>Resources:</strong>
-                        <% office.getResources.asScala.zipWithIndex.foreach { case (resource, idx) => %>
+                        <% office.resources.zipWithIndex.foreach { case (resource, idx) => %>
                         <p class="resources" style="background-color: <%= List("#ff5733", "#33ff57", "#3357ff")(idx % 3) %>;">
                         <%= resource %>
                         </p>
@@ -48,7 +47,7 @@
                     <% } %>
             </div>
             <div class="office-photo">
-                <img src="../assets/office/<%= office.getPhoto.getName %>" alt="<%= office.getName %>" />
+                <img src="../assets/office/<%= office.photo.name %>" alt="<%= office.name %>" />
                 </div>
             </section>
             <table>
@@ -64,14 +63,14 @@
                 </thead>
                 <tbody>
                     <%-- Iterate over employees of the office --%>
-                    <% for (employee <- office.getEmployees.asScala) { %>
+                    <% for (employee <- office.employees) { %>
                     <tr>
-                        <td><%= employee.getId %></td>
-                        <td><%= employee.getName %></td>
-                        <td><%= employee.getProject.getName %></td>
-                        <td><%= employee.getPosition %></td>
-                        <td><%= f"${employee.getSalary}%.2f" %></td>
-                        <td><%= employee.getExperience %></td>
+                        <td><%= employee.id %></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.project.name %></td>
+                        <td><%= employee.position %></td>
+                        <td><%= f"${employee.salary}%.2f" %></td>
+                        <td><%= employee.experience %></td>
                     </tr>
                     <% } %>
                 </tbody>
