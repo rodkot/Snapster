@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmark.domain.model.dto;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,8 @@ public class EmployeeDto implements Inspectable, Serializable {
     private ProjectDto project;
     private double salary;
     private int experience;
+
+    public Map<String, Object> getMap() {
+        return Map.of("id", id, "name", name);
+    }
 }

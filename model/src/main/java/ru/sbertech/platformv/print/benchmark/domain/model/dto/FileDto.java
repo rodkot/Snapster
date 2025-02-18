@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import liqp.parser.Inspectable;
@@ -31,5 +32,9 @@ public class FileDto implements Inspectable, Serializable {
     @JsonIgnore
     public InputStream getInputStream() throws FileNotFoundException {
         return new FileInputStream(file);
+    }
+
+    public Map<String, Object> getMap(){
+        return Map.of("name", name);
     }
 }

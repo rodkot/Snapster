@@ -2,6 +2,7 @@ package ru.sbertech.platformv.print.benchmark.domain.model.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
@@ -22,5 +23,10 @@ public class CompanyDto implements Inspectable, Serializable {
     private EmployeeDto director;
     private OfficeDto generalOffice;
     private List<OfficeDto> additionalOffices;
+
+    public Map<String, Object> getMap(){
+        return Map.of("id", id, "name", name, "email", email, "logo", logo.getMap(), "code", code, "director",
+                director.getMap());
+    }
 
 }

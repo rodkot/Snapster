@@ -1,24 +1,17 @@
 package ru.sbertech.platformv.print.benchmark.templateengine;
 
-import clojure.java.api.Clojure;
-import clojure.lang.IFn;
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import io.github.erdos.stencil.API;
-import io.github.erdos.stencil.EvaluatedDocument;
-import io.github.erdos.stencil.PreparedTemplate;
-import io.github.erdos.stencil.TemplateData;
-import io.github.erdos.stencil.standalone.JsonParser;
+import clojure.java.api.Clojure;
+import clojure.lang.IFn;
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class StencilTest extends ExpectedOutputTest {
 
@@ -44,7 +37,7 @@ public class StencilTest extends ExpectedOutputTest {
         String outputPath = output.getAbsolutePath();
 
         Map<String, Object> data = new HashMap<>();
-        data.put("name", "Java");
+        data.put("companies", companies.stream().map(CompanyDto::getMap).toList());
 
         renderTemplate.invoke(templatePath, outputPath, data);
     }
