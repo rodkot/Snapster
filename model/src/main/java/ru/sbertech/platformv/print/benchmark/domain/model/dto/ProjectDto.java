@@ -2,6 +2,7 @@ package ru.sbertech.platformv.print.benchmark.domain.model.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,8 @@ public class ProjectDto implements Inspectable, Serializable {
     private String description;
     private List<DepartmentDto> departaments;
     private String status;
+
+    public Map<String,Object> getMap() {
+        return Map.of("name", name);
+    }
 }

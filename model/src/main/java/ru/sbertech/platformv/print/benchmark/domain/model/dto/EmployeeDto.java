@@ -22,6 +22,7 @@ public class EmployeeDto implements Inspectable, Serializable {
     private int experience;
 
     public Map<String, Object> getMap() {
-        return Map.of("id", id, "name", name);
+        return Map.of("id", id, "name", name, "position", position, "project", project.getMap(), "salary", salary,
+                "experience", experience);
     }
 }

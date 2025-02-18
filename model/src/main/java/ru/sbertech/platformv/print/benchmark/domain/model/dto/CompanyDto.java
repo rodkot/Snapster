@@ -24,9 +24,10 @@ public class CompanyDto implements Inspectable, Serializable {
     private OfficeDto generalOffice;
     private List<OfficeDto> additionalOffices;
 
-    public Map<String, Object> getMap(){
+    public Map<String, Object> getMap() {
         return Map.of("id", id, "name", name, "email", email, "logo", logo.getMap(), "code", code, "director",
-                director.getMap());
+                director.getMap(), "generalOffice", generalOffice.getMap(), "additionalOffices",
+                additionalOffices.stream().map(OfficeDto::getMap).toList());
     }
 
 }
