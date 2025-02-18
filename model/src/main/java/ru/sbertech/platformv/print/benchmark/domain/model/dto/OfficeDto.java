@@ -24,6 +24,6 @@ public class OfficeDto implements Inspectable, Serializable {
 
     public Map<String, Object> getMap() {
         return Map.of("id", id, "name", name, "location", location, "photo", photo.getMap(), "employees",
-                employees.stream().map(EmployeeDto::getMap).toList(), "resources", resources);
+                employees.stream().map(EmployeeDto::getMap).toList());
     }
 }
