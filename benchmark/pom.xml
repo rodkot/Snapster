@@ -166,11 +166,16 @@
             <version>${barber.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.scalatra.scalate</groupId>
             <artifactId>scalate-core_2.13</artifactId>
             <version>${scalate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.erdos</groupId>
+            <artifactId>stencil-core</artifactId>
+            <version>0.6.1</version>
         </dependency>
 
         <!-- Scala dependency -->
@@ -223,6 +228,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <javaVersion>17</javaVersion>
                             <templateDirectory>src/test/resources/</templateDirectory>
                         </configuration>
                     </execution>
@@ -359,12 +365,13 @@
                                 <source>target/generated-test-sources/test-annotations</source>
                                 <source>src/main/kotlin</source>
                                 <source>src/main/java</source>
+                                <source>target/generated-sources/rocker</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>17</jvmTarget>
                 </configuration>
             </plugin>
         </plugins>

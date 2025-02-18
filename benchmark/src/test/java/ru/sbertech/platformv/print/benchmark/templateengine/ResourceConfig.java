@@ -69,6 +69,18 @@ public class ResourceConfig {
     }
 
     @Bean
+    public File reportStencil(@Value("${templates.stencil.report}") String path,
+                             ResourceResolverService resourceResolverService) throws URISyntaxException {
+        return resourceResolverService.getFileFromResource(path);
+    }
+
+    @Bean
+    public File outputStencil(@Value("${templates.stencil.output}") String path) {
+        return new File(path);
+    }
+
+
+    @Bean
     public File reportJasper(@Value("${templates.jasper.report}") String path,
             ResourceResolverService resourceResolverService) throws URISyntaxException {
         return resourceResolverService.getFileFromResource(path);

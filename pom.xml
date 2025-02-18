@@ -45,6 +45,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>clojars.org</id>
+            <url>https://repo.clojars.org</url>
+        </repository>
     </repositories>
 
     <parent>
@@ -61,6 +65,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <rocker.javaVersion>17</rocker.javaVersion>
 
         <jmh.version>1.37</jmh.version>
         <uberjar.name>benchmarks</uberjar.name>
