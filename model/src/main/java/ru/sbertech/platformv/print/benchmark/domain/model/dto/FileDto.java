@@ -11,8 +11,10 @@ import java.util.Base64;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import liqp.parser.Inspectable;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +24,7 @@ import lombok.SneakyThrows;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class FileDto implements Inspectable, Serializable {
     private String name;
     private String directory;
@@ -29,23 +32,18 @@ public class FileDto implements Inspectable, Serializable {
     @JsonIgnore
     private File file;
 
-    public String data() throws IOException {
+    public String getData() throws IOException {
         byte[] bytes = getInputStream().readAllBytes();
 
-        return "data:"+ Files.probeContentType(file.toPath())+";base64,"+Base64.getEncoder().encodeToString(bytes);
+        return "data:" + Files.probeContentType(file.toPath()) + ";base64," + Base64.getEncoder().encodeToString(bytes);
     }
 
-    public String getPath(){
-        return directory+name;
+    public String getPath() {
+        return directory + name;
     }
 
     @JsonIgnore
     public InputStream getInputStream() throws FileNotFoundException {
         return new FileInputStream(file);
-    }
-
-    @SneakyThrows
-    public Map<String, Object> getMap(){
-        return Map.of("name", name, "data", data());
     }
 }

@@ -20,8 +20,4 @@ public class ProjectDto implements Inspectable, Serializable {
     private String description;
     private List<DepartmentDto> departaments;
     private String status;
-
-    public Map<String,Object> getMap() {
-        return Map.of("name", name);
-    }
 }

@@ -19,7 +19,7 @@ templates:
         company: templates/assets/company/
     thymeleaf:
         report: templates/thymeleaf/company.html
-        output: templates/thymeleaf/output2.html
+        output: templates/thymeleaf/output.html
     freemarker:
         report: templates/freemarker/company.ftl
         output: templates/freemarker/output.html

@@ -1,10 +1,9 @@
 package ru.sbertech.platformv.print.benchmark.templateengine;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -17,14 +16,14 @@ import com.google.common.base.Stopwatch;
 import clojure.lang.IFn;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import freemarker.template.TemplateException;
+import jakarta.annotation.Resources;
 import net.sf.jasperreports.engine.JRException;
-import ru.sbertech.platformv.print.benchmark.templateengine.impl.DocxStamperEngine;
 
 public class StencilTest extends ExpectedOutputTest {
 
     @Autowired
     @Qualifier("companiesMap")
-    private Map<String,Object> companies;
+    private HashMap<String,Object> companies;
 
     @Autowired
     @Qualifier("reportStencil")
