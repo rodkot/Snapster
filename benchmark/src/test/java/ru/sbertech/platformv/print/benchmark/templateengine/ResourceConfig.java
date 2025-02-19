@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -26,6 +27,13 @@ public class ResourceConfig {
     public List<CompanyDto> companies(CompanyService companyService){
         return companyService.loadAll();
     }
+
+    @Bean
+    @Scope("prototype")
+    public Map<String, Object> companiesMap(List<CompanyDto> companies){
+        return Map.of("companies", companies.stream().map(CompanyDto::getMap).toList());
+    }
+
 
     @Bean
     public File reportBirt(@Value("${templates.birt.report}") String path,
