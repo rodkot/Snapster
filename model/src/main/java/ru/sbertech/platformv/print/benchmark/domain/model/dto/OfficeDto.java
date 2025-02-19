@@ -1,6 +1,7 @@
 package ru.sbertech.platformv.print.benchmark.domain.model.dto;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,12 @@ public class OfficeDto implements Inspectable, Serializable {
     private List<String> resources;
 
     public Map<String, Object> getMap() {
-        return Map.of("id", id, "name", name, "location", location, "photo", photo.getMap(), "employees",
-                employees.stream().map(EmployeeDto::getMap).toList());
+        var result = new HashMap<>(
+                Map.of("id", id, "name", name, "location", location, "photo", photo.getMap(), "employees",
+                        employees.stream().map(EmployeeDto::getMap).toList()));
+        if (resources!=null && !resources.isEmpty()){
+            result.put("resources", resources);
+        }
+        return result;
     }
 }
