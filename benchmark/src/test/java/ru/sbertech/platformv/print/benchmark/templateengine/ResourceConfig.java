@@ -6,6 +6,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -33,9 +36,21 @@ public class ResourceConfig {
 
     @Bean
     @Scope("prototype")
-    public Map<String, Object> companiesMap(List<CompanyDto> companies){
-        return Map.of("companies", companies.stream().map(CompanyDto::getMap).toList());
+    public Map<String, Object> companiesMap(ObjectMapper objectMapper, String companiesJson) throws JsonProcessingException {
+        TypeReference<List<Map<String, Object>>> typeRef = new TypeReference<>() {};
+        return Map.of("companies", objectMapper.readValue(companiesJson, typeRef));
     }
+
+    @Bean
+    public String companiesJson(ObjectMapper objectMapper, List<CompanyDto> companies) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(companies);
+    }
+
+    @Bean
+    public ObjectMapper objectMapper(){
+       return new ObjectMapper();
+    }
+
 
     @Bean
     public IFn stencilEngine(){
