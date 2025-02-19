@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+
+import clojure.java.api.Clojure;
+import clojure.lang.IFn;
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmark.domain.service.CompanyService;
 import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverService;
@@ -34,6 +37,13 @@ public class ResourceConfig {
         return Map.of("companies", companies.stream().map(CompanyDto::getMap).toList());
     }
 
+    @Bean
+    public IFn stencilEngine(){
+        IFn require = Clojure.var("clojure.core", "require");
+        require.invoke(Clojure.read("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine"));
+
+        return Clojure.var("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine", "process");
+    }
 
     @Bean
     public File reportBirt(@Value("${templates.birt.report}") String path,

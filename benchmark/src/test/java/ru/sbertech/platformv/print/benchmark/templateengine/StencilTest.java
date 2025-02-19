@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import clojure.java.api.Clojure;
 import clojure.lang.IFn;
 
 public class StencilTest extends ExpectedOutputTest {
@@ -24,14 +23,9 @@ public class StencilTest extends ExpectedOutputTest {
     @Qualifier("outputStencil")
     private File output;
 
-    private final IFn engine;
-
-    public StencilTest(){
-        IFn require = Clojure.var("clojure.core", "require");
-        require.invoke(Clojure.read("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine"));
-
-        engine = Clojure.var("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine", "process");
-    }
+    @Autowired
+    @Qualifier("stencilEngine")
+    private IFn engine;
 
     @Test
     public void testOutput(){
