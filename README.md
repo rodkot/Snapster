@@ -2,48 +2,50 @@
 
 Проект для аналитики библиотек шаблонизаторов на JVM языках
 
-| ЯП     | Версия  |
-|--------|---------|
-| Java   | 17      |
-| Kotlin | 1.8.0   |
-| Scala  | 2.13.16 |
+| ЯП      | Версия  |
+|---------|---------|
+| Java    | 17      |
+| Kotlin  | 1.8.0   |
+| Scala   | 2.13.16 |
+| Clojure | 1.12.0  |
 
 ## Тестируемые библиотеки
 
-| Название      | Версия                    | Ссылка на GitHub                                            |
-|---------------|---------------------------|-------------------------------------------------------------|
-| FreeMarker    | 2.3.23                    | [🔗 GitHub](https://github.com/apache/freemarker)           |
-| Thymeleaf     | 3.1.0.RELEASE             | [🔗 GitHub](https://github.com/thymeleaf/thymeleaf)         |
-| Pebble        | 3.2.2                     | [🔗 GitHub](https://github.com/PebbleTemplates/pebble)      |
-| Mustache      | 0.9.10                    | [🔗 GitHub](https://github.com/spullara/mustache.java)      |
-| Fizzed        | 2.1.0                     | [🔗 GitHub](https://github.com/fizzed/rocker)               |
-| Trimou        | 2.5.0.Final               | [🔗 GitHub](https://github.com/trimou/trimou)               |
-| Velocity      | 1.7                       | [🔗 GitHub](https://github.com/apache/velocity-engine)      |
-| Liqp          | 0.9.1.3                   | [🔗 GitHub](https://github.com/bkiers/Liqp)                 |
-| HTTL          | 1.0.11                    | [🔗 GitHub](https://github.com/httl/httl)                   |
-| Jinjava       | 2.7.4                     | [🔗 GitHub](https://github.com/HubSpot/jinjava)             |
-| XDocReport    | 2.1.0                     | [🔗 GitHub](https://github.com/opensagres/xdocreport)       |
-| YARG          | 2.2.14                    | [🔗 GitHub](https://github.com/cuba-platform/yarg)          |
+| Название      | Версия                    | Ссылка на GitHub          |
+|---------------|---------------------------|---------------------------|
+| FreeMarker    | 2.3.23                    | [🔗 GitHub](https://github.com/apache/freemarker) |
+| Thymeleaf     | 3.1.0.RELEASE             | [🔗 GitHub](https://github.com/thymeleaf/thymeleaf) |
+| Pebble        | 3.2.2                     | [🔗 GitHub](https://github.com/PebbleTemplates/pebble) |
+| Mustache      | 0.9.10                    | [🔗 GitHub](https://github.com/spullara/mustache.java) |
+| Fizzed        | 2.1.0                     | [🔗 GitHub](https://github.com/fizzed/rocker) |
+| Trimou        | 2.5.0.Final               | [🔗 GitHub](https://github.com/trimou/trimou) |
+| Velocity      | 1.7                       | [🔗 GitHub](https://github.com/apache/velocity-engine) |
+| Liqp          | 0.9.1.3                   | [🔗 GitHub](https://github.com/bkiers/Liqp) |
+| HTTL          | 1.0.11                    | [🔗 GitHub](https://github.com/httl/httl) |
+| Jinjava       | 2.7.4                     | [🔗 GitHub](https://github.com/HubSpot/jinjava) |
+| XDocReport    | 2.1.0                     | [🔗 GitHub](https://github.com/opensagres/xdocreport) |
+| YARG          | 2.2.14                    | [🔗 GitHub](https://github.com/cuba-platform/yarg) |
 | JasperReports | 6.7.0                     | [🔗 GitHub](https://github.com/TIBCOSoftware/jasperreports) |
-| Docx-Stamper  | 2.5.0                     | [🔗 GitHub](https://github.com/thombergs/docx-stamper)      |
-| BIRT          | 4.4.1                     | [🔗 GitHub](https://github.com/eclipse/birt)                |
-| Handlebars    | 4.4.0                     | [🔗 GitHub](https://github.com/jknack/handlebars.java)      |
-| Barber        | 2024.01.12.173005-933c241 | [🔗 GitHub](https://github.com/cashapp/barber)              |
-| Scalate       | 1.10.1                    | [🔗 GitHub](https://github.com/scalate/scalate)             |
+| Docx-Stamper  | 2.5.0                     | [🔗 GitHub](https://github.com/thombergs/docx-stamper) |
+| BIRT          | 4.4.1                     | [🔗 GitHub](https://github.com/eclipse/birt) |
+| Handlebars    | 4.4.0                     | [🔗 GitHub](https://github.com/jknack/handlebars.java) |
+| Barber        | 2024.01.12.173005-933c241 | [🔗 GitHub](https://github.com/cashapp/barber) |
+| Scalate       | 1.10.1                    | [🔗 GitHub](https://github.com/scalate/scalate) |
+| Stencil       | 0.6.1                     | [🔗 GitHub](https://github.com/erdos/stencil)             |
 
-## Структура проекта 
+## Структура проекта
 
 ```html
 ├── /benchmark                          # Модуль нагрузочного тестирования
 │   ├── /src
-│   │	├── /main                       # Исходники тестируемых компонентов
-│   │	│   ├── /java                   # Библиотеки на JAVA
+│   │   ├── /main                       # Исходники тестируемых компонентов
+│   │   │   ├── /java                   # Библиотеки на JAVA
 │   │   │   │   └── ru.sbertech.platformv.print.benchmark.templateengine
-│   │	│   ├── /kotlin                 # Библиотеки на Kotlin
+│   │   │   ├── /kotlin                 # Библиотеки на Kotlin
 │   │   │   │   └── ru.sbertech.platformv.print.benchmark.kotlin.templateengine
-│   │	│   └── /scala                  # Библиотеки на Scala
+│   │   │   └── /scala                  # Библиотеки на Scala
 │   │   │       └── ru.sbertech.platformv.print.benchmark.scala.templateengine
-│   │   │           ├── /engine         
+│   │   │           ├── /engine
 │   │   │           ├── /mapper
 │   │   │           └── /model
 │   │   ├── /test                       # Unit тестирование с использованием StopWatch
@@ -58,8 +60,8 @@
 │   └── pom.xml                         # Импорт исходников шаблонизаторов
 ├── /model                              # Модуль предметной модели
 │   ├── /src
-│   │	├── /main
-│   │	│   └──  /java
+│   │   ├── /main
+│   │   │   └── /java
 │   │   │       └── ru.sbertech.platformv.print.benchmark.domain
 │   │   │           ├── /configuration
 │   │   │           ├── /mapper
@@ -82,71 +84,79 @@
 ![](./docs/structure.png)
 
 Для всех движков использовался одинаковый шаблон со структурой:
+
 - Список компаний
-  - Информация о компании 
-  - Название 
-  - Директор 
-  - Центральный офис 
-  - Инд. код 
-  - Логотип 
-  - Список дополнительных офисов 
-    - Информации о офисе 
-    - Название 
-    - Адрес 
-    - Доступные ресурсы 
-    - Фотография 
-    - Список сотрудников офиса 
-      - Табельный номер 
-      - Имя 
-      - Должность 
-      - Проект 
-      - Стаж 
-      - Зарплата
-  
+    - Информация о компании
+    - Название
+    - Директор
+    - Центральный офис
+    - Инд. код
+    - Логотип
+    - Список дополнительных офисов
+        - Информации о офисе
+        - Название
+        - Адрес
+        - Доступные ресурсы
+        - Фотография
+        - Список сотрудников офиса
+            - Табельный номер
+            - Имя
+            - Должность
+            - Проект
+            - Стаж
+            - Зарплата
+
 ### Примеры реализованных шаблонов
 
 [Преобразованный шаблон в PDF](./docs/OfficesReport.pdf)  
 [ODT шаблон](./docs/ReportCompanies.odt)
 
-## Результаты тестирования 
+## Результаты тестирования
 
 Характеристика тестирования:
-- Для замера времени использовалась компонент StopWatch из библиотеки [Guava](https://github.com/google/guava?ysclid=m78zlftyls759452872)
+
+- Для замера времени использовалась компонент StopWatch из
+  библиотеки [Guava](https://github.com/google/guava?ysclid=m78zlftyls759452872)
 - В качестве результатов замеров использовалось время выполнения 1000 операций
 - Все шаблоны заранее выгружены из ресурсов (чтоб не учитывать время чтения из памяти)
 
 ### Тестирование без оптимизаторов
 
 Тестирование без оптимизаторов предполагает, что в замер входит:
+
 - Создание движка (с отключенным кешированием)
 - Рендер шаблона
 
 ```java
-   @Test
-   public void benchmarkWithOutOptimizations() throws IOException {
-       Stopwatch sw = Stopwatch.createStarted();
-       for (int i =0; i< 1000; i++){
-           var engine =  PebbleEngine.of(report, companies);
-           engine.process();
-       }
-       System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+ " ms.");
-   }
-```
-### Тестирование с оптимизаторами 
 
-Тестирование с оптимизацией предполагает, что в замер входит предварительное создание движка с включенным кешированием и операция рендера.
+@Test
+public void benchmarkWithOutOptimizations() throws IOException {
+    Stopwatch sw = Stopwatch.createStarted();
+    for (int i = 0; i < 1000; i++) {
+        var engine = PebbleEngine.of(report, companies);
+        engine.process();
+    }
+    System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
+}
+```
+
+### Тестирование с оптимизаторами
+
+Тестирование с оптимизацией предполагает, что в замер входит предварительное создание движка с включенным кешированием и
+операция рендера.
+
 ```java
- @Test
- public void benchmarkWithOptimizations() throws IOException, TemplateException {
-     Stopwatch sw = Stopwatch.createStarted();
-     var engine =  TrimouEngine.cachingOf(report, companies);
-     for (int i =0; i< 1000; i++){
-         engine.process();
-     }
-     System.out.println(sw.elapsed(TimeUnit.MILLISECONDS)+" ms.");
- }
-```
 
+@Test
+public void benchmarkWithOptimizations() throws IOException, TemplateException {
+    Stopwatch sw = Stopwatch.createStarted();
+    var engine = TrimouEngine.cachingOf(report, companies);
+    for (int i = 0; i < 1000; i++) {
+        engine.process();
+    }
+    System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
+}
+```
 
 ## Список улучшений
 

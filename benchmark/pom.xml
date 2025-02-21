@@ -175,7 +175,7 @@
         <dependency>
             <groupId>io.github.erdos</groupId>
             <artifactId>stencil-core</artifactId>
-            <version>0.6.1</version>
+            <version>${stencil.version}</version>
         </dependency>
 
         <!-- Scala dependency -->
@@ -209,7 +209,7 @@
         <dependency>
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
-            <version>1.12.0</version>
+            <version>${clojure.version}</version>
         </dependency>
 
     </dependencies>
