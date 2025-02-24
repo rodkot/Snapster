@@ -41,11 +41,16 @@
 │   │   ├── /main                       # Исходники тестируемых компонентов
 │   │   │   ├── /java                   # Библиотеки на JAVA
 │   │   │   │   └── ru.sbertech.platformv.print.benchmark.templateengine
+│   │   │   ├── /clojure                   # Библиотеки на Clojure
+│   │   │   │   └── ru.sbertech.platformv.print.benchmark.clojure.templateengine
 │   │   │   ├── /kotlin                 # Библиотеки на Kotlin
-│   │   │   │   └── ru.sbertech.platformv.print.benchmark.kotlin.templateengine
+│   │   │   │   └── ru.sbertech.platformv.print.benchmark.kotlin
+│   │   │   │       ├── /templateengine
+│   │   │   │       ├── /mapper
+│   │   │   │       └── /model
 │   │   │   └── /scala                  # Библиотеки на Scala
-│   │   │       └── ru.sbertech.platformv.print.benchmark.scala.templateengine
-│   │   │           ├── /engine
+│   │   │       └── ru.sbertech.platformv.print.benchmark.scala
+│   │   │           ├── /templateengine
 │   │   │           ├── /mapper
 │   │   │           └── /model
 │   │   ├── /test                       # Unit тестирование с использованием StopWatch
@@ -157,7 +162,3 @@ public void benchmarkWithOptimizations() throws IOException, TemplateException {
     System.out.println(sw.elapsed(TimeUnit.MILLISECONDS) + " ms.");
 }
 ```
-
-## Список улучшений
-
-- Использование Clojure и Groovy библиотек

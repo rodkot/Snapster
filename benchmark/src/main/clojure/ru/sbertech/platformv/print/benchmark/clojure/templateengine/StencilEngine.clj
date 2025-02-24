@@ -1,4 +1,4 @@
-(ns ru.sbertech.platformv.print.benchmark.clojure.StencilEngine
+(ns ru.sbertech.platformv.print.benchmark.clojure.templateengine.StencilEngine
   (:require [stencil.api :as api]
             [clojure.java.io :as io]))
 

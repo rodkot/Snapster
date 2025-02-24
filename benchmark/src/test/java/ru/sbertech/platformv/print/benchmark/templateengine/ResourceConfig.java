@@ -7,18 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import clojure.java.api.Clojure;
 import clojure.lang.IFn;
-import clojure.lang.Obj;
 import ru.sbertech.platformv.print.benchmark.domain.model.dto.CompanyDto;
 import ru.sbertech.platformv.print.benchmark.domain.service.CompanyService;
 import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverService;
@@ -62,9 +61,9 @@ public class ResourceConfig {
     @Bean
     public IFn stencilEngine() {
         IFn require = Clojure.var("clojure.core", "require");
-        require.invoke(Clojure.read("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine"));
+        require.invoke(Clojure.read("ru.sbertech.platformv.print.benchmark.clojure.templateengine.StencilEngine"));
 
-        return Clojure.var("ru.sbertech.platformv.print.benchmark.clojure.StencilEngine", "process");
+        return Clojure.var("ru.sbertech.platformv.print.benchmark.clojure.templateengine.StencilEngine", "process");
     }
 
     @Bean
