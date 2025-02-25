@@ -192,6 +192,20 @@
             <version>${flying-saucer.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-core</artifactId>
+            <version>${itext.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>html2pdf</artifactId>
+            <version>${itext.html2pdf.version}</version>
+        </dependency>
+
+
         <!-- Scala dependency -->
         <dependency>
             <groupId>org.scala-lang</groupId>

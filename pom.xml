@@ -92,7 +92,8 @@
         <stencil.version>0.6.1</stencil.version>
 
         <flying-saucer.version>9.11.4</flying-saucer.version>
-
+        <itext.version>9.1.0</itext.version>
+        <itext.html2pdf.version>6.1.0</itext.html2pdf.version>
 
         <mapstruct.version>1.6.3</mapstruct.version>
 

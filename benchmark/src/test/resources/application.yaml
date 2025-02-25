@@ -17,6 +17,8 @@ converter:
     report: templates/converter/report.html
     flying-saucer:
         output: src/test/resources/templates/converter/flying-saucer/output.pdf
+    itext:
+        output: src/test/resources/templates/converter/itext/output.pdf
 templates:
     assets:
         office: templates/assets/office/
