@@ -10,6 +10,7 @@ import ru.sbertech.platformv.print.benchmark.domain.model.dto.OfficeDto;
 import ru.sbertech.platformv.print.benchmark.domain.model.entity.Office;
 import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverService;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 @Mapper(componentModel = "spring", uses = {EmployeeMapper.class, ProjectsMapper.class})
@@ -24,7 +25,7 @@ public abstract class OfficeMapper {
    public abstract OfficeDto officeToDto(Office office);
 
     @Named("photoToFileDto")
-    public FileDto stringToFileDto(String name) throws URISyntaxException {
+    public FileDto stringToFileDto(String name) throws IOException {
         return new FileDto(name, directoryPhotoOffice,
                 resourceResolverService.getFileFromResource(directoryPhotoOffice,name));
     }

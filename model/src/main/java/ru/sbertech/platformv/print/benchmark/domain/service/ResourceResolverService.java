@@ -2,6 +2,7 @@ package ru.sbertech.platformv.print.benchmark.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -17,7 +18,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ResourceResolverService {
     @Autowired
-    private ClassLoader resourceLoader;
+    private ResourceLoader resourceLoader;
 
     public String pathDirResource(String path) {
         Path originalPath = Paths.get(path);
@@ -36,7 +37,7 @@ public class ResourceResolverService {
     public String readExpectedOutputResource(String path) throws IOException {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(resourceLoader.getResourceAsStream(path))))) {
+                Objects.requireNonNull(resourceLoader.getResource(path)).getInputStream()))) {
             for (; ; ) {
                 String line = in.readLine();
                 if (line == null) {
@@ -49,11 +50,11 @@ public class ResourceResolverService {
         return builder.toString();
     }
 
-    public File getFileFromResource(String directory, String name) throws URISyntaxException {
+    public File getFileFromResource(String directory, String name) throws IOException {
         return getFileFromResource(directory+name);
     }
 
-    public File getFileFromResource(String path) throws URISyntaxException {
-        return new File(Objects.requireNonNull(resourceLoader.getResource(path)).toURI());
+    public File getFileFromResource(String path) throws IOException {
+        return resourceLoader.getResource(path).getFile();
     }
 }

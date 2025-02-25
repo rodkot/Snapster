@@ -2,7 +2,6 @@ package ru.sbertech.platformv.print.benchmark.templateengine;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +67,7 @@ public class ResourceConfig {
 
     @Bean
     public File reportBirt(
-            @Value("${templates.birt.report}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+            @Value("${templates.birt.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
@@ -81,7 +79,7 @@ public class ResourceConfig {
 
     @Bean
     public File reportDocxStamper(@Value("${templates.docx-stamper.report}")
-            String path, ResourceResolverService resourceResolverService) throws URISyntaxException {
+            String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
@@ -93,8 +91,7 @@ public class ResourceConfig {
 
     @Bean
     public File reportXDoc(
-            @Value("${templates.xdoc.report}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+            @Value("${templates.xdoc.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
@@ -106,15 +103,14 @@ public class ResourceConfig {
 
     @Bean
     public File reportJRXML(
-            @Value("${templates.jasper.jrxml}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+            @Value("${templates.jasper.jrxml}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
     @Bean
     public File reportStencil(
             @Value("${templates.stencil.report}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+            IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
@@ -127,7 +123,7 @@ public class ResourceConfig {
     @Bean
     public File reportJasper(
             @Value("${templates.jasper.report}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+             IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 
@@ -164,8 +160,7 @@ public class ResourceConfig {
 
     @Bean
     public File reportFizzed(
-            @Value("${templates.fizzed.report}") String path, ResourceResolverService resourceResolverService) throws
-            URISyntaxException {
+            @Value("${templates.fizzed.report}") String path, ResourceResolverService resourceResolverService) throws IOException {
         return resourceResolverService.getFileFromResource(path);
     }
 

@@ -10,6 +10,7 @@ import ru.sbertech.platformv.print.benchmark.domain.model.dto.FileDto;
 import ru.sbertech.platformv.print.benchmark.domain.model.entity.Company;
 import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverService;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 
@@ -25,7 +26,7 @@ public abstract class CompanyMapper {
     public abstract CompanyDto companyToDto(Company company);
 
     @Named("logoToFileDto")
-    public FileDto stringToFileDto(String name) throws URISyntaxException {
+    public FileDto stringToFileDto(String name) throws IOException {
         return new FileDto(name, directoryLogoCompanies,
                 resourceResolverService.getFileFromResource(directoryLogoCompanies, name));
     }
