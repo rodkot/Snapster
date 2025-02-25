@@ -13,6 +13,10 @@ logging:
     level:
         org.hibernate: OFF
 
+converter:
+    report: templates/converter/report.html
+    flying-saucer:
+        output: src/test/resources/templates/converter/flying-saucer/output.pdf
 templates:
     assets:
         office: templates/assets/office/
@@ -42,8 +46,6 @@ templates:
         report: templates/report/liqp/company.liqp
         output: templates/report/liqp/output.html
     jinjava:
-        report: templates/jinjava/company.html
-        output: templates/jinjava/output.html
         report: templates/report/jinjava/company.html
         output: templates/report/jinjava/output.html
     httl:
