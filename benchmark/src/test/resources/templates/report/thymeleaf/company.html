@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies Report</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+<h1>Companies Report</h1>
+
+<div th:each="company : ${companies}">
+    <div class="company-section">
+        <div class="company-info"><h2 th:text="${company.name}"/>
+            <p><strong>Code:</strong><span th:text="${company.code}"></span></p>
+            <p><strong>Director:</strong> <span th:text="${company.director.name}"></span></p>
+            <p><strong>Main office:</strong> <span th:text="${company.generalOffice.name}"></span></p></div>
+        <div class="company-logo">
+            <img th:src="'../../assets/company/'+ ${company.logo.name}" th:alt="${company.name}"/>
+        </div>
+    </div>
+    <h3>Additional Offices</h3>
+    <div th:each="office : ${company.additionalOffices}">
+        <section class="office-section">
+            <section class="office-info-section">
+                <div class="office-info">
+                    <h4 th:text="${office.name}"></h4>
+                    <p><strong>Location:</strong> <span th:text="${office.location}"></span></p>
+
+                    <div th:if="${office.resources != null}">
+                        <strong>Resources:</strong>
+                        <span th:each="resource, iterStat : ${office.resources}">
+                    <p class="resources"
+                       th:style="${#lists.isEmpty(office.resources) ? '' : (iterStat.index % 3 == 0 ? 'background-color: #ff5733;' : (iterStat.index % 3 == 1 ? 'background-color: #33ff57;' : 'background-color: #3357ff;'))}"
+                       th:text="${resource}">
+                    </p>
+                </span>
+                    </div>
+                </div>
+                <div class="office-photo">
+                    <img th:src="'../../assets/office/'+ ${office.photo.name}" th:alt="${office.name}"/>
+                </div>
+            </section>
+            <table>
+                <thead>
+                <tr>
+                    <th>Personal Table</th>
+                    <th>Name</th>
+                    <th>Project</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                    <th>Experience (years)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employee : ${office.employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.project.name}"></td>
+                    <td th:text="${employee.position}"></td>
+                    <td th:text="${#numbers.formatDecimal(employee.salary,1, 'DEFAULT', 2, 'DEFAULT')}"></td>
+                    <td th:text="${employee.experience}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+</body>
+</html>

@@ -18,60 +18,62 @@ templates:
         office: templates/assets/office/
         company: templates/assets/company/
     thymeleaf:
-        report: templates/thymeleaf/company.html
-        output: templates/thymeleaf/output.html
+        report: templates/report/thymeleaf/company.html
+        output: templates/report/thymeleaf/output.html
     freemarker:
-        report: templates/freemarker/company.ftl
-        output: templates/freemarker/output.html
+        report: templates/report/freemarker/company.ftl
+        output: templates/report/freemarker/output.html
     fizzed:
-        report: templates/fizzed/companies.rocker.html
-        output: templates/fizzed/output.html
+        report: templates/report/fizzed/companies.rocker.html
+        output: templates/report/fizzed/output.html
     mustache:
-        report: templates/mustache/company.html
-        output: templates/mustache/output.html
+        report: templates/report/mustache/company.html
+        output: templates/report/mustache/output.html
     trimou:
-        report: templates/trimou/company.html
-        output: templates/trimou/output.html
+        report: templates/report/trimou/company.html
+        output: templates/report/trimou/output.html
     velocity:
-        report: templates/velocity/company.pm
-        output: templates/velocity/output.html
+        report: templates/report/velocity/company.pm
+        output: templates/report/velocity/output.html
     pebble:
-        report: templates/pebble/company.html
-        output: templates/pebble/output.html
+        report: templates/report/pebble/company.html
+        output: templates/report/pebble/output.html
     liqp:
-        report: templates/liqp/company.liqp
-        output: templates/liqp/output.html
+        report: templates/report/liqp/company.liqp
+        output: templates/report/liqp/output.html
     jinjava:
         report: templates/jinjava/company.html
         output: templates/jinjava/output.html
+        report: templates/report/jinjava/company.html
+        output: templates/report/jinjava/output.html
     httl:
-        report: templates/httl/company.httl
-        output: templates/httl/output.html
+        report: templates/report/httl/company.httl
+        output: templates/report/httl/output.html
     xdoc:
-        report: templates/xdocreport/companies.odt
-        output: src/test/resources/templates/xdocreport/output.odt
+        report: templates/report/xdocreport/companies.odt
+        output: src/test/resources/templates/report/xdocreport/output.odt
     jasper:
-        jrxml: templates/jasper/companies.jrxml
-        report: templates/jasper/companies.jasper
-        output: src/test/resources/templates/jasper/output.pdf
+        jrxml: templates/report/jasper/companies.jrxml
+        report: templates/report/jasper/companies.jasper
+        output: src/test/resources/templates/report/jasper/output.pdf
     docx-stamper:
-        report: templates/docx-stamper/companies.docx
-        output: src/test/resources/templates/docx-stamper/output.docx
+        report: templates/report/docx-stamper/companies.docx
+        output: src/test/resources/templates/report/docx-stamper/output.docx
     birt:
-        report: templates/birt/companies.rptdesign
-        output: src/test/resources/templates/birt/output.pdf
+        report: templates/report/birt/companies.rptdesign
+        output: src/test/resources/templates/report/birt/output.pdf
     handlebars:
-        report: templates/handlebars/companies.html
-        output: templates/handlebars/output.html
+        report: templates/report/handlebars/companies.html
+        output: templates/report/handlebars/output.html
     barber:
-        report: templates/barber/companies.html
-        output: templates/barber/output.html
+        report: templates/report/barber/companies.html
+        output: templates/report/barber/output.html
     scalate:
         ssp:
-            report: templates/scalate/companies.ssp
-        output: templates/scalate/output.html
+            report: templates/report/scalate/companies.ssp
+        output: templates/report/scalate/output.html
     stencil:
-        report: templates/stencil/companies.docx
-        output: src/test/resources/templates/stencil/output.docx
+        report: templates/report/stencil/companies.docx
+        output: src/test/resources/templates/report/stencil/output.docx
 
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies Report</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+<h1>Companies Report</h1>
+{{#companies}}
+<div class="company-section">
+    <div class="company-info"><h2> {{name}}</h2>
+        <p><strong>Code:</strong> {{code}}</p>
+        <p><strong>Director:</strong> {{director.name}}</p>
+        <p><strong>Main office:</strong> {{generalOffice.name}}</p></div>
+    <div class="company-logo">
+        <img src="../../assets/company/{{logo.name}}" alt="{{name}} logo"/>
+    </div>
+</div>
+<h3>Additional Offices</h3>
+{{#additionalOffices}}
+<section class="office-section">
+    <section class="office-info-section">
+        <div class="office-info">
+            <h4>{{name}}</h4>
+            <p><strong>Location:</strong> {{location}}</p>
+            <div>
+                <strong>Resources:</strong>
+                {{#resources}}
+                {{@index}}
+                <p class="resources" style="background-color: {{getColor}}">
+                    {{.}}
+                </p>
+                {{/resources}}
+            </div>
+        </div>
+        <div class="office-photo">
+            <img src="../../assets/office/{{photo.name}}" alt="{{name}} logo"/>
+        </div>
+    </section>
+    <table>
+        <thead>
+        <tr>
+            <th>Personal Table</th>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Experience (years)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#employees}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{project.name}}</td>
+            <td>{{position}}</td>
+            <td>{{salary}}</td>
+            <td>{{experience}}</td>
+        </tr>
+        {{/employees}}
+        </tbody>
+    </table>
+</section>
+{{/additionalOffices}}
+{{/companies}}
+</body>
+</html>
