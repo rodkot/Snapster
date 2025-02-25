@@ -17,12 +17,30 @@ import java.nio.file.Paths;
 public class ResourceConfig {
     @Bean
     public String report(@Value("${converter.report}")
-                         String path, ResourceResolverService resourceResolverService, ResourceLoader resourceLoader) throws IOException {
-        return resourceResolverService.readExpectedOutputResource(path).replaceAll("resources://",resourceLoader.getResource("").getFile().getAbsolutePath());
+                         String path, ResourceResolverService resourceResolverService, Path resourcePath) throws IOException {
+        return resourceResolverService.readExpectedOutputResource(path).replaceAll("resources://", resourcePath.toString());
+    }
+
+    @Bean
+    public Path resourcePath(ResourceLoader resourceLoader) throws IOException {
+        return resourceLoader.getResource("").getFile().toPath().toAbsolutePath();
     }
 
     @Bean
     public File outputFlyingSaucer(@Value("${converter.flying-saucer.output}") String path) throws IOException {
+        Path filePath = Paths.get(path);
+
+        Files.createDirectories(filePath.getParent());
+
+        if (!Files.exists(filePath)) {
+            return Files.createFile(filePath).toFile();
+        }
+
+        return new File(path);
+    }
+
+    @Bean
+    public File outputIText(@Value("${converter.itext.output}") String path) throws IOException {
         Path filePath = Paths.get(path);
 
         Files.createDirectories(filePath.getParent());

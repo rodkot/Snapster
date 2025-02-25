@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import ru.sbertech.platformv.print.benchmark.common.SetupTest;
-import ru.sbertech.platformv.print.benchmark.conversion.flyingsaucer.FlyingSaucerConverter;
 import ru.sbertech.platformv.print.benchmark.domain.service.ResourceResolverService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
 
 @ContextConfiguration(classes = ResourceConfig.class)
 public class FlyingSaucerTest extends SetupTest {
@@ -26,9 +26,13 @@ public class FlyingSaucerTest extends SetupTest {
     @Autowired
     private ResourceResolverService resourceResolverService;
 
+    @Autowired
+    private Path resourcePath;
+
     @Test
     public void conversionTest() throws FileNotFoundException, DocumentException {
-        FlyingSaucerConverter converter = new FlyingSaucerConverter(report,resourceResolverService);
+        FlyingSaucerConverter converter = new FlyingSaucerConverter(report,resourcePath.toString(),
+                resourceResolverService);
 
         converter.convert(new FileOutputStream(output));
     }
